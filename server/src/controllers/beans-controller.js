@@ -13,13 +13,13 @@ const getAllBeans = async (req, res) => {
     res.status(200).json(beans);
   } catch (error) {
     res.status(500).json({
-      message: `Unable to retrieve coffee beans.`
+      message: `Unable to get coffee beans.`
     })
   }
 }
 
 const getOneBean = async (req, res) => {
-  const beanId = req.params.id;
+  const beanId = req.params.beanId;
   try {
     const beans = await knex
     .select(
@@ -42,9 +42,10 @@ const getOneBean = async (req, res) => {
     const bean = beans[0]
     const methods = await knex
       .select(
-        'methods.id',
+        'recipes.method_id',
         'methods.brew_method',
-        'methods.image')
+        'methods.image',
+        'recipes.id')
       .from('recipes')
       .where({'bean_id': beanId})
       .join('methods', 'recipes.method_id', 'methods.id')
@@ -55,7 +56,7 @@ const getOneBean = async (req, res) => {
     })
   } catch (error) {
     res.status(500).json({
-      message: `Unable to retrieve coffee bean with ID ${beanId}`
+      message: `Unable to get coffee bean with ID ${beanId}`
     })
   }
 }

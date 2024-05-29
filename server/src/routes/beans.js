@@ -6,7 +6,11 @@ router
   .get(beansController.getAllBeans)
 
 router
-  .route('/:id')
+  .route('/:beanId')
   .get(beansController.getOneBean)
+
+// router
+//   .route('/:beanId/method/:methodId')
+//   .get(beansController.getOneRecipe)
 
 module.exports = router;

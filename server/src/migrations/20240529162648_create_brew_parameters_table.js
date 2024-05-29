@@ -23,6 +23,8 @@ exports.up = function(knex) {
     table.string('water').nullable();
     table.string('temp').notNullable();
     table.string('grind_size').notNullable();
+    table.timestamp('created_at').defaultTo(knex.fn.now());
+    table.timestamp('updated_at').defaultTo(knex.raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
   })
 };
 
