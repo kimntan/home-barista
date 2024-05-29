@@ -5,4 +5,8 @@ router
   .route('/')
   .get(methodsController.getAllMethods)
 
+router
+  .route('/:beanId')
+  .get(methodsController.getCoffeeMethods)
+
 module.exports = router;

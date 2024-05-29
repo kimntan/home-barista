@@ -38,6 +38,31 @@ const missingRecipeFieldValidator = (req) => {
   }
 }
 
+const missingCoffeeFieldValidator = (req) => {
+  const missingFields = [];
+
+  for (const key in req.body) {
+    if(key === 'name' || key === 'brand') {
+      if (!req.body[key]) {
+        missingFields.push(key);
+      }
+    }
+  }
+
+  if (missingFields.length > 0) {
+    return {
+      valid: false,
+      status: 400,
+      message: `Please provide a value for ${missingFields.join(', ')}`
+    }
+  }
+
+  return {
+    valid: true
+  }
+}
+
 module.exports = {
-  missingRecipeFieldValidator
+  missingRecipeFieldValidator,
+  missingCoffeeFieldValidator
 }

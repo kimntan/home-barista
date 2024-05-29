@@ -92,12 +92,11 @@ const deleteOneRecipe = async (req, res) => {
       })
     }
     
-    await knex('recipes').where ({id: recipeId}).del();
+    await knex('recipes').where({id: recipeId}).del();
 
     res.status(204).json({
       message: `Successfully deleted recipe with ID ${recipeId}`
     })
-
   } catch (error) {
     res.status(500).json({
       message: `Error deleting recipe with ID ${recipeId}`
