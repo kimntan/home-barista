@@ -98,7 +98,7 @@ Response:
   },
   {
     "method": "Pour Over",
-    "image": "https://assets.breville.com/cdn-cgi/image/width=1300,format=auto/Dynamic_Bundle/US/BES870XL_Transparent_1300x1300.png?pdp"
+    "image": "https://chemex-canada.ca/cdn/shop/products/chemex_classic-6-cup_front_1000x.png?v=1663251302"
   }
   ...
 ]
@@ -126,7 +126,7 @@ Parameters:
 ]
 ```
 
-**GET /coffee/:id/method/:id/recipe/:id**
+**GET /coffee/:id/method/:id/recipe**
 
 - Get recipe
 
@@ -148,7 +148,7 @@ Parameters:
 }
 ```
 
-**PUT /coffee/:id/method/:id/recipe/:id**
+**PUT /coffee/:id/method/:id/recipe**
 
 - Edit recipe
 
@@ -171,7 +171,7 @@ Parameters:
 }
 ```
 
-**DELETE /coffee/:id/method/:id/recipe/:id**
+**DELETE /coffee/:id/method/:id/recipe**
 
 - Delete recipe
 
@@ -246,6 +246,7 @@ Sprint 2 (Time permitting):
 
 - Create landing page with sign/up and login
 - Store user data and implement authentication with JWT token
+- Add photo upload feature for add beans page
 - Append API requests with JWT token
 
 Sprint 3:
