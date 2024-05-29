@@ -79,7 +79,60 @@ const editOneRecipe = async (req, res) => {
   }
 }
 
+const deleteOneRecipe = async (req, res) => {
+  const recipeId = req.params.recipeId;
+
+  try {
+    const recipe = await knex('recipes')
+      .where({id: recipeId})
+
+    if (recipe.length === 0) {
+      return res.status(404).json({
+        message: `Could not find recipe with ID ${recipeId}`
+      })
+    }
+    
+    await knex('recipes').where ({id: recipeId}).del();
+
+    res.status(204).json({
+      message: `Successfully deleted recipe with ID ${recipeId}`
+    })
+
+  } catch (error) {
+    res.status(500).json({
+      message: `Error deleting recipe with ID ${recipeId}`
+    })
+  }
+}
+
+const postOneRecipe = async (req, res) => {
+  const fieldValidation = missingRecipeFieldValidator(req);
+  if (!fieldValidation.valid) {
+    return res.status(fieldValidation.status).json({
+      message: fieldValidation.message
+    })
+  }
+
+  try {
+    const addRecipe = await knex('recipes')
+      .insert(req.body);
+    const newRecipeId = addRecipe[0];
+
+    const newRecipe = await knex('recipes')
+      .where({id: newRecipeId})
+      .first();
+
+    res.status(201).json(newRecipe);
+  } catch (error) {
+    res.status(500).json({
+      message: `Unable to post new recipe`
+    })
+  }
+}
+
 module.exports = {
   getOneRecipe,
-  editOneRecipe
+  editOneRecipe,
+  deleteOneRecipe,
+  postOneRecipe
 }
