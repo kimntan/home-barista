@@ -9,8 +9,4 @@ router
   .route('/:beanId')
   .get(beansController.getOneBean)
 
-// router
-//   .route('/:beanId/method/:methodId')
-//   .get(beansController.getOneRecipe)
-
 module.exports = router;
