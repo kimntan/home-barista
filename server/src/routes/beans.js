@@ -5,4 +5,8 @@ router
   .route('/')
   .get(beansController.getAllBeans)
 
+router
+  .route('/:id')
+  .get(beansController.getOneBean)
+
 module.exports = router;
