@@ -64,7 +64,7 @@ Add new recipe page - similar to edit page but has empty input fields
 
 ### Endpoints
 
-**GET /coffee**
+**GET /beans**
 
 - Get all coffee beans
 
@@ -85,7 +85,7 @@ Response:
 ]
 ```
 
-**GET /method**
+**GET /methods**
 
 - Get all methods
 
@@ -104,13 +104,9 @@ Response:
 ]
 ```
 
-**GET /coffee/:id/method**
+**GET /methods/:beanId**
 
 - Get all methods for single bean
-
-Parameters:
-
-- coffee.id
 
 ```
 [
@@ -126,15 +122,10 @@ Parameters:
 ]
 ```
 
-**GET /coffee/:id/method/:id/recipe**
+**GET /recipes/:recipeId**
 
 - Get recipe
 
-Parameters:
-
-- coffee.id
-- method.id
-
 ```
 {
   "id": 1,
@@ -148,16 +139,10 @@ Parameters:
 }
 ```
 
-**PUT /coffee/:id/method/:id/recipe**
+**GET /recipes/:recipeId**
 
 - Edit recipe
 
-Parameters:
-
-- coffee.id
-- method.id
-- req.body
-
 ```
 {
   "id": 1,
@@ -171,23 +156,13 @@ Parameters:
 }
 ```
 
-**DELETE /coffee/:id/method/:id/recipe**
+**GET /recipes/:recipeId**
 
 - Delete recipe
 
-Parameters:
-
-- coffee.id
-- method.id
-
-**POST /coffee/:id/method/:id/recipe**
+**GET /recipes**
 
 - Add new recipe
-
-Parameters:
-
-- coffee.id
-- method.id
 
 ```
 {
@@ -202,7 +177,7 @@ Parameters:
 }
 ```
 
-**POST /coffee**
+**POST /beans**
 
 - Add new coffee bean
 
@@ -218,7 +193,7 @@ Parameters:
 }
 ```
 
-**DELETE /coffee/:id**
+**DELETE /beans/:id**
 
 - Delete coffee bean
 
