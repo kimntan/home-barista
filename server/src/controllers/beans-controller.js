@@ -12,7 +12,7 @@ const getAllBeans = async (req, res) => {
     res.status(200).json(beans);
   } catch (error) {
     res.status(500).json({
-      message: `Unable to retrieve coffee beans`
+      message: `Unable to retrieve coffee beans.`
     })
   }
 }
