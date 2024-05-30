@@ -3,14 +3,8 @@
 @use '../../styles/spacing' as *;
 @use '../../styles/breakpoints' as *;
 
-.coffee-beans {
+.brew-methods {
   @include section-padding;
-  display: flex;
-  flex-direction: column;
-  border-bottom: $divider;
-  &__header {
-    @include flex(space-between, center);
-  }
   &__list {
     padding: 1rem 0;
     display: flex;
@@ -20,7 +14,7 @@
   &__item {
     list-style-type: none;
   }
-  &__coffee-bag {
+  &__equipment {
     height: 7rem;
     width: 6rem;
     object-fit: cover;
@@ -31,27 +25,6 @@
     &:hover {
       transform: scale(1.25);
       transition: 0.25s;
-    }
-  }
-  &__button {
-    @include button(1.5rem, 8rem);
-    align-self: flex-end;
-  }
-}
-
-.search {
-  position: relative;
-  &__icon {
-    position: absolute;
-    height: 1.25rem;
-    right: 0.3rem;
-    top: 0.15rem;
-    opacity: 0.5;
-  }
-  &__input {
-    @include form-field(1.5rem, 8rem, $light-grey);
-    @include tablet {
-      width: 12rem;
     }
   }
 }

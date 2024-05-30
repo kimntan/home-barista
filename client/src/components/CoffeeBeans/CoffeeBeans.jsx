@@ -26,7 +26,7 @@ export default function CoffeeBeans() {
           })}
         </ul>
       }
-
+      <button className="coffee-beans__button">Add new bean</button>
     </div>
   )
 }

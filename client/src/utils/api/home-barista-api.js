@@ -7,10 +7,19 @@ class HomeBaristaApi {
 
   async getAllBeans() {
     try {
-      const response = await axios.get(`${this.baseUrl}/beans`)
-      return response.data
+      const response = await axios.get(`${this.baseUrl}/beans`);
+      return response.data;
     } catch (error) {
-      console.error(error);
+      return error
+    }
+  }
+
+  async getAllMethods() {
+    try {
+      const response = await axios.get(`${this.baseUrl}/methods`)
+      return response.data;
+    } catch (error) {
+      return error
     }
   }
 }

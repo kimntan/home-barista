@@ -2,6 +2,7 @@ import Header from '../../components/Header/Header';
 import CoffeeBeans from '../../components/CoffeeBeans/CoffeeBeans';
 import Hero from '../../assets/images/hero.jpeg';
 import './HomePage.scss';
+import BrewMethods from '../../components/BrewMethods/BrewMethods';
 
 export default function HomePage () {
   return (
@@ -11,6 +12,7 @@ export default function HomePage () {
         <img src={Hero} alt="Person distributing coffee grinds in portafilter" className="home__hero"/>
       </div>
       <CoffeeBeans />
+      <BrewMethods />
     </>
   )
 }

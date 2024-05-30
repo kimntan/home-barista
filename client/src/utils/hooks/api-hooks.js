@@ -25,3 +25,29 @@ export const useFetchBeans = () => {
 
   return {beans, loading, error};
 }
+
+export const useFetchMethods = () => {
+  const homeBaristaApi = useMemo(() => new HomeBaristaApi(), []);
+  const [methods, setMethods] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      setLoading(true);
+      try {
+        const fetchedData = await homeBaristaApi.getAllMethods();
+        setMethods(fetchedData);
+        setLoading(false);
+      } catch (error) {
+        setError(error);
+        setLoading(false);
+      }
+    }
+
+    fetchData();
+  }, [homeBaristaApi]);
+
+  return {methods, loading, error}
+}
+
