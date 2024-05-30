@@ -1,1 +1,25 @@
+@use './styles/fonts';
+@use './styles/font-size' as *;
+@use './styles/variables' as *;
 
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Avenir', sans-serif;
+}
+
+h1 {
+  @include page-header;
+  margin: 0;
+  color: $white;
+}
+
+h2 {
+  @include section-header;
+  margin: 0;
+}
+
+p {
+  @include body-medium;
+}

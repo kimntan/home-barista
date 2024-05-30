@@ -1,0 +1,40 @@
+@use './breakpoints' as *;
+
+@mixin font($size, $height, $weight) {
+  font-size: $size;
+  line-height: $height;
+  font-weight: $weight;
+}
+
+@mixin page-header {
+  @include font(1.25rem, 2.25rem, 700);
+  font-style: oblique;
+  letter-spacing: 0.025rem;
+  @include tablet {
+    @include font(1.75rem, 2.5rem, 700);
+  }
+}
+
+@mixin section-header {
+  @include font(1.25rem, 2rem, 600)
+}
+
+@mixin body-large {
+  @include font (0.9rem, 1.625rem, 400);
+  @include tablet {
+    @include font(1rem, 1.75rem, 400);
+  }
+}
+
+@mixin body-medium {
+  @include font(0.8125rem, 1.25rem, 400);
+  @include tablet {
+    @include font(0.875rem, 1.375rem, 400);
+  }
+}
+@mixin body-small {
+  @include font(0.6875rem, 1rem, 400);
+  @include tablet {
+    @include font(0.75rem, 1.125rem, 400)
+  }
+}

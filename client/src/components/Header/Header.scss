@@ -1,0 +1,14 @@
+@use '../../styles/variables' as *;
+@use '../../styles/spacing' as *;
+@use '../../styles/mixins' as *;
+@use '../../styles/font-size' as *;
+
+.header {
+  background-color: $dark-black;
+  @include header-padding;
+  @include flex(space-between, center);
+  &__username {
+    @include body-large;
+    color: $white;
+  }
+}
