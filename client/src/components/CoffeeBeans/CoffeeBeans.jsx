@@ -5,7 +5,6 @@ import './CoffeeBeans.scss';
 
 export default function CoffeeBeans() {
   const {beans, loading, error} = useFetchBeans();
-  console.log(error);
 
   return (
     <div className="coffee-beans">
@@ -16,16 +15,18 @@ export default function CoffeeBeans() {
           <input type="text" name="search" placeholder="Search..." className="search__input"></input>
         </form>
       </div>
-      {loading ? <Loader /> :
-        <ul className="coffee-beans__list">
-          {beans.map(bean => {
-            return <li key={bean.id} className="coffee-beans__item"><img 
-              src={bean.image} 
-              alt={`${bean.bean_name} coffee beans by ${bean.brand}`} 
-              className="coffee-beans__coffee-bag"/></li>
-          })}
-        </ul>
-      }
+      <div className="coffee-beans__scroll-container">
+        {loading ? <Loader /> :
+          <ul className="coffee-beans__list">
+            {beans.map(bean => {
+              return <li key={bean.id} className="coffee-beans__item"><img 
+                src={bean.image} 
+                alt={`${bean.bean_name} coffee beans by ${bean.brand}`} 
+                className="coffee-beans__coffee-bag"/></li>
+            })}
+          </ul>
+        }
+      </div>
       <button className="coffee-beans__button">Add new bean</button>
     </div>
   )

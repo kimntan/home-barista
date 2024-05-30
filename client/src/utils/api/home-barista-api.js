@@ -2,7 +2,7 @@ import axios from 'axios';
 
 class HomeBaristaApi {
   constructor() {
-    this.baseUrl = process.env.REACT_APP_SERVER_URL || "http://localhost:8080/api";
+    this.baseUrl = process.env.REACT_APP_SERVER_URL;
   }
 
   async getAllBeans() {

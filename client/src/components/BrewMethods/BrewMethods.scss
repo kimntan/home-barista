@@ -5,11 +5,16 @@
 
 .brew-methods {
   @include section-padding;
+  &__scroll-container {
+    @include flex(flex-start, center);
+    padding-right: 3rem;    
+  }
   &__list {
     padding: 1rem 0;
     display: flex;
     gap: 1rem;
     overflow-x: auto;
+    scrollbar-width: none;
   }
   &__item {
     list-style-type: none;
