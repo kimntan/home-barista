@@ -1,0 +1,78 @@
+@use '../../styles/mixins' as *;
+@use '../../styles/variables' as *;
+@use '../../styles/spacing' as *;
+@use '../../styles/breakpoints' as *;
+
+.new-bean {
+  @include form-padding;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  &__heading {
+    align-self: center;
+  }
+  &__label {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 1rem;
+  }
+  &__asterisk {
+    color: $pink-accent;
+  }
+  &__input {
+    @include form-field;
+    &--select {
+      appearance: none;
+      background-image: url(../../assets/icons/arrow_drop_down-24px.svg);
+      background-repeat: no-repeat;
+      background-position: right 0.25rem top 50%;
+      height: 1.9rem;
+    }
+  }
+  &__placeholder-image {
+    width: 7.75rem;
+    height: 9rem;
+    background-color: $grey;
+    margin: 0.25rem auto 1.25rem;
+    padding: 0.5rem;
+    position: relative;
+    @include flex(flex-end, flex-start);
+    flex-direction: column;
+  }
+  &__image-upload {
+    height: 1.5rem;
+    width: 1.5rem;
+    border-radius: 50%;
+    border: none;
+    position: absolute;
+    right: 0.6rem;
+    top: 0.6rem;
+    @include flex(center, center);
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: $white;
+  }
+  &__image-name {
+    font-size: 1.75rem;
+    font-weight: 700;
+    letter-spacing: 0.025rem;
+    color: $white;
+  }
+  &__image-brand {
+    font-weight: 600;
+    color: $white;
+  }
+  &__buttons {
+    display: flex;
+    gap: 1rem;
+    align-self: flex-end;
+  }
+  &__cancel {
+    @include button(1.25, 4rem);
+    color: $dark-grey;
+    background-color: #FFFFFF00
+  }
+  &__add {
+    @include button(1.25rem, 4rem);
+  }
+}

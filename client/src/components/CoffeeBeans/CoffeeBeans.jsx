@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import Loader from '../Loader/Loader';
 import SearchIcon from '../../assets/icons/search-24px.svg';
 import { useFetchBeans } from '../../utils/hooks/api-hooks';
@@ -27,7 +28,9 @@ export default function CoffeeBeans() {
           </ul>
         }
       </div>
-      <button className="coffee-beans__button">Add new bean</button>
+      <Link to="/add-bean" className="coffee-beans__button-link">
+        <button className="coffee-beans__button">Add new bean</button>
+      </Link>
     </div>
   )
 }

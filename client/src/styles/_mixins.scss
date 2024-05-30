@@ -7,13 +7,13 @@
   align-items: $align;
 }
 
-@mixin form-field($height: 1.75rem, $width, $color: $white) {
+@mixin form-field($height: 1.75rem, $width: default, $color: $white) {
   height: $height;
   width: $width;
   background-color: $color;
   border: 1px solid $grey;
   border-radius: 0.25rem;
-  padding: 0 0.5rem;
+  padding: 0 0.75rem;
   &::placeholder {
     color: $grey;
   }
@@ -22,7 +22,7 @@
   }
 }
 
-@mixin button($height: 1.75rem, $width) {
+@mixin button($height: 1.75rem, $width: fit-content) {
   height: $height;
   width: $width;
   background-color: $pink-accent;
@@ -32,4 +32,5 @@
   @include buttons;
   letter-spacing: 0.04rem;
   padding: 0 0.5rem;
+  cursor: pointer;
 }

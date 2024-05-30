@@ -20,6 +20,12 @@ h2 {
   margin: 0;
 }
 
+h3 {
+  @include form-label;
+  color: $dark-grey;
+  margin: 0;
+}
+
 p {
   @include body-medium;
 }

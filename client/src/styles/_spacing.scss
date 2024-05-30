@@ -19,3 +19,13 @@
     padding: 2.25rem 8rem 2.5rem;
   }
 }
+
+@mixin form-padding {
+  padding: 1.5rem 2.5rem 1.75rem;
+  @include tablet {
+    padding: 2rem 3.5rem 2.25rem;
+  }
+  @include desktop {
+    padding: 2.25rem 8rem 2.5rem;
+  }
+}

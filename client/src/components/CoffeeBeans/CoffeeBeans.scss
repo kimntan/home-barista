@@ -38,9 +38,11 @@
       transition: 0.25s;
     }
   }
+  &__button-link {
+    align-self: flex-end;
+  }
   &__button {
     @include button(1.5rem, 8rem);
-    align-self: flex-end;
   }
 }
 

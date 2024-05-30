@@ -7,6 +7,10 @@
   background-color: $dark-black;
   @include header-padding;
   @include flex(space-between, center);
+  &__link {
+    text-decoration: none;
+    cursor: pointer;
+  }
   &__username {
     @include body-large;
     color: $white;
