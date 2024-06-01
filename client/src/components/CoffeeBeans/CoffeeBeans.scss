@@ -33,6 +33,7 @@
     box-sizing: border-box;
     @include flex(flex-end, flex-start);
     flex-direction: column;
+    cursor: pointer;
     @include tablet {
       height: 9rem;
       width: 7.75rem;
@@ -75,6 +76,9 @@
   }
   &__button {
     @include button(1.5rem, 8rem);
+  }
+  &__link {
+    text-decoration: none;
   }
 }
 

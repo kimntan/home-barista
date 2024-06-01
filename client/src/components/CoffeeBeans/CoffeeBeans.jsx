@@ -23,15 +23,26 @@ export default function CoffeeBeans() {
             {beans.map(bean => {
               let image;
               if (bean.image) {
-                image = <li key={bean.id} className="coffee-beans__item"><img 
-                  src={bean.image} 
-                  alt={`${bean.bean_name} coffee beans by ${bean.brand}`} 
-                  className="coffee-beans__coffee-bag"/></li>
+                image = 
+                  <Link to={`/${bean.id}`} className="coffee-beans__link">
+                    <li key={bean.id} className="coffee-beans__item">
+                      <img 
+                        src={bean.image} 
+                        alt={`${bean.bean_name} coffee beans by ${bean.brand}`} 
+                        className="coffee-beans__coffee-bag"/>
+                    </li>
+                  </Link>
+
               } else {
-                image = <li key={bean.id} className="coffee-beans__item"><div className="coffee-beans__placeholder">
-                <span className="coffee-beans__placeholder-name">{bean.bean_name}</span>
-                <span className="coffee-beans__placeholder-brand">{bean.brand}</span>
-              </div></li>
+                image = 
+                  <Link to={`/${bean.id}`} className="coffee-beans__link">
+                    <li key={bean.id} className="coffee-beans__item">
+                      <div className="coffee-beans__placeholder">
+                        <span className="coffee-beans__placeholder-name">{bean.bean_name}</span>
+                        <span className="coffee-beans__placeholder-brand">{bean.brand}</span>
+                      </div>
+                    </li>
+                  </Link>
               }
               return image;
             })}
