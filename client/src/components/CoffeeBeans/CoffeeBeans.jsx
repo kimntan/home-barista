@@ -17,16 +17,27 @@ export default function CoffeeBeans() {
         </form>
       </div>
       <div className="coffee-beans__scroll-container">
+
         {loading ? <Loader /> :
           <ul className="coffee-beans__list">
             {beans.map(bean => {
-              return <li key={bean.id} className="coffee-beans__item"><img 
-                src={bean.image} 
-                alt={`${bean.bean_name} coffee beans by ${bean.brand}`} 
-                className="coffee-beans__coffee-bag"/></li>
+              let image;
+              if (bean.image) {
+                image = <li key={bean.id} className="coffee-beans__item"><img 
+                  src={bean.image} 
+                  alt={`${bean.bean_name} coffee beans by ${bean.brand}`} 
+                  className="coffee-beans__coffee-bag"/></li>
+              } else {
+                image = <li key={bean.id} className="coffee-beans__item"><div className="coffee-beans__placeholder">
+                <span className="coffee-beans__placeholder-name">{bean.bean_name}</span>
+                <span className="coffee-beans__placeholder-brand">{bean.brand}</span>
+              </div></li>
+              }
+              return image;
             })}
           </ul>
         }
+
       </div>
       <Link to="/add-bean" className="coffee-beans__button-link">
         <button className="coffee-beans__button">Add new bean</button>

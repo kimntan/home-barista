@@ -25,6 +25,37 @@
   &__item {
     list-style-type: none;
   }
+  &__placeholder {
+    height: 7rem;
+    width: 6rem;
+    background-color: $grey;
+    padding: 0.5rem;
+    box-sizing: border-box;
+    @include flex(flex-end, flex-start);
+    flex-direction: column;
+    @include tablet {
+      height: 9rem;
+      width: 7.75rem;
+    }
+  }
+  &__placeholder-name {
+    font-size: 1.125rem;
+    font-weight: 700;
+    letter-spacing: 0.025rem;
+    padding-bottom: 0.25rem;
+    color: $white;
+    @include tablet {
+      font-size: 1.5rem;
+    }
+  }
+  &__placeholder-brand {
+    font-weight: 600;
+    font-size: 0.8125rem;
+    color: $white;
+    @include tablet {
+      font-size: 1rem;
+    }
+  }
   &__coffee-bag {
     height: 7rem;
     width: 6rem;
