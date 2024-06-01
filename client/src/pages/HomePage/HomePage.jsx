@@ -12,7 +12,7 @@ export default function HomePage () {
       <div className="home__main">
         <img src={Hero} alt="Person distributing coffee grinds in portafilter" className="home__hero"/>
         <div className="home__main-content">
-          <CoffeeBeans />
+          <CoffeeBeans /> 
           <BrewMethods />
           <Footer />
         </div>
