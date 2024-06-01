@@ -1,0 +1,66 @@
+@use '../../styles/spacing' as *;
+@use '../../styles/mixins' as *;
+@use '../../styles/variables' as *;
+@use '../../styles/font-size' as *;
+@use '../../styles/breakpoints' as *;
+
+.recipe {
+  @include section-padding;
+  padding-bottom: 1rem;
+  flex: 1;
+  @include desktop {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+  }
+  &__header {
+    @include flex(space-between, center);
+  }
+  &__toggle-container {
+    display: flex;
+    gap: 0.25rem;
+  }
+  &__toggle {
+    position: relative;
+    height: 1.3rem;
+    width: 2.75rem;
+    background-color: $grey;
+    border-radius: 3rem;
+  }
+  &__toggle-button {
+    height: 1.075rem;
+    width: 1.075rem;
+    border-radius: 50%;
+    border: none;
+    background-color: $white;
+    position: absolute;
+    top: 0.1rem;
+    right: 0.15rem;
+  }
+  &__dialing {
+    @include body-small;
+    margin-top: 0.1rem;
+    margin-right: 0.25rem;
+  }
+  &__check {
+    width: 1.2rem;
+    filter: invert(32%) sepia(95%) saturate(850%) hue-rotate(318deg) brightness(102%) contrast(90%);
+  }
+  &__parameters {
+    display: flex;
+    justify-content: center;
+    flex-flow: row wrap;
+    width: 100%;
+    row-gap: 2rem;
+    margin-top: 1rem;
+  }
+  &__parameter {
+    @include flex(center, center);
+    flex-direction: column;
+    gap: 0.15rem;
+    width: 33%;
+  }
+  &__parameter-value {
+    font-size: 0.75rem;
+  }
+}

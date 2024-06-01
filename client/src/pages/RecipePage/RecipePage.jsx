@@ -1,13 +1,13 @@
 import { useParams } from 'react-router-dom';
 import { useFetchSingleBean } from '../../utils/hooks/fetch-hooks';
-import CoffeeDetails from '../../components/CoffeeDetails/CoffeeDetails';
-import Footer from '../../components/Footer/Footer';
 import Header from '../../components/Header/Header';
+import Footer from '../../components/Footer/Footer';
+import Recipe from '../../components/Recipe/Recipe';
 import Loader from '../../components/Loader/Loader';
 import CoffeeImage from '../../components/CoffeeImage/CoffeeImage';
-import './BeanMethodsPage.scss';
+import './RecipePage.scss';
 
-export default function BeanMethodsPage() {
+export default function RecipePage() {
   const { beanId } = useParams();
   const { bean, loading } = useFetchSingleBean(beanId);
 
@@ -16,15 +16,15 @@ export default function BeanMethodsPage() {
   }
 
   return (
-    <div className="bean-methods-page">
+    <div className="recipe-page">
       <Header />
-      <div className="bean-methods-page__main">
+      <div className="recipe-page__main">
         <CoffeeImage bean={bean} />
-        <div className="bean-methods-page__content">
-          <CoffeeDetails bean={bean} />
+        <div className="recipe-page__content">
+          <Recipe />
           <Footer />
         </div>
       </div>
     </div>
-  );
+  )
 }

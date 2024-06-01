@@ -2,11 +2,19 @@
 @use '../../styles/variables' as *;
 @use '../../styles/font-size' as *;
 @use '../../styles/mixins' as *;
+@use '../../styles/breakpoints' as *;
 
 .coffee-details {
+  flex: 1;
+  @include desktop {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
   &__section {
-    width: 20rem;
-    margin: auto;
+    width: 70vw;
+    max-width: 20rem;
+    margin: 0 auto;
     padding: 1.25rem 1.5rem;
     @include flex(center, center);
     flex-direction: column;

@@ -23,7 +23,7 @@ export const useFetchBeans = () => {
     fetchData();
   }, [homeBaristaApi]);
 
-  return {beans, loading, error};
+  return { beans, loading, error };
 }
 
 export const useFetchMethods = () => {
@@ -48,7 +48,7 @@ export const useFetchMethods = () => {
     fetchData();
   }, [homeBaristaApi]);
 
-  return {methods, loading, error}
+  return { methods, loading, error }
 }
 
 export const useFetchSingleBean = (beanId) => {
@@ -73,7 +73,7 @@ export const useFetchSingleBean = (beanId) => {
     fetchData();
   }, [homeBaristaApi, beanId])
 
-  return {bean, loading, error}
+  return { bean, loading, error }
 }
 
 export const useFetchSingleBeanMethods = (beanId) => {
@@ -98,6 +98,30 @@ export const useFetchSingleBeanMethods = (beanId) => {
     fetchData();
   }, [homeBaristaApi, beanId])
 
-  return {beanMethods, loading, error}
+  return { beanMethods, loading, error }
 }
 
+export const useFetchRecipe = (recipeId) => {
+  const homeBaristaApi = useMemo(() => new HomeBaristaApi(), []);
+  const [recipe, setRecipe] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const fetchedData = await homeBaristaApi.getRecipe(recipeId);
+        setRecipe(fetchedData);
+        setLoading(false);
+      } catch (error) {
+        setError(error);
+        console.error(`Error fetching recipe with id ${recipeId}`)
+        setLoading(false);
+      }
+    }
+
+    fetchData();
+  }, [homeBaristaApi, recipeId])
+
+  return { recipe, loading, error }
+}

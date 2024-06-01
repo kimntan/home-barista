@@ -1,11 +1,12 @@
 @use '../../styles/variables' as *;
 @use '../../styles/breakpoints' as *;
 
-.bean-methods-page {
+.recipe-page {
   display: flex;
   flex-direction: column;
   height: 100vh;
   &__main {
+    background-color: $light-grey;
     flex: 1;
     display: flex;
     flex-direction: column;

@@ -7,7 +7,6 @@
 .footer {
   @include flex(center, flex-end);
   @include header-padding;
-  flex: 1;
   &__text {
     @include body-small;
     color: $dark-grey;

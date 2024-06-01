@@ -1,21 +1,9 @@
-import { useParams } from 'react-router-dom';
-import { useFetchSingleBean } from '../../utils/hooks/fetch-hooks';
-import CoffeeImage from '../CoffeeImage/CoffeeImage';
-import Loader from '../Loader/Loader';
-import './CoffeeDetails.scss';
 import BeanBrewMethods from '../BeanBrewMethods/BeanBrewMethods';
+import './CoffeeDetails.scss';
 
-export default function CoffeeDetails() {
-  const { beanId } = useParams();
-  const { bean, loading } = useFetchSingleBean(beanId);
-  
-  if (loading) {
-    return <Loader />
-  }
-
+export default function CoffeeDetails({ bean }) {
   return (
     <div className="coffee-details">
-      <CoffeeImage bean={bean} />
       <BeanBrewMethods />
       <div className="coffee-details__section">
         <h2 className="coffee-details__subheading">ABOUT</h2>

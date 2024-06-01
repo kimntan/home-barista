@@ -8,10 +8,16 @@
   position: relative;
   background-color: $grey;
   display: flex;
+  @include desktop {
+    width: 50%;
+  }
   &__image {
     width: 100%;
     height: 90vw;
     object-fit: cover;
+    @include desktop {
+      height: 100%;
+    }
   }
   &__back {
     position: absolute;

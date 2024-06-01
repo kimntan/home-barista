@@ -49,6 +49,15 @@ class HomeBaristaApi {
       return error;
     }
   }
+
+  async getRecipe(recipeId) {
+    try {
+      const response = await axios.get(`${this.baseUrl}/recipes/${recipeId}`)
+      return response.data;
+    } catch (error) {
+      return error;
+    }
+  }
 }
 
 export default HomeBaristaApi

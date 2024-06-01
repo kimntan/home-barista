@@ -1,9 +1,9 @@
 import Header from '../../components/Header/Header';
 import CoffeeBeans from '../../components/CoffeeBeans/CoffeeBeans';
-import Hero from '../../assets/images/hero.jpeg';
-import './HomePage.scss';
 import BrewMethods from '../../components/BrewMethods/BrewMethods';
 import Footer from '../../components/Footer/Footer';
+import Hero from '../../assets/images/hero.jpeg';
+import './HomePage.scss';
 
 export default function HomePage () {
   return (

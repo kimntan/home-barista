@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { useFetchSingleBeanMethods } from '../../utils/hooks/fetch-hooks';
 import Loader from '../Loader/Loader';
 import './BeanBrewMethods.scss';
@@ -14,11 +14,13 @@ export default function BeanBrewMethods() {
           {loading ? <Loader /> :
             <ul className="bean-brew-methods__list">
               {beanMethods.map(method => {
-                return <li key={method.id} className="bean-brew-methods__item">
-                  <img 
-                  src={method.image} 
-                  alt={`${method.method_name}`} 
-                  className="bean-brew-methods__equipment"/>
+                return <li key={method.method_id} className="bean-brew-methods__item">
+                  <Link to={`/${beanId}/${method.id}`}>
+                    <img 
+                    src={method.image} 
+                    alt={`${method.method_name}`} 
+                    className="bean-brew-methods__equipment"/>
+                  </Link>
                 </li>
               })}
             </ul>
