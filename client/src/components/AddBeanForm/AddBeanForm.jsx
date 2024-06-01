@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useAddBeanForm } from '../../utils/hooks/form-hooks';
 import { usePostBean } from '../../utils/hooks/post-hooks';
 import { beanValidator } from '../../utils/validators/add-bean';
@@ -21,6 +22,7 @@ export default function AddBeanForm() {
 
   const { setBeanData } = usePostBean();
   const [errorMessage, setErrorMessage] = useState('');
+  const navigate = useNavigate();
 
   const handleAddBeanSubmit = (event) => {
     event.preventDefault();
@@ -29,15 +31,17 @@ export default function AddBeanForm() {
       setErrorMessage(beanValidation.message);
     } else {
       setErrorMessage('');
-      const beanData = {
-        bean_name: values.name,
-        brand: values.brand, 
-        roast_type: values.roast,
-        tasting_notes: values.notes,
-        product_url: values.product_url,
-        image: values.image
-      }
-      setBeanData(beanData);
+      const formData = new FormData();
+      formData.append("bean_name", values.name);
+      formData.append("brand", values.brand);
+      formData.append("roast_type", values.roast);
+      formData.append("tasting_notes", values.notes);
+      formData.append("product_url", values.product_url);
+      formData.append("image", values.image_url)
+      setBeanData(formData);
+      setTimeout(() => {
+        navigate("/");
+      }, 2000);
     }
   }
 

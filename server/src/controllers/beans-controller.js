@@ -50,6 +50,7 @@ const getOneBean = async (req, res) => {
 }
 
 const postOneBean = async (req, res) => {
+  console.log(req.body);
   const fieldValidation = missingCoffeeFieldValidator(req);
   if (!fieldValidation.valid) {
     return res.status(fieldValidation.status).json({
