@@ -24,6 +24,7 @@ export default function BeanBrewMethods() {
             </ul>
           }
         </div>
+        <button className="bean-brew-methods__button">Add Method</button>
       </div>
   )
 }

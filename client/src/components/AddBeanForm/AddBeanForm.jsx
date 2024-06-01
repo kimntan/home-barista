@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { useAddBeanForm } from '../../utils/hooks/form-hooks';
 import { usePostBean } from '../../utils/hooks/post-hooks';
 import { beanValidator } from '../../utils/validators/add-bean';
@@ -80,9 +80,9 @@ export default function AddBeanForm() {
           value={values.roast}
         >
           <option value="">Select roast level</option>
-          <option value="light">Light</option>
-          <option value="medium">Medium</option>
-          <option value="dark">Dark</option>
+          <option value="Light">Light</option>
+          <option value="Medium">Medium</option>
+          <option value="Dark">Dark</option>
         </select>
       </label>
       
@@ -158,7 +158,9 @@ export default function AddBeanForm() {
       }
       
       <div className="new-bean__buttons">
-        <button className="new-bean__cancel">Cancel</button>
+        <Link to="/" className="new-bean__cancel-link">
+          <button className="new-bean__cancel">Cancel</button>
+        </Link>
         <button type="submit" className="new-bean__add">Add</button>
       </div>
     </form>

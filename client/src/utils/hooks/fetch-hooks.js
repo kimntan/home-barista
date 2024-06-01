@@ -4,12 +4,11 @@ import HomeBaristaApi from '../api/home-barista-api';
 export const useFetchBeans = () => {
   const homeBaristaApi = useMemo(() => new HomeBaristaApi(), []);
   const [beans, setBeans] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
-      setLoading(true);
       try {
         const fetchedData = await homeBaristaApi.getAllBeans();
         setBeans(fetchedData);
@@ -30,12 +29,11 @@ export const useFetchBeans = () => {
 export const useFetchMethods = () => {
   const homeBaristaApi = useMemo(() => new HomeBaristaApi(), []);
   const [methods, setMethods] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
-      setLoading(true);
       try {
         const fetchedData = await homeBaristaApi.getAllMethods();
         setMethods(fetchedData);
@@ -56,12 +54,11 @@ export const useFetchMethods = () => {
 export const useFetchSingleBean = (beanId) => {
   const homeBaristaApi = useMemo(() => new HomeBaristaApi(), []);
   const [bean, setBean] = useState(null);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
-      setLoading(true);
       try {
         const fetchedData = await homeBaristaApi.getBean(beanId);
         setBean(fetchedData);
@@ -81,14 +78,12 @@ export const useFetchSingleBean = (beanId) => {
 
 export const useFetchSingleBeanMethods = (beanId) => {
   const homeBaristaApi = useMemo(() => new HomeBaristaApi(), []);
-  console.log(beanId);
   const [beanMethods, setBeanMethods] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
-      setLoading(true);
       try {
         const fetchedData = await homeBaristaApi.getBeanMethods(beanId);
         setBeanMethods(fetchedData);

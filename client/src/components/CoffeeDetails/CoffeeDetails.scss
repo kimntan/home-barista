@@ -1,0 +1,34 @@
+@use '../../styles/spacing' as *;
+@use '../../styles/variables' as *;
+@use '../../styles/font-size' as *;
+@use '../../styles/mixins' as *;
+
+.coffee-details {
+  &__section {
+    width: 20rem;
+    margin: auto;
+    padding: 1.25rem 1.5rem;
+    @include flex(center, center);
+    flex-direction: column;
+    gap: 0.75rem;
+    background-color: $light-grey;
+    border-radius: 1rem;
+  }
+  &__subheading {
+    width: 100%;
+    border-bottom: $divider;
+    text-align: center;
+    margin-bottom: 0.5rem;
+  }
+  &__property {
+    display: flex;
+    width: 15rem;
+    margin-left: 3rem;
+  }
+  &__key {
+    min-width: 4rem;
+  }
+  &__value {
+    @include body-medium;
+  }
+}

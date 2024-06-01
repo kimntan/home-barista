@@ -86,6 +86,9 @@
     color: $dark-grey;
     background-color: #FFFFFF00
   }
+  &__cancel-link {
+    text-decoration: none;
+  }
   &__add {
     @include button(1.25rem, 4rem);
   }
