@@ -7,7 +7,8 @@
   align-items: $align;
 }
 
-@mixin form-field($height: 1.75rem, $width: default, $color: $white) {
+@mixin form-field($height: 1.75rem, $width: 100%, $color: $white) {
+  box-sizing: border-box;
   height: $height;
   width: $width;
   background-color: $color;
@@ -33,4 +34,5 @@
   letter-spacing: 0.04rem;
   padding: 0 0.5rem;
   cursor: pointer;
+  @include flex(center, center);
 }

@@ -7,14 +7,17 @@
   @include form-padding;
   display: flex;
   flex-direction: column;
-  flex: 1;
+  @include tablet {
+    width: 20rem;
+    margin: auto;
+  }
   &__heading {
     align-self: center;
   }
   &__label {
     display: flex;
     flex-direction: column;
-    padding-bottom: 1rem;
+    margin-bottom: 0.75rem;
   }
   &__asterisk {
     color: $pink-accent;
@@ -30,10 +33,13 @@
     }
   }
   &__placeholder-image {
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 50% 50%;
     width: 7.75rem;
     height: 9rem;
     background-color: $grey;
-    margin: 0.25rem auto 1.25rem;
+    margin: 0.25rem auto 0;
     padding: 0.5rem;
     position: relative;
     @include flex(flex-end, flex-start);
@@ -51,6 +57,7 @@
     font-size: 1.75rem;
     font-weight: 700;
     color: $white;
+    cursor: pointer;
   }
   &__image-name {
     font-size: 1.75rem;
@@ -66,6 +73,7 @@
     display: flex;
     gap: 1rem;
     align-self: flex-end;
+    margin-top: 0.75rem;
   }
   &__cancel {
     @include button(1.25, 4rem);
@@ -74,5 +82,34 @@
   }
   &__add {
     @include button(1.25rem, 4rem);
+  }
+}
+
+.photo-upload {
+  border: 1px solid $grey;
+  border-radius: 0.25rem;
+  padding: 0.75rem 1rem;
+  background-color: $white;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  &__upload {
+    @include button(1.3rem, 4rem);
+    background-color: $white;
+    color: $dark-grey;
+    border: 1px solid $grey;
+  }
+  &__file-input {
+    &::file-selector-button {
+      background-color: $light-grey;
+      color: $dark-grey;
+      border: 1px solid $grey;
+      border-radius: 0.25rem;
+      padding: 0.3rem 0.7rem;
+      font-weight: 600;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      margin-right: 0.75rem;
+    }
   }
 }
