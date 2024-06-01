@@ -36,3 +36,16 @@
   cursor: pointer;
   @include flex(center, center);
 }
+
+@mixin back-button {
+  height: 1.5rem;
+  background-color: $transparent-white;
+  border: 1px solid $white;
+  color: $dark-black;
+  border-radius: 0.25rem;
+  @include buttons;
+  letter-spacing: 0.04rem;
+  padding: 0.5rem;
+  cursor: pointer;
+  @include flex(center, center);
+}

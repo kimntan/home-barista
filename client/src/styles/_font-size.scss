@@ -7,9 +7,12 @@
 }
 
 @mixin page-header {
-  @include font(1.375rem, 2.25rem, 700);
+  @include font(1.275rem, 2.25rem, 600);
   font-style: oblique;
   letter-spacing: 0.025rem;
+  @include tablet {
+    @include font(1.375rem, 2.25rem, 600);
+  }
 }
 
 @mixin section-header {

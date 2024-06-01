@@ -1,0 +1,36 @@
+@use '../../styles/mixins' as *;
+@use '../../styles/variables' as *;
+@use '../../styles/spacing' as *;
+@use '../../styles/breakpoints' as *;
+
+.bean-brew-methods {
+  @include section-padding;
+  @include flex(center, center);
+  flex-direction: column;
+  &__scroll-container {
+    @include flex(flex-start, center);
+  }
+  &__list {
+    padding: 1rem 0;
+    display: flex;
+    gap: 1rem;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  &__item {
+    list-style-type: none;
+  }
+  &__equipment {
+    height: 7rem;
+    width: 6rem;
+    object-fit: cover;
+    @include tablet {
+      height: 9rem;
+      width: 7.75rem;
+    }
+    &:hover {
+      transform: scale(1.25);
+      transition: 0.25s;
+    }
+  }
+}

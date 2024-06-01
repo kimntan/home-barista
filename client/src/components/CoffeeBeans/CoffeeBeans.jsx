@@ -24,25 +24,25 @@ export default function CoffeeBeans() {
               let image;
               if (bean.image) {
                 image = 
-                  <Link to={`/${bean.id}`} className="coffee-beans__link">
-                    <li key={bean.id} className="coffee-beans__item">
+                  <li key={bean.id} className="coffee-beans__item">
+                    <Link to={`/${bean.id}`} className="coffee-beans__link">
                       <img 
                         src={bean.image} 
                         alt={`${bean.bean_name} coffee beans by ${bean.brand}`} 
                         className="coffee-beans__coffee-bag"/>
-                    </li>
-                  </Link>
+                    </Link>
+                  </li>
 
               } else {
                 image = 
-                  <Link to={`/${bean.id}`} className="coffee-beans__link">
-                    <li key={bean.id} className="coffee-beans__item">
+                  <li key={bean.id} className="coffee-beans__item">
+                    <Link to={`/${bean.id}`} className="coffee-beans__link" key={bean.id}>
                       <div className="coffee-beans__placeholder">
                         <span className="coffee-beans__placeholder-name">{bean.bean_name}</span>
                         <span className="coffee-beans__placeholder-brand">{bean.brand}</span>
                       </div>
-                    </li>
-                  </Link>
+                    </Link>
+                  </li>
               }
               return image;
             })}

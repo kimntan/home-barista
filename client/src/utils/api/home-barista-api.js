@@ -31,6 +31,24 @@ class HomeBaristaApi {
       return error;
     }
   }
+
+  async getBean(beanId) {
+    try {
+      const response = await axios.get(`${this.baseUrl}/beans/${beanId}`)
+      return response.data;
+    } catch (error) {
+      return error;
+    }
+  }
+
+  async getBeanMethods(beanId) {
+    try {
+      const response = await axios.get(`${this.baseUrl}/methods/${beanId}`)
+      return response.data;
+    } catch (error) {
+      return error;
+    }
+  }
 }
 
 export default HomeBaristaApi
