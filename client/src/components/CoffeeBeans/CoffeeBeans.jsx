@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import Loader from '../Loader/Loader';
 import SearchIcon from '../../assets/icons/search-24px.svg';
-import { useFetchBeans } from '../../utils/hooks/api-hooks';
+import { useFetchBeans } from '../../utils/hooks/fetch-hooks';
 import './CoffeeBeans.scss';
 
 export default function CoffeeBeans() {

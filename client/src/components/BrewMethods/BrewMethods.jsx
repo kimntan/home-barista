@@ -1,4 +1,4 @@
-import { useFetchMethods } from '../../utils/hooks/api-hooks';
+import { useFetchMethods } from '../../utils/hooks/fetch-hooks';
 import Loader from '../Loader/Loader';
 import './BrewMethods.scss';
 

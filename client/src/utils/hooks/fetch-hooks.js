@@ -16,6 +16,7 @@ export const useFetchBeans = () => {
         setLoading(false);
       } catch (error) {
         setError(error);
+        console.error(`Error fetching all beans: ${error}`);
         setLoading(false);
       }
     }
@@ -41,6 +42,7 @@ export const useFetchMethods = () => {
         setLoading(false);
       } catch (error) {
         setError(error);
+        console.error(`Error fetching all methods: ${error}`);
         setLoading(false);
       }
     }

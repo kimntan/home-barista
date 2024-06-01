@@ -24,6 +24,12 @@
   }
   &__input {
     @include form-field;
+    &--invalid {
+      border-color: $pink-accent;
+      &:focus {
+        outline: none;
+      }
+    }
     &--select {
       appearance: none;
       background-image: url(../../assets/icons/arrow_drop_down-24px.svg);
@@ -110,6 +116,7 @@
       font-size: 0.75rem;
       text-transform: uppercase;
       margin-right: 0.75rem;
+      cursor: pointer;
     }
   }
 }

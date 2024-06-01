@@ -40,6 +40,7 @@
   }
   &__button-link {
     align-self: flex-end;
+    text-decoration: none;
   }
   &__button {
     @include button(1.5rem, 8rem);

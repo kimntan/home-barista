@@ -42,7 +42,7 @@ const missingCoffeeFieldValidator = (req) => {
   const missingFields = [];
 
   for (const key in req.body) {
-    if(key === 'name' || key === 'brand') {
+    if(key === 'bean_name' || key === 'brand') {
       if (!req.body[key]) {
         missingFields.push(key);
       }

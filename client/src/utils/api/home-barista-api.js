@@ -10,7 +10,7 @@ class HomeBaristaApi {
       const response = await axios.get(`${this.baseUrl}/beans`);
       return response.data;
     } catch (error) {
-      return error
+      return error;
     }
   }
 
@@ -19,7 +19,16 @@ class HomeBaristaApi {
       const response = await axios.get(`${this.baseUrl}/methods`)
       return response.data;
     } catch (error) {
-      return error
+      return error;
+    }
+  }
+
+  async postBean(beanData) {
+    try {
+      const response = await axios.post(`${this.baseUrl}/beans`, beanData);
+      return response.data;
+    } catch (error) {
+      return error;
     }
   }
 }

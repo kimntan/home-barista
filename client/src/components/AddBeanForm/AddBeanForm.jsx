@@ -1,50 +1,48 @@
 import { useState } from 'react';
+import { useAddBeanForm } from '../../utils/hooks/form-hooks';
+import { usePostBean } from '../../utils/hooks/post-hooks';
+import { beanValidator } from '../../utils/validators/add-bean';
 import './AddBeanForm.scss';
 
 export default function AddBeanForm() {
-  const [photoUpload, setPhotoUpload] = useState(false);
-  const initialValues = {
-    name: '',
-    brand: '',
-    product_url: '',
-    roast: '',
-    notes: '',
-    image_url: ''
-  }
-  const [values, setValues] = useState(initialValues);
-  const [imageFile, setImageFile] = useState(0);
+  const {
+    photoUpload,
+    setPhotoUpload,
+    values,
+    setValues,
+    imageFile,
+    setImageFile,
+    handleInputChange,
+    uploadedImage,
+    handlePhotoUpload,
+    bean,
+    brand,
+  } = useAddBeanForm();
 
-  const handleInputChange = (event) => {
-    const {name, value} = event.target;
-    setValues({
-      ...values, 
-      [name]: value,
-    })
-  }
-  
-  const [uploadedImage, setUploadedImage] = useState(null);
-  const handlePhotoUpload = (event) => {
+  const { setBeanData } = usePostBean();
+  const [errorMessage, setErrorMessage] = useState('');
+
+  const handleAddBeanSubmit = (event) => {
     event.preventDefault();
-    setPhotoUpload(false);
-    if (values.image_url) {
-      setUploadedImage(values.image_url);
+    const beanValidation = beanValidator(values);
+    if (!beanValidation.valid) {
+      setErrorMessage(beanValidation.message);
+    } else {
+      setErrorMessage('');
+      const beanData = {
+        bean_name: values.name,
+        brand: values.brand, 
+        roast_type: values.roast,
+        tasting_notes: values.notes,
+        product_url: values.product_url,
+        image: values.image
+      }
+      setBeanData(beanData);
     }
-    if (!values.image_url) {
-      setUploadedImage(null);
-    }
-  }
-
-  let bean = "BEAN";
-  let brand = "By Brand";
-  if (values.name) {
-    bean = values.name;
-  }
-  if (values.brand) {
-    brand = values.brand;
   }
 
   return (
-    <form className="new-bean">
+    <form className="new-bean" onSubmit={handleAddBeanSubmit}>
       <h2 className="new-bean__heading">NEW BEAN</h2>
 
       <label className="new-bean__label">
@@ -52,7 +50,7 @@ export default function AddBeanForm() {
         <input 
           type="text" 
           name="name" 
-          className="new-bean__input" 
+          className={errorMessage.includes("name") ? "new-bean__input new-bean__input--invalid" : "new-bean__input"} 
           onChange={handleInputChange} 
           value={values.name}
         />
@@ -63,20 +61,10 @@ export default function AddBeanForm() {
         <input 
           type="text"
           name="brand" 
-          className="new-bean__input" 
+          className={errorMessage.includes("brand") ? "new-bean__input new-bean__input--invalid" : "new-bean__input"} 
           onChange={handleInputChange} 
           value={values.brand}
         />
-      </label>
-
-      <label className="new-bean__label">
-        <h3>PRODUCT URL</h3>
-        <input 
-          type="text"
-          name="product_url" 
-          className="new-bean__input" 
-          onChange={handleInputChange} 
-          value={values.product_url}/>
       </label>
 
       <label className="new-bean__label">
@@ -104,6 +92,16 @@ export default function AddBeanForm() {
           onChange={handleInputChange} 
           value={values.notes}
         />
+      </label>
+
+      <label className="new-bean__label">
+        <h3>PRODUCT URL</h3>
+        <input 
+          type="text"
+          name="product_url" 
+          className="new-bean__input" 
+          onChange={handleInputChange} 
+          value={values.product_url}/>
       </label>
 
       { !photoUpload ? 
@@ -135,11 +133,20 @@ export default function AddBeanForm() {
             name="image" 
             className="photo-upload__file-input" 
             accept="image/png, image/jpeg" 
-            onChange={(event) => {setImageFile(event.target.files[0])}}
+            onChange={(event) => {
+              setImageFile(event.target.files[0])
+              console.log(imageFile);
+            }}
           />
 
           <div className="new-bean__buttons">
-            <button className="new-bean__cancel" onClick={() => setPhotoUpload(false)}>Cancel</button>
+            <button 
+              className="new-bean__cancel" 
+              onClick={() => {
+                setPhotoUpload(false);
+                setValues({...values, image_url: ''});
+                setImageFile(0);
+              }}>Cancel</button>
             <button type="submit" className="photo-upload__upload" onClick={handlePhotoUpload}>Done</button>
           </div>
         </div>
