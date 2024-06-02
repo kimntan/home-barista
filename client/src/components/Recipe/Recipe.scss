@@ -53,6 +53,10 @@
     width: 100%;
     row-gap: 2rem;
     margin-top: 1rem;
+    @include desktop {
+      row-gap: 3rem;
+      margin-top: 3rem;
+    }
   }
   &__parameter {
     @include flex(center, center);

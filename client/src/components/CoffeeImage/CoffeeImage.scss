@@ -24,5 +24,13 @@
     left: 1.5rem;
     top: 1.25rem;
     @include back-button;
+    @include tablet {
+      left: 2.5rem;
+      top: 1.75rem;
+    }
+    @include desktop {
+      left: 4rem;
+      top: 2rem;
+    }
   }
 }

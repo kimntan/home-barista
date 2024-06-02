@@ -1,5 +1,6 @@
 @use './variables' as *;
 @use './font-size' as *;
+@use './breakpoints' as *;
 
 @mixin flex($justify, $align) {
   display: flex;
