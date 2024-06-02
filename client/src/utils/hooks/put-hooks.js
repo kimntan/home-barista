@@ -3,27 +3,29 @@ import HomeBaristaApi from "../api/home-barista-api";
 
 export const usePutRecipe = (recipeId) => {
   const homeBaristaApi = useMemo(() => new HomeBaristaApi(), []);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(false);
+  const [saveLoading, setSaveLoading] = useState(false);
+  const [saveError, setSaveError] = useState(false);
+  const [formData, setFormData] = useState(null);
   const [updatedRecipe, setUpdatedRecipe] = useState(null);
 
   useEffect(() => {
-    if (updatedRecipe) {
+    if (formData) {
+      setSaveLoading(true);
       const putData = async (recipeId, recipe) => {
         try {
-          const data = await homeBaristaApi.editRecipe(recipeId, updatedRecipe)
-          // console.log(data);
-          setLoading(false);
+          const putData = await homeBaristaApi.editRecipe(recipeId, formData)
+          setUpdatedRecipe(putData);
+          setSaveLoading(false);
         } catch (error) {
-          setError(error);
+          setSaveError(error);
           console.error(`Error editing recipe with ID ${recipeId}: ${error}`)
-          setLoading(false);
+          setSaveLoading(false);
         }
       }
 
-      putData(recipeId, updatedRecipe)
+      putData(recipeId, formData)
     }
-  }, [homeBaristaApi, updatedRecipe, recipeId])
+  }, [formData, recipeId])
 
-  return {loading, error, updatedRecipe, setUpdatedRecipe}
+  return {saveLoading, saveError, setFormData, updatedRecipe}
 }

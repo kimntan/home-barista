@@ -21,7 +21,7 @@ export const useFetchBeans = () => {
     }
 
     fetchData();
-  }, [homeBaristaApi]);
+  }, []);
 
   return { beans, loading, error };
 }
@@ -46,7 +46,7 @@ export const useFetchMethods = () => {
     }
 
     fetchData();
-  }, [homeBaristaApi]);
+  }, []);
 
   return { methods, loading, error }
 }
@@ -71,7 +71,7 @@ export const useFetchSingleBean = (beanId) => {
     }
 
     fetchData();
-  }, [homeBaristaApi, beanId])
+  }, [beanId])
 
   return { bean, loading, error }
 }
@@ -96,7 +96,7 @@ export const useFetchSingleBeanMethods = (beanId) => {
     }
 
     fetchData();
-  }, [homeBaristaApi, beanId])
+  }, [beanId])
 
   return { beanMethods, loading, error }
 }
@@ -121,7 +121,7 @@ export const useFetchRecipe = (recipeId, updatedRecipe) => {
     }
 
     fetchData();
-  }, [homeBaristaApi, recipeId, updatedRecipe])
+  }, [recipeId, updatedRecipe])
 
   return { recipe, loading, error }
 }

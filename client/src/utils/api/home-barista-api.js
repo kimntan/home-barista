@@ -61,7 +61,7 @@ class HomeBaristaApi {
 
   async editRecipe(recipeId, recipe) {
     try {
-      const response = await axios.get(`${this.baseUrl}/recipes/${recipeId}`, recipe)
+      const response = await axios.put(`${this.baseUrl}/recipes/${recipeId}`, recipe)
       return response.data;
     } catch (error) {
       return error;

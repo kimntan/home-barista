@@ -13,7 +13,7 @@
   }
   &__scroll-container {
     @include flex(flex-start, center);
-    padding-right: 3rem;
+    padding-right: 1rem;
   }
   &__list {
     padding: 1rem 0;

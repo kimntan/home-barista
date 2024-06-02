@@ -8,21 +8,22 @@ import './EditRecipe.scss';
 
 export default function EditRecipe({ handleToggleDial }) {
   const { recipeId } = useParams();
-  const { updatedRecipe, setUpdatedRecipe } = usePutRecipe(recipeId)
+  const { saveLoading, saveError, setFormData, updatedRecipe } = usePutRecipe(recipeId)
   const { recipe, loading, error } = useFetchRecipe(recipeId, updatedRecipe);
   const { values, handleParameterChange, parameters, notes, handleNoteInputChange } = useEditRecipe(recipe, loading);
 
-  if (loading) {
+  if (loading || saveLoading) {
     return <Loader />
   }
 
   const handleSave = (event) => {
     event.preventDefault();
-    const recipe = {
+    const updates = {
       ...values,
-      notes: notes
+      notes: notes,
+      method_id: recipe.method_id
     }
-    setUpdatedRecipe(recipe);
+    setFormData(updates);
   }
 
   return (
