@@ -19,7 +19,7 @@ export default function Recipe({ handleToggleDial }) {
       {name: "output", value: recipe.output},
       {name: "time", value: recipe.time},
       {name: "temp", value: recipe.temp},
-      {name: "grind", value: recipe.grind_size}
+      {name: "grind", value: recipe.grind}
     ]
   } else {
     parameters = [
@@ -27,7 +27,7 @@ export default function Recipe({ handleToggleDial }) {
       {name: "water", value: recipe.water},
       {name: "time", value: recipe.time},
       {name: "temp", value: recipe.temp},
-      {name: "grind", value: recipe.grind_size}
+      {name: "grind", value: recipe.grind}
     ]
   }
 

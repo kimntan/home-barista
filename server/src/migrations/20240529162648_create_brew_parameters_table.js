@@ -22,7 +22,7 @@ exports.up = function(knex) {
     table.string('time').notNullable();
     table.string('water').nullable();
     table.string('temp').notNullable();
-    table.string('grind_size').notNullable();
+    table.string('grind').notNullable();
     table.string('ratio').nullable();
     table.string('notes').nullable();
     table.timestamp('created_at').defaultTo(knex.fn.now());

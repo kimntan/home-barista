@@ -68,7 +68,47 @@ export const useEditRecipe = (recipe, loading) => {
     temp: '',
     grind: ''
   }
-  const [values, setValues] = useState(initialValues)
+  const [values, setValues] = useState(initialValues);
+  const [notes, setNotes] = useState('');
+  const [parameters, setParameters] = useState([]);
+  
+  useEffect(() => {
+    if (!loading) {
+      setNotes(recipe.notes);
+
+      if (recipe.brew_method === 'Espresso') {
+        setParameters([
+          {name: "dose", value: recipe.dose},
+          {name: "output", value: recipe.output},
+          {name: "time", value: recipe.time},
+          {name: "temp", value: recipe.temp},
+          {name: "grind", value: recipe.grind}
+        ])
+        setValues({
+          "dose": recipe.dose,
+          "output": recipe.output,
+          "time": recipe.time,
+          "temp": recipe.temp,
+          "grind": recipe.grind
+        })
+      } else {
+        setParameters([
+          {name: "dose", value: recipe.dose},
+          {name: "water", value: recipe.water},
+          {name: "time", value: recipe.time},
+          {name: "temp", value: recipe.temp},
+          {name: "grind", value: recipe.grind}
+        ])
+        setValues({
+          "dose": recipe.dose,
+          "water": recipe.water,
+          "time": recipe.time,
+          "temp": recipe.temp,
+          "grind": recipe.grind
+        })
+      } 
+    }
+  }, [recipe])
 
   const handleParameterChange = (event) => {
     event.preventDefault();
@@ -78,31 +118,16 @@ export const useEditRecipe = (recipe, loading) => {
       [name]: value,
     })
   }
-  
-  let parameters;
-  if (!loading) {
-    if (recipe.brew_method === 'Espresso') {
-      parameters = [
-        {name: "dose", value: recipe.dose},
-        {name: "output", value: recipe.output},
-        {name: "time", value: recipe.time},
-        {name: "temp", value: recipe.temp},
-        {name: "grind", value: recipe.grind_size}
-      ]
-    } else {
-      parameters = [
-        {name: "dose", value: recipe.dose},
-        {name: "water", value: recipe.water},
-        {name: "time", value: recipe.time},
-        {name: "temp", value: recipe.temp},
-        {name: "grind", value: recipe.grind_size}
-      ]
-    } 
+
+  const handleNoteInputChange = (event) => {
+    setNotes(event.target.value);
   }
 
   return {
     values, 
     handleParameterChange,
-    parameters
+    parameters,
+    notes, 
+    handleNoteInputChange
   }
 }

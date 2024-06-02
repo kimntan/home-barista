@@ -3,14 +3,13 @@ import HomeBaristaApi from "../api/home-barista-api";
 
 export const usePostBean = () => {
   const homeBaristaApi = useMemo(() => new HomeBaristaApi(), []);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
   const [beanData, setBeanData] = useState(null);
 
   useEffect(() => {
     if (beanData) {
       const postData = async (beanData) => {
-        setLoading(true);
         try {
           await homeBaristaApi.postBean(beanData);
           setLoading(false);
@@ -23,7 +22,7 @@ export const usePostBean = () => {
   
       postData(beanData);
     }
-  }, [beanData]);
+  }, [homeBaristaApi, beanData]);
 
 
   return {loading, error, setBeanData};

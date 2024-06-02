@@ -8,7 +8,7 @@ module.exports = [
     time: "28s",
     water: "",
     temp: "96C",
-    grind_size: 10,
+    grind: "10",
     ratio: "",
     notes: ""
   },
@@ -21,7 +21,7 @@ module.exports = [
     time: "29s",
     water: "",
     temp: "94C",
-    grind_size: 12,
+    grind: "12",
     ratio: "",
     notes: ""
   },
@@ -34,7 +34,7 @@ module.exports = [
     time: "4m",
     water: "450g",
     temp: "96C",
-    grind_size: 15,
+    grind: "15",
     ratio: "",
     notes: ""
   },
@@ -47,7 +47,7 @@ module.exports = [
     time: "28s",
     water: "248g",
     temp: "98C",
-    grind_size: 13,
+    grind: "13",
     ratio: "",
     notes: ""
   },
@@ -60,8 +60,7 @@ module.exports = [
     time: "30s",
     water: "",
     temp: "95C",
-    grind_size: 9
-,    ratio: ""
- ,
-notes: "" },
+    grind: "9",
+    ratio: "",
+    notes: "" }
 ]

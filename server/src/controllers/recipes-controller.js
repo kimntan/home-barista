@@ -16,7 +16,9 @@ const getOneRecipe = async (req, res) => {
         'recipes.time',
         'recipes.water',
         'recipes.temp',
-        'recipes.grind_size')
+        'recipes.grind',
+        'recipes.ratio',
+        'recipes.notes')
       .from('recipes')
       .where({'recipes.id': recipeId})
       .join('methods', 'recipes.method_id', 'methods.id')
@@ -64,7 +66,9 @@ const editOneRecipe = async (req, res) => {
         'recipes.time',
         'recipes.water',
         'recipes.temp',
-        'recipes.grind_size')
+        'recipes.grind',
+        'recipes.ratio',
+        'recipes.notes')
       .from('recipes')
       .where({'recipes.id': recipeId})
       .join('methods', 'recipes.method_id', 'methods.id')
@@ -73,6 +77,7 @@ const editOneRecipe = async (req, res) => {
     
     res.status(200).json(editedRecipe);
   } catch (error) {
+    console.log(error);
     res.status(500).json({
       message: `Unable to update recipe with ID ${recipeId}`
     })

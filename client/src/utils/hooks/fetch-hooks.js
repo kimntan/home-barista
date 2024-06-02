@@ -101,7 +101,7 @@ export const useFetchSingleBeanMethods = (beanId) => {
   return { beanMethods, loading, error }
 }
 
-export const useFetchRecipe = (recipeId) => {
+export const useFetchRecipe = (recipeId, updatedRecipe) => {
   const homeBaristaApi = useMemo(() => new HomeBaristaApi(), []);
   const [recipe, setRecipe] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -121,7 +121,7 @@ export const useFetchRecipe = (recipeId) => {
     }
 
     fetchData();
-  }, [homeBaristaApi, recipeId])
+  }, [homeBaristaApi, recipeId, updatedRecipe])
 
   return { recipe, loading, error }
 }
