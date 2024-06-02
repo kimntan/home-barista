@@ -3,14 +3,14 @@
 @use '../../styles/variables' as *;
 @use '../../styles/font-size' as *;
 @use '../../styles/breakpoints' as *;
+@use '../../styles/fonts';
 
-.recipe {
+.edit-recipe {
   @include section-padding;
   padding-bottom: 1rem;
   flex: 1;
   @include desktop {
     display: flex;
-    justify-content: center;
     flex-direction: column;
   }
   &__header {
@@ -24,7 +24,7 @@
     position: relative;
     height: 1.3rem;
     width: 2.75rem;
-    background-color: $grey;
+    background-color: $pink-accent;
     border-radius: 3rem;
   }
   &__toggle-button {
@@ -35,37 +35,69 @@
     background-color: $white;
     position: absolute;
     top: 0.1rem;
-    right: 0.15rem;
+    left: 0.2rem;
   }
   &__dialing {
     @include body-small;
     margin-top: 0.1rem;
     margin-right: 0.25rem;
-    color: $dark-grey;
+    color: $pink-accent;
   }
   &__check {
     width: 1.2rem;
-    filter: invert(32%) sepia(95%) saturate(850%) hue-rotate(318deg) brightness(102%) contrast(90%);
+    filter: invert(69%) sepia(2%) saturate(0%) hue-rotate(273deg) brightness(92%) contrast(99%);
   }
   &__parameters {
     display: flex;
     justify-content: center;
     flex-flow: row wrap;
     width: 100%;
-    row-gap: 2rem;
     margin-top: 1rem;
-    @include desktop {
-      row-gap: 3rem;
-      margin-top: 3rem;
-    }
   }
-  &__parameter {
+  &__label {
+    width: 33%;
     @include flex(center, center);
     flex-direction: column;
-    gap: 0.15rem;
-    width: 33%;
   }
-  &__parameter-value {
+  &__input {
+    @include form-field(1.75rem, 3rem, $light-grey);
+    &::placeholder {
+      color: $dark-black;
+    }
+  }
+  &__notes {
+    display: flex;
+    flex-direction: column;
+    margin-top: 1.5rem;
+  }
+  &__subheading {
+    color: $pink-accent;
+    margin-bottom: 0.25rem;
+    margin-left: 1rem;
+  }
+  &__text-area {
+    resize: none;
+    width: 95%;
+    height: 2.5rem;
+    // border: none;
+    border: 1px solid $grey;
+    background-color: $light-grey;
+    border-radius: 0.25rem;
+    padding: 0.5rem;
+    font-family: 'Avenir';
     font-size: 0.75rem;
+    align-self: center;
+    &:focus {
+      outline: none;
+    }
   }
+  // &__parameter {
+  //   @include flex(center, center);
+  //   flex-direction: column;
+  //   gap: 0.15rem;
+  //   width: 33%;
+  // }
+  // &__parameter-value {
+  //   font-size: 0.75rem;
+  // }
 }

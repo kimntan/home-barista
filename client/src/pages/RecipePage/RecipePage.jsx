@@ -6,6 +6,7 @@ import Recipe from '../../components/Recipe/Recipe';
 import Loader from '../../components/Loader/Loader';
 import CoffeeImage from '../../components/CoffeeImage/CoffeeImage';
 import './RecipePage.scss';
+import EditRecipe from '../../components/EditRecipe/EditRecipe';
 
 export default function RecipePage() {
   const { beanId } = useParams();
@@ -21,7 +22,8 @@ export default function RecipePage() {
       <div className="recipe-page__main">
         <CoffeeImage bean={bean} />
         <div className="recipe-page__content">
-          <Recipe />
+          {/* <Recipe /> */}
+          <EditRecipe />
           <Footer />
         </div>
       </div>
