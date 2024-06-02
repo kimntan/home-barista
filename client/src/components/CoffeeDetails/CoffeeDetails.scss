@@ -38,5 +38,6 @@
   }
   &__value {
     @include body-medium;
+    padding-right: 1rem;
   }
 }
