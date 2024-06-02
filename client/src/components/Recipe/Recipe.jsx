@@ -4,7 +4,7 @@ import Loader from '../Loader/Loader';
 import checkIcon from '../../assets/icons/CheckIcon.svg';
 import './Recipe.scss';
 
-export default function Recipe() {
+export default function Recipe({ handleToggleDial }) {
   const { recipeId } = useParams();
   const { recipe, loading, error } = useFetchRecipe(recipeId);
 
@@ -15,20 +15,19 @@ export default function Recipe() {
   let parameters;
   if (recipe.brew_method === 'Espresso') {
     parameters = [
-      {parameter: "DOSE", value: recipe.dose},
-      {parameter: "OUTPUT", value: recipe.output},
-      {parameter: "TIME", value: recipe.time},
-      {parameter: "TEMP", value: recipe.temp},
-      {parameter: "GRIND", value: recipe.grind_size}
+      {name: "dose", value: recipe.dose},
+      {name: "output", value: recipe.output},
+      {name: "time", value: recipe.time},
+      {name: "temp", value: recipe.temp},
+      {name: "grind", value: recipe.grind_size}
     ]
-    console.log(parameters);
   } else {
     parameters = [
-      {parameter: "DOSE", value: recipe.dose},
-      {parameter: "WATER", value: recipe.water},
-      {parameter: "TIME", value: recipe.time},
-      {parameter: "TEMP", value: recipe.temp},
-      {parameter: "GRIND", value: recipe.grind_size}
+      {name: "dose", value: recipe.dose},
+      {name: "water", value: recipe.water},
+      {name: "time", value: recipe.time},
+      {name: "temp", value: recipe.temp},
+      {name: "grind", value: recipe.grind_size}
     ]
   }
 
@@ -39,7 +38,7 @@ export default function Recipe() {
         <div className="recipe__toggle-container">
           <span className="recipe__dialing">dialing</span>
           <div className="recipe__toggle">
-            <button className="recipe__toggle-button"></button>
+            <button className="recipe__toggle-button" onClick={handleToggleDial}></button>
           </div>
           <img src={checkIcon} alt="check icon" className="recipe__check"></img>
         </div>
@@ -47,7 +46,7 @@ export default function Recipe() {
       <div className="recipe__parameters">
         {parameters.map((parameter, index) => {
           return <div key={index} className="recipe__parameter">
-            <h3 className="recipe__parameter-name">{parameter.parameter}</h3>
+            <h3 className="recipe__parameter-name">{(parameter.name).toUpperCase()}</h3>
             <span className="recipe__parameter-value">{parameter.value}</span>
           </div>
         })}

@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useFetchSingleBean } from '../../utils/hooks/fetch-hooks';
 import Header from '../../components/Header/Header';
@@ -9,8 +10,17 @@ import './RecipePage.scss';
 import EditRecipe from '../../components/EditRecipe/EditRecipe';
 
 export default function RecipePage() {
+  const [dial, setDial] = useState(false);
   const { beanId } = useParams();
   const { bean, loading } = useFetchSingleBean(beanId);
+
+  const handleToggleDial = (event) => {
+    if (dial) {
+      setDial(false);
+    } else {
+      setDial(true);
+    }
+  }
 
   if (loading) {
     return <Loader />
@@ -22,8 +32,7 @@ export default function RecipePage() {
       <div className="recipe-page__main">
         <CoffeeImage bean={bean} />
         <div className="recipe-page__content">
-          {/* <Recipe /> */}
-          <EditRecipe />
+          {dial ? <EditRecipe handleToggleDial={handleToggleDial} /> : <Recipe handleToggleDial={handleToggleDial}/>}
           <Footer />
         </div>
       </div>

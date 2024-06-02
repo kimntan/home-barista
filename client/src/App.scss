@@ -29,3 +29,7 @@ h3 {
 p {
   @include body-medium;
 }
+
+input, textarea {
+  font-family: 'Avenir', sans-serif;
+}

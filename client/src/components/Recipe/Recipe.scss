@@ -22,20 +22,20 @@
   }
   &__toggle {
     position: relative;
-    height: 1.3rem;
-    width: 2.75rem;
+    height: 1.2rem;
+    width: 2.2rem;
     background-color: $grey;
     border-radius: 3rem;
   }
   &__toggle-button {
-    height: 1.075rem;
-    width: 1.075rem;
+    height: 1rem;
+    width: 1rem;
     border-radius: 50%;
     border: none;
     background-color: $white;
     position: absolute;
     top: 0.1rem;
-    right: 0.15rem;
+    right: 0.1rem;
   }
   &__dialing {
     @include body-small;
@@ -52,18 +52,15 @@
     justify-content: center;
     flex-flow: row wrap;
     width: 100%;
-    row-gap: 2rem;
+    row-gap: 1.5rem;
     margin-top: 1rem;
-    @include desktop {
-      row-gap: 3rem;
-      margin-top: 3rem;
-    }
   }
   &__parameter {
     @include flex(center, center);
     flex-direction: column;
     gap: 0.15rem;
     width: 33%;
+
   }
   &__parameter-value {
     font-size: 0.75rem;

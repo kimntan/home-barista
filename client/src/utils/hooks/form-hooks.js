@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 export const useAddBeanForm = () => {
   const [photoUpload, setPhotoUpload] = useState(false);
@@ -56,5 +56,53 @@ export const useAddBeanForm = () => {
     handlePhotoUpload,
     bean,
     brand,
+  }
+}
+
+export const useEditRecipe = (recipe, loading) => {
+  const initialValues = {
+    dose: '',
+    output: '',
+    water: '',
+    time: '',
+    temp: '',
+    grind: ''
+  }
+  const [values, setValues] = useState(initialValues)
+
+  const handleParameterChange = (event) => {
+    event.preventDefault();
+    const {name, value} = event.target;
+    setValues({
+      ...values, 
+      [name]: value,
+    })
+  }
+  
+  let parameters;
+  if (!loading) {
+    if (recipe.brew_method === 'Espresso') {
+      parameters = [
+        {name: "dose", value: recipe.dose},
+        {name: "output", value: recipe.output},
+        {name: "time", value: recipe.time},
+        {name: "temp", value: recipe.temp},
+        {name: "grind", value: recipe.grind_size}
+      ]
+    } else {
+      parameters = [
+        {name: "dose", value: recipe.dose},
+        {name: "water", value: recipe.water},
+        {name: "time", value: recipe.time},
+        {name: "temp", value: recipe.temp},
+        {name: "grind", value: recipe.grind_size}
+      ]
+    } 
+  }
+
+  return {
+    values, 
+    handleParameterChange,
+    parameters
   }
 }

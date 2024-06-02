@@ -3,35 +3,16 @@ import { useFetchRecipe } from '../../utils/hooks/fetch-hooks';
 import Loader from '../Loader/Loader';
 import checkIcon from '../../assets/icons/CheckIcon.svg';
 import './EditRecipe.scss';
+import { useEffect, useState } from 'react';
+import { useEditRecipe } from '../../utils/hooks/form-hooks';
 
-export default function EditRecipe() {
+export default function EditRecipe({ handleToggleDial }) {
   const { recipeId } = useParams();
   const { recipe, loading, error } = useFetchRecipe(recipeId);
+  const { values, handleParameterChange, parameters } = useEditRecipe(recipe, loading);
 
   if (loading) {
     return <Loader />
-  }
-
-  console.log(recipe);
-
-  let parameters;
-  if (recipe.brew_method === 'Espresso') {
-    parameters = [
-      {parameter: "DOSE", value: recipe.dose},
-      {parameter: "OUTPUT", value: recipe.output},
-      {parameter: "TIME", value: recipe.time},
-      {parameter: "TEMP", value: recipe.temp},
-      {parameter: "GRIND", value: recipe.grind_size}
-    ]
-    console.log(parameters);
-  } else {
-    parameters = [
-      {parameter: "DOSE", value: recipe.dose},
-      {parameter: "WATER", value: recipe.water},
-      {parameter: "TIME", value: recipe.time},
-      {parameter: "TEMP", value: recipe.temp},
-      {parameter: "GRIND", value: recipe.grind_size}
-    ]
   }
 
   return (
@@ -41,7 +22,7 @@ export default function EditRecipe() {
         <div className="edit-recipe__toggle-container">
           <span className="edit-recipe__dialing">dialing</span>
           <div className="edit-recipe__toggle">
-            <button className="edit-recipe__toggle-button"></button>
+            <button className="edit-recipe__toggle-button" onClick={handleToggleDial}></button>
           </div>
           <img src={checkIcon} alt="check icon" className="edit-recipe__check"></img>
         </div>
@@ -50,8 +31,15 @@ export default function EditRecipe() {
         <div className="edit-recipe__parameters">
           {parameters.map((parameter, index) => {
             return <label key={index} className="edit-recipe__label">
-              <h3 className="edit-recipe__parameter">{parameter.parameter}</h3>
-              <input type="text" name={parameter.parameter} className="edit-recipe__input"></input>
+              <h3 className="edit-recipe__parameter">{(parameter.name).toUpperCase()}</h3>
+              <input 
+                type="text" 
+                name={parameter.name} 
+                placeholder={parameter.value} 
+                value={values[parameter.name]}
+                onChange={handleParameterChange}
+                className="edit-recipe__input"> 
+              </input>
             </label>
           })}
         </div>
@@ -60,6 +48,17 @@ export default function EditRecipe() {
           <textarea className="edit-recipe__text-area"></textarea>
         </label>
       </form>
+      <div className="previous-settings">
+        <p className="previous-settings__label">Last brew settings:</p>
+        <div className="previous-settings__container">
+          {parameters.map((parameter, index) => {
+            return <div key={index} className="previous-settings__parameter">
+              <h3 className="previous-settings__name">{(parameter.name).toUpperCase()}</h3>
+              <span className="previous-settings__value">{parameter.value}</span>
+            </div>
+          })}
+        </div>
+      </div>
     </div>
   )
 }
