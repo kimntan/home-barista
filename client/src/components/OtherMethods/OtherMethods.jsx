@@ -15,12 +15,12 @@ export default function OtherMethods() {
             <ul className="other-brew-methods__list">
               {beanMethods.map(method => {
                 return <li key={method.id} className="other-brew-methods__item">
-                  {/* <Link to={`/${beanId}/${method.id}`}> */}
+                  <Link to={`/${beanId}/add-recipe`}>
                     <img 
                     src={method.image} 
                     alt={`${method.method_name}`} 
                     className="other-brew-methods__equipment"/>
-                  {/* </Link> */}
+                  </Link>
                 </li>
               })}
             </ul>

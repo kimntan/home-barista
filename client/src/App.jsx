@@ -5,6 +5,7 @@ import BeanMethodsPage from './pages/BeanMethodsPage/BeanMethodsPage';
 import RecipePage from './pages/RecipePage/RecipePage';
 import './App.scss';
 import AddBeanMethod from './pages/AddBeanMethod/AddBeanMethod';
+import AddRecipePage from './pages/AddRecipePage/AddRecipePage';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Route path="/:beanId" element={<BeanMethodsPage />} />
         <Route path="/:beanId/:recipeId" element={<RecipePage />} />
         <Route path="/:beanId/add-method" element={<AddBeanMethod />} />
+        <Route path="/:beanId/add-recipe" element={<AddRecipePage />} />
       </Routes>
     </BrowserRouter>
   )

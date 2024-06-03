@@ -4,24 +4,21 @@ import Header from '../../components/Header/Header';
 import Footer from '../../components/Footer/Footer';
 import Loader from '../../components/Loader/Loader';
 import CoffeeImage from '../../components/CoffeeImage/CoffeeImage';
-import OtherMethods from '../../components/OtherMethods/OtherMethods';
-import './AddBeanMethod.scss';
+import './AddRecipePage.scss';
 
-export default function AddBeanMethod() {
+export default function AddRecipePage() {
   const { beanId } = useParams();
   const { bean, loading } = useFetchSingleBean(beanId);
 
   if (loading) {
     return <Loader />
   }
-
   return (
-    <div className="add-method-page">
+    <div className="add-recipe-page">
       <Header />
-      <div className="add-method-page__main">
+      <div className="add-recipe-page__main">
         <CoffeeImage bean={bean} />
-        <div className="add-method-page__content">
-          <OtherMethods />
+        <div className="add-recipe-page__content">
           <Footer />
         </div>
       </div>
