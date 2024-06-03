@@ -52,8 +52,7 @@ class HomeBaristaApi {
 
   async postBean(beanData) {
     try {
-      const response = await axios.post(`${this.baseUrl}/beans`, beanData);
-      return response.data;
+      await axios.post(`${this.baseUrl}/beans`, beanData);
     } catch (error) {
       return error;
     }
@@ -72,6 +71,14 @@ class HomeBaristaApi {
     try {
       const response = await axios.put(`${this.baseUrl}/recipes/${recipeId}`, recipe)
       return response.data;
+    } catch (error) {
+      return error;
+    }
+  }
+
+  async postRecipe(recipeData) {
+    try {
+      await axios.post(`${this.baseUrl}/recipes`, recipeData);
     } catch (error) {
       return error;
     }

@@ -15,7 +15,7 @@ export default function OtherMethods() {
             <ul className="other-brew-methods__list">
               {beanMethods.map(method => {
                 return <li key={method.id} className="other-brew-methods__item">
-                  <Link to={`/${beanId}/add-recipe`}>
+                  <Link to={`/${beanId}/add-recipe/${method.id}`} state={method.brew_method}>
                     <img 
                     src={method.image} 
                     alt={`${method.method_name}`} 

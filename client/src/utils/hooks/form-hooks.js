@@ -131,3 +131,50 @@ export const useEditRecipe = (recipe, loading) => {
     handleNoteInputChange
   }
 }
+
+export const useAddRecipeForm = (methodName) => {
+  const initialValues = {
+    dose: '',
+    output: '',
+    water: '',
+    time: '',
+    temp: '',
+    grind: ''
+  }
+
+  const [values, setValues] = useState(initialValues);
+  let parameters;
+
+  if (methodName === 'Espresso') {
+    parameters = [
+      'dose',
+      'output',
+      'time',
+      'temp',
+      'grind'
+    ]
+  } else {
+    parameters = [
+      'dose',
+      'water',
+      'time',
+      'temp',
+      'grind'
+    ]
+  }
+
+  const handleInputChange = (event) => {
+    event.preventDefault();
+    const {name, value} = event.target;
+    setValues({
+      ...values, 
+      [name]: value,
+    })
+  }
+
+  return {
+    values,
+    parameters,
+    handleInputChange
+  }
+}

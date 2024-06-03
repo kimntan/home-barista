@@ -24,6 +24,34 @@ export const usePostBean = () => {
     }
   }, [homeBaristaApi, beanData]);
 
-
   return { loading, error, setBeanData };
+}
+
+export const usePostRecipe = () => {
+  const homeBaristaApi = useMemo(() => new HomeBaristaApi(), []);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
+  const [success, setSuccess] = useState(null);
+  const [recipeData, setRecipeData] = useState(null);
+
+  useEffect(() => {
+    if (recipeData) {
+      setLoading(true);
+      const postData = async (recipeData) => {
+        try {
+          await homeBaristaApi.postRecipe(recipeData);
+          setSuccess(`Successfully created new recipe, redirecting...`)
+          setLoading(false);
+        } catch (error) {
+          setError(error);
+          console.error(`Error posting new recipe: ${error}`);
+          setLoading(false);
+        }
+      }
+
+      postData(recipeData);
+    }
+  }, [homeBaristaApi, recipeData]);
+
+  return { loading, error, success, setRecipeData };
 }

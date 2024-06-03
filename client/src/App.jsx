@@ -16,7 +16,7 @@ function App() {
         <Route path="/:beanId" element={<BeanMethodsPage />} />
         <Route path="/:beanId/:recipeId" element={<RecipePage />} />
         <Route path="/:beanId/add-method" element={<AddBeanMethod />} />
-        <Route path="/:beanId/add-recipe" element={<AddRecipePage />} />
+        <Route path="/:beanId/add-recipe/:methodId" element={<AddRecipePage />} />
       </Routes>
     </BrowserRouter>
   )
