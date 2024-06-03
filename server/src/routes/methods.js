@@ -9,4 +9,9 @@ router
   .route('/:beanId')
   .get(methodsController.getCoffeeMethods)
 
+router
+  .route('/:beanId/other-methods')
+  .get(methodsController.getOtherCoffeeMethods)
+
+
 module.exports = router;
