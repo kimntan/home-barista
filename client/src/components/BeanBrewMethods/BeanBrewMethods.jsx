@@ -26,7 +26,9 @@ export default function BeanBrewMethods() {
             </ul>
           }
         </div>
-        <button className="bean-brew-methods__button">Add Method</button>
+        <Link to={`/${beanId}/add-method`} className="bean-brew-methods__button-link">
+          <button className="bean-brew-methods__button">Add Method</button>
+        </Link>
       </div>
   )
 }

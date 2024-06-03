@@ -37,4 +37,7 @@
   &__button {
     @include button(1.5rem, 8rem);
   }
+  &__button-link {
+    text-decoration: none;
+  }
 }
