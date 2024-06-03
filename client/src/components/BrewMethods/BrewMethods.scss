@@ -5,6 +5,7 @@
 
 .brew-methods {
   @include section-padding;
+  flex: 1;
   &__scroll-container {
     @include flex(flex-start, center);
     padding-right: 1rem;    

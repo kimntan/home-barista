@@ -8,10 +8,13 @@
   @include section-padding;
   padding-bottom: 1rem;
   flex: 1;
-  @include desktop {
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  @include tablet {
+    max-width: 30rem;
+    width: 100%;
+    align-self: center;
   }
   &__header {
     @include flex(space-between, center);
