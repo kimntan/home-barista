@@ -14,6 +14,9 @@
   &__scroll-container {
     @include flex(center, center);
     width: 100%;
+    @include desktop {
+      width: 40vw;
+    }
   }
   &__list {
     padding: 1rem 0;

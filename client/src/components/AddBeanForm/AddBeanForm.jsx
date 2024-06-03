@@ -3,6 +3,8 @@ import { useNavigate, Link } from 'react-router-dom';
 import { useAddBeanForm } from '../../utils/hooks/form-hooks';
 import { usePostBean } from '../../utils/hooks/post-hooks';
 import { beanValidator } from '../../utils/validators/add-bean';
+import Loader from '../Loader/Loader';
+import PopUp from '../PopUp/PopUp';
 import './AddBeanForm.scss';
 
 export default function AddBeanForm() {
@@ -20,7 +22,7 @@ export default function AddBeanForm() {
     brand,
   } = useAddBeanForm();
 
-  const { setBeanData } = usePostBean();
+  const { loading, error, success, setBeanData } = usePostBean();
   const [errorMessage, setErrorMessage] = useState('');
   const navigate = useNavigate();
 
@@ -41,8 +43,12 @@ export default function AddBeanForm() {
       setBeanData(formData);
       setTimeout(() => {
         navigate("/");
-      }, 2000);
+      }, 1000);
     }
+  }
+
+  if (loading) {
+    return <Loader />
   }
 
   return (
@@ -163,6 +169,7 @@ export default function AddBeanForm() {
         </Link>
         <button type="submit" className="new-bean__add">Add</button>
       </div>
+      <PopUp trigger={success} />
     </form>
   )
 }

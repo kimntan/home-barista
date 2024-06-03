@@ -1,29 +1,37 @@
 import { useNavigate, useParams, Link } from 'react-router-dom';
 import { useAddRecipeForm } from '../../utils/hooks/form-hooks';
 import { usePostRecipe } from '../../utils/hooks/post-hooks';
+import { recipeValidator } from '../../utils/validators/add-recipe';
 import Loader from '../Loader/Loader';
+import PopUp from '../PopUp/PopUp';
 import './AddRecipe.scss';
+import { useState } from 'react';
 
 export default function AddRecipe({ methodName }) {
   const { beanId, methodId } = useParams();
-  const { values, parameters, handleInputChange } = useAddRecipeForm();
+  const [errorMessage, setErrorMessage] = useState('');
+  const { values, parameters, handleInputChange } = useAddRecipeForm(methodName);
   const { loading, error, success, setRecipeData } = usePostRecipe();
   const navigate = useNavigate();
 
 
   const handleAddRecipe = (event) => {
     event.preventDefault();
-    const newRecipe = {
-      ...values,
-      bean_id: beanId,
-      method_id: methodId,
-      notes: ''
-    }
-    setRecipeData(newRecipe);
-    if(success) {
-      setTimeout(() => {
-        navigate(`/${beanId}`)
-      }, 1500)
+    const recipeValidation = recipeValidator(values, methodName);
+    if (!recipeValidation.valid) {
+      setErrorMessage(recipeValidation.message);
+    } else {
+      setErrorMessage('');
+      const newRecipe = {
+        ...values,
+        bean_id: beanId,
+        method_id: methodId,
+        notes: ''
+      }
+      setRecipeData(newRecipe);
+      // setTimeout(() => {
+      //   navigate(`/${beanId}`)
+      // }, 1000)
     }
   }
 
@@ -42,7 +50,7 @@ export default function AddRecipe({ methodName }) {
               name={parameter} 
               value={values[parameter]} 
               onChange={handleInputChange}
-              className="add-recipe__input">  
+              className={errorMessage.includes(parameter) ? "add-recipe__input add-recipe__input--invalid" : "add-recipe__input"}>  
             </input>
           </label>
         })}
@@ -53,6 +61,7 @@ export default function AddRecipe({ methodName }) {
         </Link>     
         <button type="submit" className="add-recipe__add">Add Recipe</button>
       </div>
+      <PopUp trigger={success} />
     </form>
   )
 }

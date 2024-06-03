@@ -3,15 +3,18 @@ import HomeBaristaApi from "../api/home-barista-api";
 
 export const usePostBean = () => {
   const homeBaristaApi = useMemo(() => new HomeBaristaApi(), []);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
+  const [success, setSuccess] = useState(null);
   const [error, setError] = useState(false);
   const [beanData, setBeanData] = useState(null);
 
   useEffect(() => {
     if (beanData) {
+      setLoading(true);
       const postData = async (beanData) => {
         try {
           await homeBaristaApi.postBean(beanData);
+          setSuccess(`New coffee bean added!`)
           setLoading(false);
         } catch (error) {
           setError(error);
@@ -24,7 +27,7 @@ export const usePostBean = () => {
     }
   }, [homeBaristaApi, beanData]);
 
-  return { loading, error, setBeanData };
+  return { loading, error, success, setBeanData };
 }
 
 export const usePostRecipe = () => {
@@ -40,7 +43,7 @@ export const usePostRecipe = () => {
       const postData = async (recipeData) => {
         try {
           await homeBaristaApi.postRecipe(recipeData);
-          setSuccess(`Successfully created new recipe, redirecting...`)
+          setSuccess(`New recipe added!`)
           setLoading(false);
         } catch (error) {
           setError(error);
