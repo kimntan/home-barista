@@ -14,24 +14,6 @@ class HomeBaristaApi {
     }
   }
 
-  async getAllMethods() {
-    try {
-      const response = await axios.get(`${this.baseUrl}/methods`)
-      return response.data;
-    } catch (error) {
-      return error;
-    }
-  }
-
-  async postBean(beanData) {
-    try {
-      const response = await axios.post(`${this.baseUrl}/beans`, beanData);
-      return response.data;
-    } catch (error) {
-      return error;
-    }
-  }
-
   async getBean(beanId) {
     try {
       const response = await axios.get(`${this.baseUrl}/beans/${beanId}`)
@@ -41,9 +23,36 @@ class HomeBaristaApi {
     }
   }
 
+  async getAllMethods() {
+    try {
+      const response = await axios.get(`${this.baseUrl}/methods`)
+      return response.data;
+    } catch (error) {
+      return error;
+    }
+  }
+
   async getBeanMethods(beanId) {
     try {
       const response = await axios.get(`${this.baseUrl}/methods/${beanId}`)
+      return response.data;
+    } catch (error) {
+      return error;
+    }
+  }
+
+  async getOtherMethods(beanId) {
+    try {
+      const response = await axios.get(`${this.baseUrl}/methods/${beanId}/other`)
+      return response.data;
+    } catch (error) {
+      return error;
+    }
+  }
+
+  async postBean(beanData) {
+    try {
+      const response = await axios.post(`${this.baseUrl}/beans`, beanData);
       return response.data;
     } catch (error) {
       return error;

@@ -22,8 +22,8 @@ export const usePostBean = () => {
   
       postData(beanData);
     }
-  }, [beanData]);
+  }, [homeBaristaApi, beanData]);
 
 
-  return {loading, error, setBeanData};
+  return { loading, error, setBeanData };
 }

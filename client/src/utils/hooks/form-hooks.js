@@ -108,7 +108,7 @@ export const useEditRecipe = (recipe, loading) => {
         })
       } 
     }
-  }, [recipe])
+  }, [recipe, loading])
 
   const handleParameterChange = (event) => {
     event.preventDefault();

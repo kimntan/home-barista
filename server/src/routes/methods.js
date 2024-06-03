@@ -10,7 +10,7 @@ router
   .get(methodsController.getCoffeeMethods)
 
 router
-  .route('/:beanId/other-methods')
+  .route('/:beanId/other')
   .get(methodsController.getOtherCoffeeMethods)
 
 

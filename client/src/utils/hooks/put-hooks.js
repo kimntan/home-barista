@@ -25,7 +25,11 @@ export const usePutRecipe = (recipeId) => {
 
       putData(recipeId, formData)
     }
-  }, [formData, recipeId])
+  }, [homeBaristaApi, formData, recipeId])
 
-  return {saveLoading, saveError, setFormData, updatedRecipe}
+  return { 
+    saveLoading, 
+    saveError, 
+    setFormData, 
+    updatedRecipe }
 }

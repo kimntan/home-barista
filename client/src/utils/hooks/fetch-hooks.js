@@ -21,9 +21,34 @@ export const useFetchBeans = () => {
     }
 
     fetchData();
-  }, []);
+  }, [homeBaristaApi]);
 
   return { beans, loading, error };
+}
+
+export const useFetchSingleBean = (beanId) => {
+  const homeBaristaApi = useMemo(() => new HomeBaristaApi(), []);
+  const [bean, setBean] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const fetchedData = await homeBaristaApi.getBean(beanId);
+        setBean(fetchedData);
+        setLoading(false);
+      } catch (error) {
+        setError(error);
+        console.error(`Error fetching coffee bean with id ${beanId}: ${error}`);
+        setLoading(false);
+      }
+    }
+
+    fetchData();
+  }, [homeBaristaApi, beanId])
+
+  return { bean, loading, error }
 }
 
 export const useFetchMethods = () => {
@@ -46,34 +71,9 @@ export const useFetchMethods = () => {
     }
 
     fetchData();
-  }, []);
+  }, [homeBaristaApi]);
 
   return { methods, loading, error }
-}
-
-export const useFetchSingleBean = (beanId) => {
-  const homeBaristaApi = useMemo(() => new HomeBaristaApi(), []);
-  const [bean, setBean] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const fetchedData = await homeBaristaApi.getBean(beanId);
-        setBean(fetchedData);
-        setLoading(false);
-      } catch (error) {
-        setError(error);
-        console.error(`Error fetching coffee bean with id ${beanId}`);
-        setLoading(false);
-      }
-    }
-
-    fetchData();
-  }, [beanId])
-
-  return { bean, loading, error }
 }
 
 export const useFetchSingleBeanMethods = (beanId) => {
@@ -90,13 +90,37 @@ export const useFetchSingleBeanMethods = (beanId) => {
         setLoading(false);
       } catch (error) {
         setError(error);
-        console.error(`Error fetching coffee bean methods for bean with id ${beanId}`)
+        console.error(`Error fetching coffee bean methods for bean with ID ${beanId}: ${error}`)
         setLoading(false);
       }
     }
 
     fetchData();
-  }, [beanId])
+  }, [homeBaristaApi, beanId])
+
+  return { beanMethods, loading, error }
+}
+
+export const useFetchOtherMethods = (beanId) => {
+  const homeBaristaApi = useMemo(() => new HomeBaristaApi(), []);
+  const [beanMethods, setBeanMethods] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const fetchedData = await homeBaristaApi.getOtherMethods(beanId);
+        setBeanMethods(fetchedData);
+        setLoading(false);
+      } catch (error) {
+        setError(error);
+        console.error(`Error fetching other coffee bean methods for bean with ID ${beanId}: ${error}`)
+      }
+    }
+
+    fetchData();
+  }, [homeBaristaApi, beanId])
 
   return { beanMethods, loading, error }
 }
@@ -115,13 +139,13 @@ export const useFetchRecipe = (recipeId, updatedRecipe) => {
         setLoading(false);
       } catch (error) {
         setError(error);
-        console.error(`Error fetching recipe with id ${recipeId}`)
+        console.error(`Error fetching recipe with id ${recipeId}: ${error}`)
         setLoading(false);
       }
     }
 
     fetchData();
-  }, [recipeId, updatedRecipe])
+  }, [homeBaristaApi, recipeId, updatedRecipe])
 
   return { recipe, loading, error }
 }

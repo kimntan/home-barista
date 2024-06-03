@@ -5,6 +5,7 @@ import Footer from '../../components/Footer/Footer';
 import Loader from '../../components/Loader/Loader';
 import CoffeeImage from '../../components/CoffeeImage/CoffeeImage';
 import './AddBeanMethod.scss';
+import OtherMethods from '../../components/OtherMethods/OtherMethods';
 
 export default function AddBeanMethod() {
   const { beanId } = useParams();
@@ -17,9 +18,10 @@ export default function AddBeanMethod() {
   return (
     <div className="add-method-page">
       <Header />
-      <div className="bean-methods-page__main">
+      <div className="add-method-page__main">
         <CoffeeImage bean={bean} />
-        <div className="bean-methods-page__content">
+        <div className="add-method-page__content">
+          <OtherMethods />
           <Footer />
         </div>
       </div>
