@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useAddBeanForm } from '../../utils/hooks/form-hooks';
 import { usePostBean } from '../../utils/hooks/post-hooks';
@@ -41,11 +41,16 @@ export default function AddBeanForm() {
       formData.append("product_url", values.product_url);
       formData.append("image", values.image_url)
       setBeanData(formData);
+    }
+  }
+
+  useEffect(() => {
+    if (success || error) {
       setTimeout(() => {
         navigate("/");
       }, 1000);
     }
-  }
+  }, [success])
 
   if (loading) {
     return <Loader />
@@ -169,7 +174,7 @@ export default function AddBeanForm() {
         </Link>
         <button type="submit" className="new-bean__add">Add</button>
       </div>
-      <PopUp trigger={success} />
+      <PopUp trigger={success ? success : error ? error : null} />
     </form>
   )
 }

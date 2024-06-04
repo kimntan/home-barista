@@ -112,6 +112,7 @@ const deleteOneRecipe = async (req, res) => {
 const postOneRecipe = async (req, res) => {
   const fieldValidation = missingRecipeFieldValidator(req);
   if (!fieldValidation.valid) {
+    console.log(fieldValidation.message);
     return res.status(fieldValidation.status).json({
       message: fieldValidation.message
     })
@@ -128,6 +129,7 @@ const postOneRecipe = async (req, res) => {
 
     res.status(201).json(newRecipe);
   } catch (error) {
+    console.log(error);
     res.status(500).json({
       message: `Unable to post new recipe`
     })

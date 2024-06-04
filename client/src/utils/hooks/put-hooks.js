@@ -12,14 +12,14 @@ export const usePutRecipe = (recipeId) => {
     if (formData) {
       setSaveLoading(true);
       const putData = async (recipeId, recipe) => {
-        try {
-          const putData = await homeBaristaApi.editRecipe(recipeId, formData)
-          setUpdatedRecipe(putData);
+        const { data, error } = await homeBaristaApi.editRecipe(recipeId, formData);
+        if (data) {
+          setUpdatedRecipe(data);
           setSaveLoading(false);
-        } catch (error) {
+        } else {
           setSaveError(error);
-          console.error(`Error editing recipe with ID ${recipeId}: ${error}`)
           setSaveLoading(false);
+          console.error(`Error editing recipe with ID ${recipeId}: ${error}`)
         }
       }
 

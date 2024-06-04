@@ -1,11 +1,11 @@
+import { useEffect, useState } from 'react';
 import { useNavigate, useParams, Link } from 'react-router-dom';
 import { useAddRecipeForm } from '../../utils/hooks/form-hooks';
 import { usePostRecipe } from '../../utils/hooks/post-hooks';
-import { recipeValidator } from '../../utils/validators/add-recipe';
+import { recipeValidator } from '../../utils/validators/recipe';
 import Loader from '../Loader/Loader';
 import PopUp from '../PopUp/PopUp';
 import './AddRecipe.scss';
-import { useState } from 'react';
 
 export default function AddRecipe({ methodName }) {
   const { beanId, methodId } = useParams();
@@ -24,16 +24,21 @@ export default function AddRecipe({ methodName }) {
       setErrorMessage('');
       const newRecipe = {
         ...values,
-        bean_id: beanId,
-        method_id: methodId,
+        bean_id: Number(beanId),
+        method_id: Number(methodId),
         notes: ''
       }
       setRecipeData(newRecipe);
-      // setTimeout(() => {
-      //   navigate(`/${beanId}`)
-      // }, 1000)
     }
   }
+  
+  useEffect(() => {
+    if (success || error) {
+      setTimeout(() => {
+        navigate(`/${beanId}`)
+      }, 1000)
+    }
+  }, [success])
 
   if (!methodName || loading) {
     return <Loader />
@@ -59,9 +64,9 @@ export default function AddRecipe({ methodName }) {
         <Link to={`/${beanId}/add-method`} className="add-recipe__cancel-link">
           <button className="add-recipe__cancel">Cancel</button>
         </Link>     
-        <button type="submit" className="add-recipe__add">Add Recipe</button>
+        <button type="submit" className="add-recipe__add" disabled={success || loading ? true : false}>Add Recipe</button>
       </div>
-      <PopUp trigger={success} />
+      <PopUp trigger={success ? success : error ? error : null} />
     </form>
   )
 }

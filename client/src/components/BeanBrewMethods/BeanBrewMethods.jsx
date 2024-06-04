@@ -14,7 +14,7 @@ export default function BeanBrewMethods() {
           {loading ? <Loader /> :
             <ul className="bean-brew-methods__list">
               {beanMethods.map(method => {
-                return <li key={method.method_id} className="bean-brew-methods__item">
+                return <li key={method.id} className="bean-brew-methods__item">
                   <Link to={`/${beanId}/${method.id}`}>
                     <img 
                     src={method.image} 

@@ -1,9 +1,11 @@
+import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useFetchRecipe } from '../../utils/hooks/fetch-hooks';
-import Loader from '../Loader/Loader';
-import checkIcon from '../../assets/icons/CheckIcon.svg';
+import { recipeValidator } from '../../utils/validators/recipe';
 import { useEditRecipe } from '../../utils/hooks/form-hooks';
 import { usePutRecipe } from '../../utils/hooks/put-hooks';
+import Loader from '../Loader/Loader';
+import checkIcon from '../../assets/icons/CheckIcon.svg';
 import './EditRecipe.scss';
 
 export default function EditRecipe({ handleToggleDial }) {
@@ -11,6 +13,7 @@ export default function EditRecipe({ handleToggleDial }) {
   const { saveLoading, saveError, setFormData, updatedRecipe } = usePutRecipe(recipeId)
   const { recipe, loading, error } = useFetchRecipe(recipeId, updatedRecipe);
   const { values, handleParameterChange, parameters, notes, handleNoteInputChange } = useEditRecipe(recipe, loading);
+  const [errorMessage, setErrorMessage] = useState('');
 
   if (loading || saveLoading) {
     return <Loader />
@@ -18,12 +21,18 @@ export default function EditRecipe({ handleToggleDial }) {
 
   const handleSave = (event) => {
     event.preventDefault();
-    const updates = {
-      ...values,
-      notes: notes,
-      method_id: recipe.method_id
+    const recipeValidation = recipeValidator(values, recipe.brew_method);
+    if (!recipeValidation.valid) {
+      setErrorMessage(recipeValidation.message);
+    } else {
+      setErrorMessage('');
+      const updates = {
+        ...values,
+        notes: notes,
+        method_id: recipe.method_id
+      }
+      setFormData(updates);
     }
-    setFormData(updates);
   }
 
   return (
@@ -49,7 +58,7 @@ export default function EditRecipe({ handleToggleDial }) {
                 name={parameter.name} 
                 value={values[parameter.name]}
                 onChange={handleParameterChange}
-                className="edit-recipe__input"> 
+                className={errorMessage.includes(parameter.name) ? "edit-recipe__input edit-recipe__input--invalid" : "edit-recipe__input"}> 
               </input>
             </label>
           })}
@@ -64,7 +73,14 @@ export default function EditRecipe({ handleToggleDial }) {
             className="edit-recipe__text-area">
           </textarea>
         </label>
-        <button className="edit-recipe__save">Save</button>
+        <div className="edit-recipe__save-container">
+          {saveError || errorMessage
+            ? <span className="edit-recipe__error">Invalid</span> 
+            : updatedRecipe 
+              ? <span className="edit-recipe__saved">Saved!</span> 
+              : null}
+          <button className="edit-recipe__save">Save</button>
+        </div>
       </form>
 
       <div className="previous-settings">

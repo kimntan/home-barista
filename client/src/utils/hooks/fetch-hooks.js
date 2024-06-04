@@ -9,13 +9,13 @@ export const useFetchBeans = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      try {
-        const fetchedData = await homeBaristaApi.getAllBeans();
-        setBeans(fetchedData);
+      const { data, error } = await homeBaristaApi.getAllBeans();
+      if (error) {
+        setError('Error retrieving coffee beans');
         setLoading(false);
-      } catch (error) {
-        setError(error);
         console.error(`Error fetching all beans: ${error}`);
+      } else {
+        setBeans(data);
         setLoading(false);
       }
     }
@@ -34,13 +34,13 @@ export const useFetchSingleBean = (beanId) => {
 
   useEffect(() => {
     const fetchData = async () => {
-      try {
-        const fetchedData = await homeBaristaApi.getBean(beanId);
-        setBean(fetchedData);
+      const { data, error } = await homeBaristaApi.getBean(beanId);
+      if (error) {
+        setError('Error retrieving info');
         setLoading(false);
-      } catch (error) {
-        setError(error);
         console.error(`Error fetching coffee bean with id ${beanId}: ${error}`);
+      } else {
+        setBean(data);
         setLoading(false);
       }
     }
@@ -59,13 +59,13 @@ export const useFetchMethods = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      try {
-        const fetchedData = await homeBaristaApi.getAllMethods();
-        setMethods(fetchedData);
+      const { data, error } = await homeBaristaApi.getAllMethods();
+      if (error) {
+        setError('Error retrieving methods');
         setLoading(false);
-      } catch (error) {
-        setError(error);
         console.error(`Error fetching all methods: ${error}`);
+      } else {
+        setMethods(data);
         setLoading(false);
       }
     }
@@ -84,13 +84,13 @@ export const useFetchSingleBeanMethods = (beanId) => {
 
   useEffect(() => {
     const fetchData = async () => {
-      try {
-        const fetchedData = await homeBaristaApi.getBeanMethods(beanId);
-        setBeanMethods(fetchedData);
+      const { data, error } = await homeBaristaApi.getBeanMethods(beanId);
+      if (error) {
+        setError('Error retrieving methods');
         setLoading(false);
-      } catch (error) {
-        setError(error);
         console.error(`Error fetching coffee bean methods for bean with ID ${beanId}: ${error}`)
+      } else {
+        setBeanMethods(data);
         setLoading(false);
       }
     }
@@ -109,13 +109,14 @@ export const useFetchOtherMethods = (beanId) => {
 
   useEffect(() => {
     const fetchData = async () => {
-      try {
-        const fetchedData = await homeBaristaApi.getOtherMethods(beanId);
-        setBeanMethods(fetchedData);
+      const { data, error } = await homeBaristaApi.getOtherMethods(beanId);
+      if (error) {
+        setError('Error retrieving methods');
         setLoading(false);
-      } catch (error) {
-        setError(error);
         console.error(`Error fetching other coffee bean methods for bean with ID ${beanId}: ${error}`)
+      } else {
+        setBeanMethods(data);
+        setLoading(false);
       }
     }
 
@@ -133,14 +134,14 @@ export const useFetchRecipe = (recipeId, updatedRecipe) => {
 
   useEffect(() => {
     const fetchData = async () => {
-      try {
-        const fetchedData = await homeBaristaApi.getRecipe(recipeId);
-        setRecipe(fetchedData);
+      const { data, error } = await homeBaristaApi.getRecipe(recipeId);
+      if (data) {
+        setRecipe(data);
         setLoading(false);
-      } catch (error) {
+      } else {
         setError(error);
-        console.error(`Error fetching recipe with id ${recipeId}: ${error}`)
         setLoading(false);
+        console.error(`Error fetching recipe with id ${recipeId}: ${error}`);
       }
     }
 

@@ -8,79 +8,81 @@ class HomeBaristaApi {
   async getAllBeans() {
     try {
       const response = await axios.get(`${this.baseUrl}/beans`);
-      return response.data;
+      return {data: response.data, error: null}
     } catch (error) {
-      return error;
+      return {data: null, error: error}
     }
   }
 
   async getBean(beanId) {
     try {
       const response = await axios.get(`${this.baseUrl}/beans/${beanId}`)
-      return response.data;
+      return {data: response.data, error: null}
     } catch (error) {
-      return error;
+      return {data: null, error: error}
     }
   }
 
   async getAllMethods() {
     try {
       const response = await axios.get(`${this.baseUrl}/methods`)
-      return response.data;
+      return {data: response.data, error: null}
     } catch (error) {
-      return error;
+      return {data: null, error: error}
     }
   }
 
   async getBeanMethods(beanId) {
     try {
       const response = await axios.get(`${this.baseUrl}/methods/${beanId}`)
-      return response.data;
+      return {data: response.data, error: null}
     } catch (error) {
-      return error;
+      return {data: null, error: error}
     }
   }
 
   async getOtherMethods(beanId) {
     try {
       const response = await axios.get(`${this.baseUrl}/methods/${beanId}/other`)
-      return response.data;
+      return {data: response.data, error: null}
     } catch (error) {
-      return error;
+      return {data: null, error: error}
     }
   }
 
   async postBean(beanData) {
     try {
-      await axios.post(`${this.baseUrl}/beans`, beanData);
+      const response = await axios.post(`${this.baseUrl}/beans`, beanData);
+      return {data: response.data, error: null}
     } catch (error) {
-      return error;
+      return {data: null, error: error}
     }
   }
 
   async getRecipe(recipeId) {
     try {
       const response = await axios.get(`${this.baseUrl}/recipes/${recipeId}`)
-      return response.data;
+      return {data: response.data, error: null}
     } catch (error) {
-      return error;
+      return {data: null, error: error}
     }
   }
 
   async editRecipe(recipeId, recipe) {
     try {
       const response = await axios.put(`${this.baseUrl}/recipes/${recipeId}`, recipe)
-      return response.data;
+      return {data: response.data, error: null}
     } catch (error) {
-      return error;
+      return {data: null, error: error}
     }
   }
 
   async postRecipe(recipeData) {
     try {
-      await axios.post(`${this.baseUrl}/recipes`, recipeData);
+      const response = await axios.post(`${this.baseUrl}/recipes`, recipeData);
+      return {data: response.data, error: null}
     } catch (error) {
-      return error;
+      return {data: null, error: error}
     }
   }
 }

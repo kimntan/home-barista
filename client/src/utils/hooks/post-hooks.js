@@ -12,14 +12,14 @@ export const usePostBean = () => {
     if (beanData) {
       setLoading(true);
       const postData = async (beanData) => {
-        try {
-          await homeBaristaApi.postBean(beanData);
-          setSuccess(`New coffee bean added!`)
+        const { data, error } = await homeBaristaApi.postBean(beanData);
+        if (data) {
+          setSuccess('New coffee bean added!')
           setLoading(false);
-        } catch (error) {
-          setError(error);
+        } else {
+          setError('Something went wrong... please try again later');
+          setLoading(false);
           console.error(`Error posting new bean: ${error}`);
-          setLoading(false);
         }
       }
   
@@ -41,14 +41,14 @@ export const usePostRecipe = () => {
     if (recipeData) {
       setLoading(true);
       const postData = async (recipeData) => {
-        try {
-          await homeBaristaApi.postRecipe(recipeData);
-          setSuccess(`New recipe added!`)
+        const {data, error} = await homeBaristaApi.postRecipe(recipeData);
+        if (data) {
+          setSuccess('New recipe added!');
           setLoading(false);
-        } catch (error) {
-          setError(error);
+        } else {
+          setError('Something went wrong... please try again later');
+          setLoading(false);
           console.error(`Error posting new recipe: ${error}`);
-          setLoading(false);
         }
       }
 
