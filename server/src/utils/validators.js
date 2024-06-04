@@ -63,7 +63,25 @@ const missingCoffeeFieldValidator = (req) => {
   }
 }
 
+const userValidator = async (req) => {
+  const existing = await knex('users')
+    .where({username: req.body.username})
+
+  if (existing.length > 0) {
+    return {
+      valid: false,
+      status: 400,
+      message: `Username already exists`
+    }
+  }
+
+  return {
+    valid: true
+  }
+}
+
 module.exports = {
   missingRecipeFieldValidator,
-  missingCoffeeFieldValidator
+  missingCoffeeFieldValidator,
+  userValidator
 }

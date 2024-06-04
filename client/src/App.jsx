@@ -6,11 +6,13 @@ import RecipePage from './pages/RecipePage/RecipePage';
 import './App.scss';
 import AddBeanMethod from './pages/AddBeanMethod/AddBeanMethod';
 import AddRecipePage from './pages/AddRecipePage/AddRecipePage';
+import Landing from './pages/Landing/Landing';
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
+        <Route path="/login" element={<Landing />} />
         <Route path="/" element={<HomePage />} />
         <Route path="/add-bean" element={<AddBeanPage />} />
         <Route path="/:beanId" element={<BeanMethodsPage />} />

@@ -103,6 +103,15 @@ class HomeBaristaApi {
       return {data: null, error: error}
     }
   }
+
+  async postUser(credentials) {
+    try {
+      const response = await axios.post(`${this.baseUrl}/signup`, credentials);
+      return {data: response.data, error: null}
+    } catch (error) {
+      return {data: null, error: error}
+    }
+  }
 }
 
 export default HomeBaristaApi
