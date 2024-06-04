@@ -2,10 +2,10 @@ import { useState } from 'react';
 import MenuIcon from '../../assets/icons/MenuIcon.svg';
 import './Menu.scss';
 
-export default function Menu() {
+export default function Menu({ setDeleteTrigger }) {
   const [menu, setMenu] = useState(false);
 
-  const handleMenuClick = () => {
+  const handleMenuOpen = () => {
     menu ? setMenu(false) : setMenu(true);
   }
 
@@ -13,13 +13,17 @@ export default function Menu() {
     setMenu(false);
   }
 
+  const handleDeleteOpen = () => {
+    setDeleteTrigger(true);
+  }
+
   return (
-    <div className="menu" onMouseLeave={handleMouseLeave}>
-      <img src={MenuIcon} alt="Menu icon" className="menu__icon" onClick={handleMenuClick}/>
+    <div className="menu" onMouseLeave={handleMouseLeave} onMouseEnter={handleMenuOpen}>
+      <img src={MenuIcon} alt="Menu icon" className="menu__icon" onClick={handleMenuOpen}/>
       <div className={menu ? "menu__container" : "menu__container menu__container--hidden"}>
         <ul className="menu__list">
           <li className="menu__item">Edit</li>
-          <li className="menu__item">Delete</li>
+          <li className="menu__item" onClick={handleDeleteOpen}>Delete</li>
         </ul>
       </div>
     </div>
