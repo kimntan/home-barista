@@ -19,7 +19,7 @@ export default function BeanMethodsPage() {
     <div className="bean-methods-page">
       <Header />
       <div className="bean-methods-page__main">
-        <CoffeeImage bean={bean} />
+        <CoffeeImage bean={bean} back={"/"}/>
         <div className="bean-methods-page__content">
           <CoffeeDetails bean={bean} />
           <Footer />

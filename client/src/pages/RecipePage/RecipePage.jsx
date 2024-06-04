@@ -30,7 +30,7 @@ export default function RecipePage() {
     <div className="recipe-page">
       <Header />
       <div className="recipe-page__main">
-        <CoffeeImage bean={bean} />
+        <CoffeeImage bean={bean} back={`/${beanId}`}/>
         <div className="recipe-page__content">
           {dial ? <EditRecipe handleToggleDial={handleToggleDial} /> : <Recipe handleToggleDial={handleToggleDial}/>}
           <Footer />

@@ -20,7 +20,7 @@ export default function AddRecipePage() {
     <div className="add-recipe-page">
       <Header />
       <div className="add-recipe-page__main">
-        <CoffeeImage bean={bean} />
+        <CoffeeImage bean={bean} back={`/${beanId}/add-method`}/>
         <div className="add-recipe-page__content">
           <AddRecipe methodName={methodName}/>
           <Footer />

@@ -19,7 +19,7 @@ export default function AddBeanMethod() {
     <div className="add-method-page">
       <Header />
       <div className="add-method-page__main">
-        <CoffeeImage bean={bean} />
+        <CoffeeImage bean={bean} back={`/${beanId}`}/>
         <div className="add-method-page__content">
           <OtherMethods />
           <Footer />
