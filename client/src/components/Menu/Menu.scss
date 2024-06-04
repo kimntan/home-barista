@@ -1,0 +1,60 @@
+@use '../../styles/breakpoints' as *;
+@use '../../styles/variables' as *;
+@use '../../styles/font-size' as *;
+
+.menu {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  &__icon {
+    height: 1.5rem;
+    align-self: flex-end;
+    cursor: pointer;
+    margin-top: 1rem;
+    margin-right: 1.25rem;
+    @include tablet {
+      margin-top: 1.5rem;
+      margin-right: 2.25rem;
+    }
+    @include desktop {
+      margin-top: 1.75rem;
+      margin-right: 3.75rem;
+    }
+  }
+  &__container {
+    background-color: $white;
+    width: 4.75rem;
+    border-radius: 0.25rem;
+    border: 1px solid $grey;
+    position: absolute;
+    right: 2.5rem;
+    top: 0.8rem;
+    @include tablet {
+      right: 3.5rem;
+      top: 1.25rem;
+    }
+    @include desktop {
+      right: 5rem;
+      top: 1.5rem;
+    }
+    &--hidden {
+      display: none;
+    }
+  }
+  &__list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+  &__item {
+    @include body-medium;
+    padding: 0.25rem 1rem;
+    cursor: pointer;
+    &:first-child {
+      border-bottom: $divider;
+    }
+    &:hover {
+      background-color: $light-grey;
+    }
+  }
+}

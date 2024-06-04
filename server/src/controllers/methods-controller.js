@@ -57,7 +57,6 @@ const getOtherCoffeeMethods = async (req, res) => {
     
     res.status(200).json(otherMethods);
   } catch (error) {
-    console.log(error)
     res.status(500).json({
       message: `Unable to get other methods for bean with ID ${beanId}`
     })

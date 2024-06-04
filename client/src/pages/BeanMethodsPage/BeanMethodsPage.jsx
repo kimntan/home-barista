@@ -5,6 +5,7 @@ import Footer from '../../components/Footer/Footer';
 import Header from '../../components/Header/Header';
 import Loader from '../../components/Loader/Loader';
 import CoffeeImage from '../../components/CoffeeImage/CoffeeImage';
+import Menu from '../../components/Menu/Menu';
 import './BeanMethodsPage.scss';
 
 export default function BeanMethodsPage() {
@@ -21,6 +22,7 @@ export default function BeanMethodsPage() {
       <div className="bean-methods-page__main">
         <CoffeeImage bean={bean} back={"/"}/>
         <div className="bean-methods-page__content">
+          <Menu />
           <CoffeeDetails bean={bean} />
           <Footer />
         </div>
