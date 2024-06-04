@@ -9,12 +9,14 @@
   padding-bottom: 1rem;
   flex: 1;
   display: flex;
-  justify-content: center;
   flex-direction: column;
   @include tablet {
     max-width: 30rem;
     width: 100%;
     align-self: center;
+  }
+  @include desktop {
+    justify-content: center;
   }
   &__header {
     @include flex(space-between, center);

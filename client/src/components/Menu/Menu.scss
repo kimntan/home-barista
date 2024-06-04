@@ -4,8 +4,9 @@
 
 .menu {
   position: relative;
-  display: flex;
-  flex-direction: column;
+  width: fit-content;
+  height: fit-content;
+  align-self: flex-end;
   &__icon {
     height: 1.5rem;
     align-self: flex-end;
