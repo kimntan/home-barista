@@ -6,13 +6,16 @@ import Footer from '../../components/Footer/Footer';
 import Recipe from '../../components/Recipe/Recipe';
 import Loader from '../../components/Loader/Loader';
 import CoffeeImage from '../../components/CoffeeImage/CoffeeImage';
-import './RecipePage.scss';
+import Menu from '../../components/Menu/Menu';
 import EditRecipe from '../../components/EditRecipe/EditRecipe';
+import Delete from '../../components/Delete/Delete';
+import './RecipePage.scss';
 
 export default function RecipePage() {
   const [dial, setDial] = useState(false);
-  const { beanId } = useParams();
+  const { beanId, recipeId } = useParams();
   const { bean, loading } = useFetchSingleBean(beanId);
+  const [deleteTrigger, setDeleteTrigger] = useState(false);
 
   const handleToggleDial = (event) => {
     if (dial) {
@@ -32,7 +35,9 @@ export default function RecipePage() {
       <div className="recipe-page__main">
         <CoffeeImage bean={bean} back={`/${beanId}`}/>
         <div className="recipe-page__content">
+          <Menu setDeleteTrigger={setDeleteTrigger}/>
           {dial ? <EditRecipe handleToggleDial={handleToggleDial} /> : <Recipe handleToggleDial={handleToggleDial}/>}
+          <Delete trigger={deleteTrigger} setDeleteTrigger={setDeleteTrigger} item="recipe" id={recipeId} nav={`/:${beanId}`}/>
           <Footer />
         </div>
       </div>

@@ -94,6 +94,15 @@ class HomeBaristaApi {
       return {data: null, error: error}
     }
   }
+
+  async deleteRecipe(recipeId) {
+    try {
+      await axios.delete(`${this.baseUrl}/recipes/${recipeId}`);
+      return {data: '204-Success', error: null}
+    } catch (error) {
+      return {data: null, error: error}
+    }
+  }
 }
 
 export default HomeBaristaApi

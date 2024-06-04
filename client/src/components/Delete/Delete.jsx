@@ -1,12 +1,12 @@
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useDeleteBean } from '../../utils/hooks/delete-hooks';
+import { useDelete } from '../../utils/hooks/delete-hooks';
 import Loader from '../Loader/Loader';
 import './Delete.scss';
 
-export default function Delete({ trigger, setDeleteTrigger, beanId }) {
+export default function Delete({ trigger, setDeleteTrigger, item, id, nav }) {
   const navigate = useNavigate();
-  const { loading, error, success, setDeleteConfirm } = useDeleteBean(beanId)
+  const { loading, error, success, setDeleteConfirm } = useDelete(item, id)
   
   const handleCancelDelete = () => {
     setDeleteTrigger(false);
@@ -19,7 +19,7 @@ export default function Delete({ trigger, setDeleteTrigger, beanId }) {
   useEffect(() => {
     if (success || error) {
       setTimeout(() => {
-        navigate("/");
+        navigate(nav);
       }, 1000);
     }
   }, [success, error])
@@ -42,7 +42,7 @@ export default function Delete({ trigger, setDeleteTrigger, beanId }) {
               <Loader />
             </>
             : <>
-                <h3 className="delete__header">Are you sure you want to delete this bean?</h3>
+                <h3 className="delete__header">Are you sure you want to delete this {item}?</h3>
                 {loading 
                   ? <Loader /> 
                   : <div className="delete__buttons">

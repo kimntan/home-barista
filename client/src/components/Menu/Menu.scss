@@ -50,8 +50,8 @@
     @include body-medium;
     padding: 0.25rem 1rem;
     cursor: pointer;
-    &:first-child {
-      border-bottom: $divider;
+    &:not(:first-child) {
+      border-top: $divider;
     }
     &:hover {
       background-color: $light-grey;

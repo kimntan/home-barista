@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useFetchSingleBean } from '../../utils/hooks/fetch-hooks';
 import CoffeeDetails from '../../components/CoffeeDetails/CoffeeDetails';
@@ -6,9 +7,8 @@ import Header from '../../components/Header/Header';
 import Loader from '../../components/Loader/Loader';
 import CoffeeImage from '../../components/CoffeeImage/CoffeeImage';
 import Menu from '../../components/Menu/Menu';
-import './BeanMethodsPage.scss';
 import Delete from '../../components/Delete/Delete';
-import { useState } from 'react';
+import './BeanMethodsPage.scss';
 
 export default function BeanMethodsPage() {
   const { beanId } = useParams();
@@ -25,9 +25,9 @@ export default function BeanMethodsPage() {
       <div className="bean-methods-page__main">
         <CoffeeImage bean={bean} back={"/"}/>
         <div className="bean-methods-page__content">
-          <Menu setDeleteTrigger={setDeleteTrigger}/>
+          <Menu setDeleteTrigger={setDeleteTrigger} item ="bean"/>
           <CoffeeDetails bean={bean} />
-          <Delete trigger={deleteTrigger} setDeleteTrigger={setDeleteTrigger} beanId={beanId}/>
+          <Delete trigger={deleteTrigger} setDeleteTrigger={setDeleteTrigger} item="bean" id={beanId} nav="/"/>
           <Footer />
         </div>
       </div>
