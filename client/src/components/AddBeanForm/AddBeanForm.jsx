@@ -50,7 +50,7 @@ export default function AddBeanForm() {
         navigate("/");
       }, 1000);
     }
-  }, [success])
+  }, [success, error])
 
   if (loading) {
     return <Loader />

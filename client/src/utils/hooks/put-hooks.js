@@ -22,7 +22,7 @@ export const usePutRecipe = (recipeId) => {
           console.error(`Error editing recipe with ID ${recipeId}: ${error}`)
         }
       }
-
+      
       putData(recipeId, formData)
     }
   }, [homeBaristaApi, formData, recipeId])

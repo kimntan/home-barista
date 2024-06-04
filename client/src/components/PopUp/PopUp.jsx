@@ -7,8 +7,8 @@ export default function PopUp({ trigger }) {
      <div className="pop-up"></div>
      <div className="pop-up__container">
        <div className="pop-up__window">
-         <h3 className="pop-up__header">{trigger}</h3>
-         <p className="pop-up__text">Redirecting...</p>
+        <h3 className="pop-up__header">{trigger}</h3>
+        <p className="pop-up__text">Redirecting...</p>
         <Loader />
        </div>
      </div>

@@ -27,7 +27,7 @@ export default function BeanMethodsPage() {
         <div className="bean-methods-page__content">
           <Menu setDeleteTrigger={setDeleteTrigger}/>
           <CoffeeDetails bean={bean} />
-          <Delete trigger={deleteTrigger} setDeleteTrigger={setDeleteTrigger}/>
+          <Delete trigger={deleteTrigger} setDeleteTrigger={setDeleteTrigger} beanId={beanId}/>
           <Footer />
         </div>
       </div>

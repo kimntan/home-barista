@@ -85,6 +85,15 @@ class HomeBaristaApi {
       return {data: null, error: error}
     }
   }
+
+  async deleteBean(beanId) {
+    try {
+      await axios.delete(`${this.baseUrl}/beans/${beanId}`);
+      return {data: '204-Success', error: null}
+    } catch (error) {
+      return {data: null, error: error}
+    }
+  }
 }
 
 export default HomeBaristaApi
