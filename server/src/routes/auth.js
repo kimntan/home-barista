@@ -1,9 +1,9 @@
 const router = require('express').Router();
 const knex = require('knex')(require('../../knexfile.js'));
-
 const passport = require('passport');
-const LocalStrategy = require('passport-local').Strategy;
 const session = require('express-session');
+const LocalStrategy = require('passport-local').Strategy;
+const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 
 router.use(session({
@@ -15,21 +15,9 @@ router.use(session({
 router.use(passport.initialize());
 router.use(passport.session());
 
-passport.use(new LocalStrategy((username, password, done) => {
-  const user = users.find(u => u.username === username);
-  if (!user) {
-  return done(null, false, { message: 'Incorrect username.' });
-  }
-  if (user.password !== password) {
-  return done(null, false, { message: 'Incorrect password.' });
-  }
-  return done(null, user);
-  }
-));
-
 passport.use(new LocalStrategy(async function verify(username, password, done) {
   try {
-    const user = await knex('users').where({username: username})
+    const user = await knex('users').where({'username': username})
     if (user.length === 0) {
       return done(null, false, {message: 'Incorrect username'})
     } 
@@ -46,14 +34,39 @@ passport.serializeUser((user, done) => {
   done(null, user.id);
   });
 
- passport.deserializeUser((id, done) => {
-  const user = users.find(u => u.id === id);
+ passport.deserializeUser(async (id, done) => {
+  const user = await knex('users').where({'username': username}).first();
   done(null, user);
   });
 
 
-router.post('/login', (req, res) => {
-  passport.authenticate('local', {})
+router.post('/login', async (req, res) => {
+  // passport.authenticate('local', {})
+  const { username, password } = req.body;
+
+  try {
+    const user = await knex('users').where({'username': username});
+    if (user.length === 0) {
+      return res.status(400).json({ message: 'Invalid username or password '})
+    }
+
+    const passwordMatch = await bcrypt.compare(password, user[0].password)
+    if (!passwordMatch) {
+      return res.status(400).json({ message: 'Invalid username or password '})
+    }
+
+    const token = jwt.sign(
+      { username: user[0].username },
+      process.env.JWT_SECRET,
+      { expiresIn: "24h"}
+    )
+
+    res.send({token});
+
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ message: 'Authentication error' })
+  }
 })
 
 router.post('/signup', async (req, res) => {
