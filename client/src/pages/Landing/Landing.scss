@@ -102,11 +102,12 @@
     flex: 1;
     @include flex(flex-start, center);
     flex-direction: column;
-    padding: 2rem 0;
+    padding: 3.5rem 0;
     gap: 0.5rem;
     position: relative;
     @include desktop {
       justify-content: center;
+      padding: 2rem 0;
     }
   }
   &__back {
@@ -136,5 +137,15 @@
     @include button(1.5rem, fit-content);
     align-self: flex-end;
     margin-top: 0.5rem;
+  }
+  &__message {
+    background-color: $white;
+    padding: 0.75rem 1rem;
+    width: 11rem;
+    align-self: center;
+    border: 2px solid $pink-accent;
+    border-radius: 0.25rem;
+    font-size: 0.875rem;
+    text-align: center;
   }
 }

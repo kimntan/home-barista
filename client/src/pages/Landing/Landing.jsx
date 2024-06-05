@@ -1,31 +1,30 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { usePostUser } from '../../utils/hooks/post-hooks';
+import { signupValidator } from '../../utils/validators/login';
 import HomePage from '../HomePage/HomePage';
 import './Landing.scss';
 
 export default function Landing() {
-  const [isSignedUp, setIsSignedUp] = useState(false);
+  const [isSignedUp, setIsSignedUp] = useState(true);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [isLoginError, setIsLoginError] = useState(false);
-  const [errorMessage, setErrorMessage] = useState("");
-  const [match, setMatch] = useState(true);
-  const {loading, error, success, setCredentials} = usePostUser();
-  
+  const {error, setError, success, setSuccess, setCredentials} = usePostUser();
+  const [errorMessage, setErrorMessage] = useState('');
   const initialSignUpValues = {
     username: '',
     password: '',
     confirmPassword: ''
   }
   const [signupValues, setSignupValues] = useState(initialSignUpValues)
-
-  const handleSignUpClick = () => {
-    setIsLoggedIn(false);
-    setIsSignedUp(true);
+  
+  const handleSignUpClick = (event) => {
+    event.preventDefault();
+    setIsSignedUp(false);
   }
 
   const handleBackClick = () => {
-    setIsLoggedIn(true);
-    setIsSignedUp(false);
+    setIsSignedUp(true);
+    setSuccess(null);
+    setError(false);
   }
 
   const handleSignupChange = (event) => {
@@ -38,17 +37,30 @@ export default function Landing() {
 
   const handleSignup = (event) => {
     event.preventDefault();
-    if (event.target.password.value !== event.target.confirmPassword.value) {
-      setMatch(false);
+    setError(false);
+    const signupValidation = signupValidator(signupValues);
+    if (!signupValidation.valid) {
+      setErrorMessage(signupValidation.message);
     } else {
-      setMatch(true);
+      setErrorMessage('');
       const credentials = {
         username: event.target.username.value,
         password: event.target.password.value
       }
-      console.log(credentials);
+      setCredentials(credentials);
     }
   }
+
+  useEffect(() => {
+    if (success) {
+      setTimeout(() => {
+        setIsSignedUp(true);
+        setSignupValues(initialSignUpValues);
+        setSuccess(null);
+        setError(false);
+      }, 1000)
+    }
+  }, [success])
 
   const renderLogin = () => (
     <div className="login">
@@ -59,7 +71,7 @@ export default function Landing() {
         <h2 className="login__prompt">Sign into your account</h2>
         <form className="login__form">
           <input type="text" name="username" placeholder="Username" className="login__input"></input>
-          <input type="text" name="password" placeholder="Password" className="login__input"></input>
+          <input type="password" name="password" placeholder="Password" className="login__input"></input>
           <div className="login__buttons">
             <button className="login__signup" onClick={handleSignUpClick}>Sign Up</button>
             <button type="submit" className="login__submit">Login</button>
@@ -87,22 +99,25 @@ export default function Landing() {
           className="signup__input">
         </input>
         <input 
-          type="text" 
+          type="password" 
           name="password" 
           value={signupValues.password} 
           placeholder="Password" 
           onChange={handleSignupChange}
-          className={!match ? "signup__input signup__input--invalid" : "signup__input"}>
+          className="signup__input">
         </input>
         <input 
-          type="text" 
+          type="password" 
           name="confirmPassword" 
           value={signupValues.confirmPassword} 
           placeholder="Confirm password" 
           onChange={handleSignupChange}
-          className={!match ? "signup__input signup__input--invalid" : "signup__input"}>
+          className="signup__input">
         </input>
         <button type="submit" className="signup__submit">Sign Up</button>
+        {success || error || errorMessage 
+          ? <div className="signup__message">{success}{error}{errorMessage}</div> 
+          : null}
       </form>
     </div>
   </div>

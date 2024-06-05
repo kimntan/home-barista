@@ -72,10 +72,11 @@ export const usePostUser = () => {
       const postData = async (credentials) => {
         const {data, error} = await homeBaristaApi.postUser(credentials);
         if (data) {
-          setSuccess('New user created');
+          setSuccess('New user created!');
           setLoading(false);
+          setError(false);
         } else {
-          setError('Something went wrong... Please try again later');
+          setError('Username already exists. ');
           setLoading(false);
           console.error(`Error creating new user: ${error}`);
         }
@@ -85,5 +86,5 @@ export const usePostUser = () => {
     }
   }, [homeBaristaApi, credentials]);
 
-  return {loading, error, success, setCredentials};
+  return {loading, error, setError, success, setSuccess, setCredentials};
 }

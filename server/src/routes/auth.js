@@ -6,8 +6,6 @@ const LocalStrategy = require('passport-local').Strategy;
 const session = require('express-session');
 const bcrypt = require('bcrypt');
 
-const { userValidator } = require('../utils/validators.js');
-
 router.use(session({
   secret: process.env.SECRET,
   resave: false,
@@ -59,17 +57,23 @@ router.post('/login', (req, res) => {
 })
 
 router.post('/signup', async (req, res) => {
-  const userValidation = userValidator(req);
-  if(!userValidation.valid) {
-    return res.status(userValidation.status).json({
-      message: userValidation.message
-    })
-  }
-
   try {
-    const hashedPassword = bcrypt.hash(req.body.password, 10);
+    const existed = await knex('users')
+      .where({username: req.body.username})
+
+    if (existed.length !== 0) {
+      return res.status(400).json({
+        message: 'Username already exists'
+      })
+    }
+
+    const hashedPassword = await bcrypt.hash(req.body.password, 10);
+    console.log(hashedPassword);
     const addUser = await knex('users')
-      .insert({username: req.body.username, password: hashedPassword})
+      .insert({
+        'username': req.body.username, 
+        'password': hashedPassword
+      })
 
     const newUser = await knex('users')
       .where({username: req.body.username})
@@ -78,6 +82,7 @@ router.post('/signup', async (req, res) => {
     console.log(newUser)
     res.status(201).json(newUser)
   } catch (error) {
+    console.log(error);
     res.status(500).json({
       message: `Unable to create new user.`
     })
