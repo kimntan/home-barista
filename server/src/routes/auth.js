@@ -8,7 +8,8 @@ const bcrypt = require('bcrypt');
 router.use(session({
   secret: process.env.SECRET,
   resave: false,
-  saveUninitialized: false
+  saveUninitialized: false,
+  cookie: { maxAge: 1000 * 60 * 60 * 24 }
 }))
 
 router.use(passport.initialize());
@@ -24,7 +25,8 @@ passport.use(new LocalStrategy(async function verify(username, password, done) {
     if (!match) {
       return done(null, false, {message: 'Incorrect password'})
     }
-    return done(null, user[0])
+    done(null, user[0])
+
   } catch (error) {
     done(error, false, {message: 'Authentication error'})
   }
@@ -41,7 +43,7 @@ passport.deserializeUser(async (userObjId, done) => {
 
 
 router.post('/login', passport.authenticate('local', {
-  failureRedirect: "http://localhost:3000/login",
+failureRedirect: "http://localhost:3000/login",
   successRedirect: "http://localhost:3000/"
 }))
 
@@ -57,8 +59,7 @@ router.post('/signup', async (req, res) => {
     }
 
     const hashedPassword = await bcrypt.hash(req.body.password, 10);
-    console.log(hashedPassword);
-    const addUser = await knex('users')
+    await knex('users')
       .insert({
         'username': req.body.username, 
         'password': hashedPassword
@@ -71,11 +72,14 @@ router.post('/signup', async (req, res) => {
     console.log(newUser)
     res.status(201).json(newUser)
   } catch (error) {
-    console.log(error);
     res.status(500).json({
       message: `Unable to create new user.`
     })
   }
+})
+
+router.get('/user', (req, res) => {
+  res.status(200).json({username: req.user.username})
 })
 
 module.exports = router;

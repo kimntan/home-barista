@@ -2,7 +2,6 @@ const knex = require('knex')(require('../../knexfile.js'));
 const { missingCoffeeFieldValidator } = require('../utils/validators.js');
 
 const getAllBeans = async (req, res) => {
-  console.log(req.user);
   try {
     const beans = await knex
     .select(
@@ -11,7 +10,6 @@ const getAllBeans = async (req, res) => {
       'brand',
       'image')
     .from('beans')
-
     res.status(200).json(beans);
   } catch (error) {
     res.status(500).json({
