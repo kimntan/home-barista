@@ -22,7 +22,7 @@ export default function Delete({ trigger, setDeleteTrigger, item, id, nav }) {
         navigate(nav);
       }, 1000);
     }
-  }, [success, error])
+  }, [success, error, navigate, nav])
   
   return trigger ? (
     <> 

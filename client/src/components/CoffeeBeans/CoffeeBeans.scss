@@ -46,8 +46,11 @@
     letter-spacing: 0.025rem;
     padding-bottom: 0.25rem;
     color: $white;
+    width: 5.5rem;
+    word-wrap: break-word;
     @include tablet {
       font-size: 1.5rem;
+      width: 6.5rem;
     }
   }
   &__placeholder-brand {

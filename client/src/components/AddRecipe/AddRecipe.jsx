@@ -38,7 +38,7 @@ export default function AddRecipe({ methodName }) {
         navigate(`/${beanId}`)
       }, 1000)
     }
-  }, [success])
+  }, [success, beanId, error, navigate])
 
   if (!methodName || loading) {
     return <Loader />

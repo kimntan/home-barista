@@ -37,7 +37,7 @@ export default function RecipePage() {
         <div className="recipe-page__content">
           <Menu setDeleteTrigger={setDeleteTrigger}/>
           {dial ? <EditRecipe handleToggleDial={handleToggleDial} /> : <Recipe handleToggleDial={handleToggleDial}/>}
-          <Delete trigger={deleteTrigger} setDeleteTrigger={setDeleteTrigger} item="recipe" id={recipeId} nav={`/:${beanId}`}/>
+          <Delete trigger={deleteTrigger} setDeleteTrigger={setDeleteTrigger} item="recipe" id={recipeId} nav={`/${beanId}`}/>
           <Footer />
         </div>
       </div>

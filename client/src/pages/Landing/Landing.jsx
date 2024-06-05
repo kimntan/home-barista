@@ -24,7 +24,7 @@ export default function Landing() {
   const handleBackClick = () => {
     setIsSignedUp(true);
     setSuccess(null);
-    setError(false);
+    setError(null);
   }
 
   const handleSignupChange = (event) => {
@@ -37,7 +37,7 @@ export default function Landing() {
 
   const handleSignup = (event) => {
     event.preventDefault();
-    setError(false);
+    setError(null);
     const signupValidation = signupValidator(signupValues);
     if (!signupValidation.valid) {
       setErrorMessage(signupValidation.message);
@@ -57,7 +57,7 @@ export default function Landing() {
         setIsSignedUp(true);
         setSignupValues(initialSignUpValues);
         setSuccess(null);
-        setError(false);
+        setError(null);
       }, 1000)
     }
   }, [success])
@@ -69,7 +69,7 @@ export default function Landing() {
       </header>
       <div className="login__container">
         <h2 className="login__prompt">Sign into your account</h2>
-        <form className="login__form">
+        <form className="login__form" action={"http://localhost:8080/api/login"} method={"POST"}>
           <input type="text" name="username" placeholder="Username" className="login__input"></input>
           <input type="password" name="password" placeholder="Password" className="login__input"></input>
           <div className="login__buttons">

@@ -11,7 +11,7 @@ export const usePutRecipe = (recipeId) => {
   useEffect(() => {
     if (formData) {
       setSaveLoading(true);
-      const putData = async (recipeId, recipe) => {
+      const putData = async (recipeId) => {
         const { data, error } = await homeBaristaApi.editRecipe(recipeId, formData);
         if (data) {
           setUpdatedRecipe(data);

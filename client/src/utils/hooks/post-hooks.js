@@ -5,7 +5,7 @@ export const usePostBean = () => {
   const homeBaristaApi = useMemo(() => new HomeBaristaApi(), []);
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(null);
-  const [error, setError] = useState(false);
+  const [error, setError] = useState(null);
   const [beanData, setBeanData] = useState(null);
 
   useEffect(() => {
@@ -33,7 +33,7 @@ export const usePostBean = () => {
 export const usePostRecipe = () => {
   const homeBaristaApi = useMemo(() => new HomeBaristaApi(), []);
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(false);
+  const [error, setError] = useState(null);
   const [success, setSuccess] = useState(null);
   const [recipeData, setRecipeData] = useState(null);
 
@@ -62,7 +62,7 @@ export const usePostRecipe = () => {
 export const usePostUser = () => {
   const homeBaristaApi = useMemo(() => new HomeBaristaApi(), []);
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(false);
+  const [error, setError] = useState(null);
   const [success, setSuccess] = useState(null);
   const [credentials, setCredentials] = useState(null);
 

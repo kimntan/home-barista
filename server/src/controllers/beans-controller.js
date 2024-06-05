@@ -2,6 +2,7 @@ const knex = require('knex')(require('../../knexfile.js'));
 const { missingCoffeeFieldValidator } = require('../utils/validators.js');
 
 const getAllBeans = async (req, res) => {
+  console.log(req.user);
   try {
     const beans = await knex
     .select(

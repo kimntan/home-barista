@@ -3,7 +3,6 @@ const knex = require('knex')(require('../../knexfile.js'));
 const passport = require('passport');
 const session = require('express-session');
 const LocalStrategy = require('passport-local').Strategy;
-const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 
 router.use(session({
@@ -21,7 +20,8 @@ passport.use(new LocalStrategy(async function verify(username, password, done) {
     if (user.length === 0) {
       return done(null, false, {message: 'Incorrect username'})
     } 
-    if (user[0].password !== bcrypt.hash(password, 10)) {
+    const match = await bcrypt.compare(password, user[0].password);
+    if (!match) {
       return done(null, false, {message: 'Incorrect password'})
     }
     return done(null, user[0])
@@ -30,44 +30,20 @@ passport.use(new LocalStrategy(async function verify(username, password, done) {
   }
 }));
 
-passport.serializeUser((user, done) => {
-  done(null, user.id);
-  });
+passport.serializeUser((userObj, done) => {
+  done(null, userObj.id);
+});
 
- passport.deserializeUser(async (id, done) => {
-  const user = await knex('users').where({'username': username}).first();
+passport.deserializeUser(async (userObjId, done) => {
+  const user = await knex('users').where({'id': userObjId}).first();
   done(null, user);
-  });
+});
 
 
-router.post('/login', async (req, res) => {
-  // passport.authenticate('local', {})
-  const { username, password } = req.body;
-
-  try {
-    const user = await knex('users').where({'username': username});
-    if (user.length === 0) {
-      return res.status(400).json({ message: 'Invalid username or password '})
-    }
-
-    const passwordMatch = await bcrypt.compare(password, user[0].password)
-    if (!passwordMatch) {
-      return res.status(400).json({ message: 'Invalid username or password '})
-    }
-
-    const token = jwt.sign(
-      { username: user[0].username },
-      process.env.JWT_SECRET,
-      { expiresIn: "24h"}
-    )
-
-    res.send({token});
-
-  } catch (error) {
-    console.log(error);
-    res.status(500).json({ message: 'Authentication error' })
-  }
-})
+router.post('/login', passport.authenticate('local', {
+  failureRedirect: "http://localhost:3000/login",
+  successRedirect: "http://localhost:3000/"
+}))
 
 router.post('/signup', async (req, res) => {
   try {

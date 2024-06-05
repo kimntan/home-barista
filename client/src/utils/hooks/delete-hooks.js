@@ -41,7 +41,7 @@ export const useDelete = (item, id) => {
       deleteData();
     }
 
-  }, [homeBaristaApi, deleteConfirm, id])
+  }, [homeBaristaApi, deleteConfirm, id, item])
 
   return { loading, error, success, setDeleteConfirm }
 }

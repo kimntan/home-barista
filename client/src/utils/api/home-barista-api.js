@@ -1,5 +1,7 @@
 import axios from 'axios';
 
+axios.defaults.withCredentials = true;
+
 class HomeBaristaApi {
   constructor() {
     this.baseUrl = process.env.REACT_APP_SERVER_URL;
