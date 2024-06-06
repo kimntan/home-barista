@@ -8,7 +8,7 @@ import OtherMethods from '../../components/OtherMethods/OtherMethods';
 import './AddBeanMethod.scss';
 
 export default function AddBeanMethod() {
-  const { beanId } = useParams();
+  const { username, beanId } = useParams();
   const { bean, loading } = useFetchSingleBean(beanId);
 
   if (loading) {
@@ -19,7 +19,7 @@ export default function AddBeanMethod() {
     <div className="add-method-page">
       <Header />
       <div className="add-method-page__main">
-        <CoffeeImage bean={bean} back={`/${beanId}`}/>
+        <CoffeeImage bean={bean} back={`/${username}/${beanId}`}/>
         <div className="add-method-page__content">
           <OtherMethods />
           <Footer />

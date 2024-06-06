@@ -13,7 +13,7 @@ import './RecipePage.scss';
 
 export default function RecipePage() {
   const [dial, setDial] = useState(false);
-  const { beanId, recipeId } = useParams();
+  const { username, beanId, recipeId } = useParams();
   const { bean, loading } = useFetchSingleBean(beanId);
   const [deleteTrigger, setDeleteTrigger] = useState(false);
 
@@ -33,11 +33,11 @@ export default function RecipePage() {
     <div className="recipe-page">
       <Header />
       <div className="recipe-page__main">
-        <CoffeeImage bean={bean} back={`/${beanId}`}/>
+        <CoffeeImage bean={bean} back={`/${username}/${beanId}`}/>
         <div className="recipe-page__content">
           <Menu setDeleteTrigger={setDeleteTrigger}/>
           {dial ? <EditRecipe handleToggleDial={handleToggleDial} /> : <Recipe handleToggleDial={handleToggleDial}/>}
-          <Delete trigger={deleteTrigger} setDeleteTrigger={setDeleteTrigger} item="recipe" id={recipeId} nav={`/${beanId}`}/>
+          <Delete trigger={deleteTrigger} setDeleteTrigger={setDeleteTrigger} item="recipe" id={recipeId} nav={`/${username}/${beanId}`}/>
           <Footer />
         </div>
       </div>

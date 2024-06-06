@@ -13,12 +13,12 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/login" element={<Landing />} />
-        <Route path="/" element={<HomePage />} />
-        <Route path="/add-bean" element={<AddBeanPage />} />
-        <Route path="/:beanId" element={<BeanMethodsPage />} />
-        <Route path="/:beanId/:recipeId" element={<RecipePage />} />
-        <Route path="/:beanId/add-method" element={<AddBeanMethod />} />
-        <Route path="/:beanId/add-recipe/:methodId" element={<AddRecipePage />} />
+        <Route path="/:username" element={<HomePage />} />
+        <Route path="/:username/add-bean" element={<AddBeanPage />} />
+        <Route path="/:username/:beanId" element={<BeanMethodsPage />} />
+        <Route path="/:username/:beanId/:recipeId" element={<RecipePage />} />
+        <Route path="/:username/:beanId/add-method" element={<AddBeanMethod />} />
+        <Route path="/:username/:beanId/add-recipe/:methodId" element={<AddRecipePage />} />
       </Routes>
     </BrowserRouter>
   )

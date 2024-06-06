@@ -3,7 +3,7 @@ import Loader from '../Loader/Loader';
 import './BrewMethods.scss';
 
 export default function BrewMethods() {
-  const { methods, loading, error } = useFetchMethods();
+  const { methods, loading } = useFetchMethods();
   return (
     <div className="brew-methods">
       <h2>BREW METHODS</h2>

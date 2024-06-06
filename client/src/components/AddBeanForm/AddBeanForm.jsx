@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate, Link, useParams } from 'react-router-dom';
 import { useAddBeanForm } from '../../utils/hooks/form-hooks';
 import { usePostBean } from '../../utils/hooks/post-hooks';
 import { beanValidator } from '../../utils/validators/add-bean';
@@ -8,6 +8,9 @@ import PopUp from '../PopUp/PopUp';
 import './AddBeanForm.scss';
 
 export default function AddBeanForm() {
+  const { username } = useParams();
+  const navigate = useNavigate();
+
   const {
     photoUpload,
     setPhotoUpload,
@@ -24,7 +27,6 @@ export default function AddBeanForm() {
 
   const { loading, error, success, setBeanData } = usePostBean();
   const [errorMessage, setErrorMessage] = useState('');
-  const navigate = useNavigate();
 
   const handleAddBeanSubmit = (event) => {
     event.preventDefault();
@@ -47,10 +49,10 @@ export default function AddBeanForm() {
   useEffect(() => {
     if (success || error) {
       setTimeout(() => {
-        navigate("/");
+        navigate(`/${username}`);
       }, 1000);
     }
-  }, [success, error, navigate])
+  }, [success, error, navigate, username])
 
   if (loading) {
     return <Loader />
@@ -169,7 +171,7 @@ export default function AddBeanForm() {
       }
       
       <div className="new-bean__buttons">
-        <Link to="/" className="new-bean__cancel-link">
+        <Link to={`/${username}`} className="new-bean__cancel-link">
           <button className="new-bean__cancel">Cancel</button>
         </Link>
         <button type="submit" className="new-bean__add">Add</button>

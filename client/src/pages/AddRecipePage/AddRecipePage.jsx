@@ -8,7 +8,7 @@ import './AddRecipePage.scss';
 import AddRecipe from '../../components/AddRecipe/AddRecipe';
 
 export default function AddRecipePage() {
-  const { beanId } = useParams();
+  const { username, beanId } = useParams();
   const { bean, loading } = useFetchSingleBean(beanId);
   const location = useLocation();
   const methodName = location.state;
@@ -20,7 +20,7 @@ export default function AddRecipePage() {
     <div className="add-recipe-page">
       <Header />
       <div className="add-recipe-page__main">
-        <CoffeeImage bean={bean} back={`/${beanId}/add-method`}/>
+        <CoffeeImage bean={bean} back={`/${username}/${beanId}/add-method`}/>
         <div className="add-recipe-page__content">
           <AddRecipe methodName={methodName}/>
           <Footer />

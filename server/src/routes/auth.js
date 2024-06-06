@@ -27,7 +27,6 @@ passport.use(new LocalStrategy(async function verify(username, password, done) {
       return done(null, false, {message: 'Incorrect password'})
     }
     done(null, user[0])
-
   } catch (error) {
     done(error, false, {message: 'Authentication error'})
   }
@@ -42,11 +41,15 @@ passport.deserializeUser(async (userObjId, done) => {
   done(null, user);
 });
 
-
-router.post('/login', passport.authenticate('local', {
-failureRedirect: `${process.env.CLIENT_URL}/login`,
-  successRedirect: `${process.env.CLIENT_URL}/`
-}))
+router.post('/login', passport.authenticate('local', {failureMessage: true}), (req, res) => {
+  if (req.user) {
+    console.log(req.session);
+    res.status(200).json({
+      username: req.user.username,
+      message: 'Successful login!'
+    })
+  }
+})
 
 router.post('/signup', async (req, res) => {
   try {

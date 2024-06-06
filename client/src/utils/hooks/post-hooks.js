@@ -88,3 +88,36 @@ export const usePostUser = () => {
 
   return {loading, error, setError, success, setSuccess, setCredentials};
 }
+
+export const usePostLogin = () => {
+  const homeBaristaApi = useMemo(() => new HomeBaristaApi(), []);
+  const [loading, setLoading] = useState(false);
+  const [loginError, setError] = useState(null);
+  const [loginSuccess, setSuccess] = useState(null);
+  const [loginCredentials, setLoginCredentials] = useState(null);
+
+  useEffect(() => {
+    if (loginCredentials) {
+      setLoading(true);
+      const postData = async (credentials) => {
+        const {data, error} = await homeBaristaApi.postLogin(credentials);
+        if (data) {
+          setSuccess(data);
+          setLoading(false);
+          setError(false);
+        } else {
+          setLoading(false);
+          if (error.response.status === 401) {
+            setError('Invalid username or password');
+          } else {
+            setError('Unable to login at this time.');
+          }
+        }
+      }
+
+      postData(loginCredentials);
+    }
+  }, [homeBaristaApi, loginCredentials]);
+
+  return {loading, loginError, loginSuccess, setLoginCredentials};
+}
