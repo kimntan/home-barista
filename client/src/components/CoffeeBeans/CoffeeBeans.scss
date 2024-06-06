@@ -10,6 +10,9 @@
   border-bottom: $divider;
   &__header {
     @include flex(space-between, center);
+    @include desktop {
+      gap: 40rem;
+    }
   }
   &__scroll-container {
     @include flex(flex-start, center);

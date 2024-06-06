@@ -20,7 +20,8 @@ const getOneRecipe = async (req, res) => {
         'recipes.ratio',
         'recipes.notes')
       .from('recipes')
-      .where({'recipes.id': recipeId})
+      .where({'recipes.user_id': req.user.id})
+      .andWhere({'recipes.id': recipeId})
       .join('methods', 'recipes.method_id', 'methods.id')
       .join('beans', 'recipes.bean_id', 'beans.id')
     
@@ -51,7 +52,8 @@ const editOneRecipe = async (req, res) => {
 
   try {
     await knex('recipes')
-      .where({id: recipeId})
+      .where({'user_id': req.user.id})
+      .andWhere({id: recipeId})
       .update(req.body)
 
     const editedRecipe = await knex
@@ -70,7 +72,8 @@ const editOneRecipe = async (req, res) => {
         'recipes.ratio',
         'recipes.notes')
       .from('recipes')
-      .where({'recipes.id': recipeId})
+      .where({'recipes.user_id': req.user.id})
+      .andWhere({'recipes.id': recipeId})
       .join('methods', 'recipes.method_id', 'methods.id')
       .join('beans', 'recipes.bean_id', 'beans.id')
       .first();
@@ -88,6 +91,7 @@ const deleteOneRecipe = async (req, res) => {
 
   try {
     const recipe = await knex('recipes')
+      .where({'user_id': req.user.id})
       .where({id: recipeId})
 
     if (recipe.length === 0) {
@@ -117,11 +121,13 @@ const postOneRecipe = async (req, res) => {
   }
 
   try {
+    req.body.user_id = req.user.id;
     const addRecipe = await knex('recipes')
       .insert(req.body);
     const newRecipeId = addRecipe[0];
 
     const newRecipe = await knex('recipes')
+      .where({'user_id': req.user.id})
       .where({id: newRecipeId})
       .first();
 

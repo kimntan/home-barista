@@ -11,7 +11,7 @@ const PORT = process.env.PORT || 8080;
 
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
-app.use(cors({origin: "http://localhost:3000", credentials: true}));
+app.use(cors({origin: process.env.CLIENT_URL, credentials: true}));
 
 const isAuth = (req, res, next) => {
   if (!req.user) {
@@ -27,5 +27,5 @@ app.use('/api/methods', methodsRoutes);
 app.use('/api/recipes', isAuth, recipesRoutes);
 
 app.listen(PORT, () => {
-  console.log(`Server is listening at http://localhost:${PORT}`);
+  console.log(`Server is listening at ${process.env.SERVER_URL}${PORT}`);
 })

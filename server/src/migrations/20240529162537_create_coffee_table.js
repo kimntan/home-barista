@@ -1,6 +1,14 @@
 exports.up = function(knex) {
   return knex.schema.createTable('beans', (table) => {
     table.increments('id').primary();
+    table
+      .integer('user_id')
+      .unsigned()
+      .notNullable()
+      .references('id')
+      .inTable('users')
+      .onUpdate('CASCADE')
+      .onDelete('CASCADE');
     table.string('bean_name').notNullable();
     table.string('brand').notNullable();
     table.string('roast_type').nullable();

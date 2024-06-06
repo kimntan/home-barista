@@ -1,3 +1,4 @@
+require('dotenv').config();
 const router = require('express').Router();
 const knex = require('knex')(require('../../knexfile.js'));
 const passport = require('passport');
@@ -43,8 +44,8 @@ passport.deserializeUser(async (userObjId, done) => {
 
 
 router.post('/login', passport.authenticate('local', {
-failureRedirect: "http://localhost:3000/login",
-  successRedirect: "http://localhost:3000/"
+failureRedirect: `${process.env.CLIENT_URL}/login`,
+  successRedirect: `${process.env.CLIENT_URL}/`
 }))
 
 router.post('/signup', async (req, res) => {
@@ -79,7 +80,10 @@ router.post('/signup', async (req, res) => {
 })
 
 router.get('/user', (req, res) => {
-  res.status(200).json({username: req.user.username})
+  res.status(200).json({
+    username: req.user.username,
+    id: req.user.id
+  })
 })
 
 router.post('/logout', (req, res) => {

@@ -21,7 +21,8 @@ export default function Landing() {
     setIsSignedUp(false);
   }
 
-  const handleBackClick = () => {
+  const handleCancelClick = (event) => {
+    event.preventDefault();
     setIsSignedUp(true);
     setSuccess(null);
     setError(null);
@@ -87,7 +88,6 @@ export default function Landing() {
       <h1 className="signup__title">HOME BARISTA</h1>
     </header>
     <div className="signup__container">
-      <button className="signup__back" onClick={handleBackClick}>Back</button>
       <h2 className="signup__prompt">Make an account</h2>
       <form className="signup__form" onSubmit={handleSignup}>
         <input 
@@ -114,7 +114,10 @@ export default function Landing() {
           onChange={handleSignupChange}
           className="signup__input">
         </input>
-        <button type="submit" className="signup__submit">Sign Up</button>
+        <div className="signup__buttons">
+          <button className="signup__cancel" onClick={handleCancelClick}>Cancel</button>
+          <button type="submit" className="signup__submit">Sign Up</button>
+        </div>
         {success || error || errorMessage 
           ? <div className="signup__message">{success}{error}{errorMessage}</div> 
           : null}

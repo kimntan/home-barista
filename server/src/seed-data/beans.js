@@ -1,6 +1,7 @@
 module.exports = [
   {
     id: 1,
+    user_id: 1,
     bean_name: "Dancing Goats",
     brand: "De Mello",
     roast_type: "Medium",
@@ -10,6 +11,7 @@ module.exports = [
   },
   {
     id: 2,
+    user_id: 1,
     bean_name: "Espresso Blend",
     brand: "Hale",
     roast_type: "Light",
@@ -19,6 +21,7 @@ module.exports = [
   },
   {
     id: 3,
+    user_id: 1,
     bean_name: "Pretty Bird",
     brand: "Back Road Coffee Roasters",
     roast_type: "Medium",
@@ -28,6 +31,7 @@ module.exports = [
   },
   {
     id: 4,
+    user_id: 1,
     bean_name: "Carlos Guamanga",
     brand: "Go Get Em Tiger",
     roast_type: "Light",

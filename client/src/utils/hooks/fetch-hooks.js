@@ -1,16 +1,41 @@
 import { useEffect, useMemo, useState } from 'react';
 import HomeBaristaApi from '../api/home-barista-api';
+import { useNavigate } from 'react-router-dom';
+
+export const useFetchUser = () => {
+  const homeBaristaApi = useMemo(() => new HomeBaristaApi(), []);
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const { data, error } = await homeBaristaApi.getUser();
+      if (error) {
+        console.error(`Error fetching user: ${error}`);
+      } else {
+        setUser(data);
+      }
+    }
+
+    fetchData();
+  }, [homeBaristaApi])
+
+  return { user }
+}
 
 export const useFetchBeans = () => {
   const homeBaristaApi = useMemo(() => new HomeBaristaApi(), []);
   const [beans, setBeans] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchData = async () => {
       const { data, error } = await homeBaristaApi.getAllBeans();
       if (error) {
+        if (error.response.status === 401) {
+          navigate("/login");
+        }
         setError('Error retrieving coffee beans');
         setLoading(false);
         console.error(`Error fetching all beans: ${error}`);

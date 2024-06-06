@@ -26,7 +26,8 @@ const getCoffeeMethods = async (req, res) => {
       'methods.image',
       'recipes.id')
     .from('recipes')
-    .where({'bean_id': beanId})
+    .where({'user_id': req.user.id})
+    .andWhere({'bean_id': beanId})
     .join('methods', 'recipes.method_id', 'methods.id')
 
     res.status(200).json(methods)
@@ -43,7 +44,8 @@ const getOtherCoffeeMethods = async (req, res) => {
     const existingMethods = await knex
       .select('recipes.method_id')
       .from('recipes')
-      .where({'bean_id': beanId})
+      .where({'recipes.user_id': req.user.id})
+      .andWhere({'bean_id': beanId})
       .join('methods', 'recipes.method_id', 'methods.id')
     
     const existingMethodsId = existingMethods.map(method => method.method_id)

@@ -6,7 +6,7 @@ import './Recipe.scss';
 
 export default function Recipe({ handleToggleDial }) {
   const { recipeId } = useParams();
-  const { recipe, loading, error } = useFetchRecipe(recipeId);
+  const { recipe, loading } = useFetchRecipe(recipeId);
 
   if (loading) {
     return <Loader />

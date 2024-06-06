@@ -15,6 +15,7 @@
   &__container {
     @include flex(center, center);
     padding: 2rem;
+    margin: auto;
   }
 }
 

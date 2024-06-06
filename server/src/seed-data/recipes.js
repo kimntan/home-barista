@@ -1,6 +1,7 @@
 module.exports = [
   {
     id: 1,
+    user_id: 1,
     bean_id: 1,
     method_id: 1,
     dose: "18g",
@@ -14,6 +15,7 @@ module.exports = [
   },
   {
     id: 2,
+    user_id: 1,
     bean_id: 2,
     method_id: 1,
     dose: "19g",
@@ -27,6 +29,7 @@ module.exports = [
   },
   {
     id: 3,
+    user_id: 1,
     bean_id: 2,
     method_id: 2,
     dose: "28g",
@@ -40,6 +43,7 @@ module.exports = [
   },
   {
     id: 4,
+    user_id: 1,
     bean_id: 3,
     method_id: 3,
     dose: "16g",
@@ -53,6 +57,7 @@ module.exports = [
   },
   {
     id: 5,
+    user_id: 1,
     bean_id: 4,
     method_id: 1,
     dose: "18g",

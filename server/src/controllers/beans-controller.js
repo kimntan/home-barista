@@ -10,6 +10,7 @@ const getAllBeans = async (req, res) => {
       'brand',
       'image')
     .from('beans')
+    .where({'user_id': req.user.id})
     res.status(200).json(beans);
   } catch (error) {
     res.status(500).json({
@@ -31,7 +32,8 @@ const getOneBean = async (req, res) => {
       'product_url',
       'image')
     .from('beans')
-    .where({id: beanId});
+    .where({'user_id': req.user.id})
+    .andWhere({id: beanId});
 
     if (beans.length === 0) {
       return res.status(404).json({
@@ -57,6 +59,7 @@ const postOneBean = async (req, res) => {
   }
 
   try {
+    req.body.user_id = req.user.id;
     const addBean = await knex('beans')
       .insert(req.body);
     const newBeanId = addBean[0];
@@ -77,7 +80,8 @@ const deleteOneBean = async (req, res) => {
   const beanId = req.params.beanId;
   try {
     const bean = await knex('beans')
-      .where({id: beanId});
+      .where({'user_id': req.user.id})
+      .andWhere({id: beanId});
     
     if (bean.length === 0) {
       return res.status(404).json({
@@ -85,7 +89,7 @@ const deleteOneBean = async (req, res) => {
       })
     }
 
-    await knex('beans').where({id: beanId}).del();
+    await knex('beans').where({'user_id': req.user.id}).andWhere({id: beanId}).del();
     
     res.status(204).json({
       message: `Successfully deleted bean with ID ${beanId}`

@@ -12,8 +12,21 @@
     text-decoration: none;
     cursor: pointer;
   }
+  &__user-info {
+    display: flex;
+    gap: 0.75rem;
+  }
   &__username {
-    @include body-large;
+    @include body-medium;
     color: $white;
+  }
+  &__signout {
+    @include body-medium;
+    color: $white;
+    cursor: pointer;
+    &:hover {
+      text-decoration: underline;
+      color: $white;
+    }
   }
 }

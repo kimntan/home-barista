@@ -5,7 +5,7 @@ import { useFetchBeans } from '../../utils/hooks/fetch-hooks';
 import './CoffeeBeans.scss';
 
 export default function CoffeeBeans() {
-  const {beans, loading, error} = useFetchBeans();
+  const {beans, loading} = useFetchBeans();
 
   return (
     <div className="coffee-beans">

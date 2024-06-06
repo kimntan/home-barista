@@ -2,6 +2,7 @@
 @use '../../styles/spacing' as *;
 @use '../../styles/breakpoints' as *;
 @use '../../styles/variables' as *;
+@use '../../styles/font-size' as *;
 
 .login {
   display: flex;
@@ -15,15 +16,19 @@
     background-color: $dark-black;
     height: 30%;
     @include flex(center, flex-end);
-    padding: 1rem;
+    padding: 1.5rem;
     @include desktop {
       height: 100%;
-      width: 40%;
+      width: 45%;
       align-items: center;
+      padding: 0;
     }
   }
   &__title {
     font-size: 1.5rem;
+    @include tablet {
+      @include font(1.5rem, 2rem, 600);
+    }
     @include desktop {
       font-size: 2rem;
     }
@@ -35,7 +40,7 @@
     flex: 1;
     @include flex(flex-start, center);
     flex-direction: column;
-    padding: 2rem 0;
+    padding: 1.25rem 0;
     gap: 0.5rem;
     @include desktop {
       justify-content: center;
@@ -43,6 +48,10 @@
   }
   &__prompt {
     color: $white;
+    margin-bottom: 0.5rem;
+    @include tablet {
+      @include font(1rem, 1.75rem, 600)
+    }
   }
   &__form {
     @include flex(center, flex-start);
@@ -64,6 +73,7 @@
     @include button(1.5rem, fit-content);
     background-color: $white;
     color: $pink-accent;
+    border: 1px solid $pink-accent;
   }
   &__submit {
     @include button(1.5rem, fit-content);
@@ -82,15 +92,19 @@
     background-color: $dark-black;
     height: 30%;
     @include flex(center, flex-end);
-    padding: 1rem;
+    padding: 1.5rem;
     @include desktop {
       height: 100%;
-      width: 40%;
+      width: 45%;
       align-items: center;
+      padding: 0;
     }
   }
   &__title {
     font-size: 1.5rem;
+    @include tablet {
+      @include font(1.5rem, 2rem, 600);
+    }
     @include desktop {
       font-size: 2rem;
     }
@@ -102,7 +116,7 @@
     flex: 1;
     @include flex(flex-start, center);
     flex-direction: column;
-    padding: 3.5rem 0;
+    padding: 1.25rem 0;
     gap: 0.5rem;
     position: relative;
     @include desktop {
@@ -110,14 +124,12 @@
       padding: 2rem 0;
     }
   }
-  &__back {
-    position: absolute;
-    left: 1.5rem;
-    top: 1.25rem;
-    @include back-button;
-  }
   &__prompt {
     color: $white;
+    margin-bottom: 0.5rem;
+    @include tablet {
+      @include font(1rem, 1.75rem, 600)
+    }
   }
   &__form {
     @include flex(center, flex-start);
@@ -133,10 +145,16 @@
       border: 1px solid $pink-accent;
     }
   }
+  &__buttons {
+    width: 100%;
+    @include flex(space-between, center);
+    padding-top: 0.5rem;
+  }
+  &__cancel {
+    @include back-button;
+  }
   &__submit {
     @include button(1.5rem, fit-content);
-    align-self: flex-end;
-    margin-top: 0.5rem;
   }
   &__message {
     background-color: $white;

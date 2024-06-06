@@ -7,6 +7,15 @@ class HomeBaristaApi {
     this.baseUrl = process.env.REACT_APP_SERVER_URL;
   }
 
+  async getUser() {
+    try {
+      const response = await axios.get(`${this.baseUrl}/user`);
+      return {data: response.data, error: null}
+    } catch (error) {
+      return {data: null, error: error}
+    }
+  }
+
   async getAllBeans() {
     try {
       const response = await axios.get(`${this.baseUrl}/beans`);
@@ -112,6 +121,14 @@ class HomeBaristaApi {
       return {data: response.data, error: null}
     } catch (error) {
       return {data: null, error: error}
+    }
+  }
+
+  async postLogout() {
+    try {
+      await axios.post(`${this.baseUrl}/logout`);
+    } catch (error) {
+      console.error(error);
     }
   }
 }
