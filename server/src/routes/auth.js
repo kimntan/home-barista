@@ -82,4 +82,13 @@ router.get('/user', (req, res) => {
   res.status(200).json({username: req.user.username})
 })
 
+router.post('/logout', (req, res) => {
+  res.clearCookie('connect.sid');
+  req.logout(function(err) {
+    req.session.destroy(function(err) {
+      res.send();
+    })
+  });
+})
+
 module.exports = router;
