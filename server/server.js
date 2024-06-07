@@ -21,6 +21,10 @@ const isAuth = (req, res, next) => {
   }
 }
 
+app.get('ping', (req, res) => {
+  res.send('pong');
+})
+
 app.use('/api', authRoutes);
 app.use('/api/beans', isAuth, beansRoutes);
 app.use('/api/methods', methodsRoutes);
