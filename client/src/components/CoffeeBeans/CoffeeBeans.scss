@@ -19,7 +19,7 @@
     padding-right: 1rem;
   }
   &__list {
-    padding: 1rem 0;
+    padding: 1rem 1rem 1rem 0;
     display: flex;
     gap: 1rem;
     overflow-x: auto;
@@ -49,7 +49,7 @@
     letter-spacing: 0.025rem;
     padding-bottom: 0.25rem;
     color: $white;
-    width: 5.5rem;
+    width: 5rem;
     word-wrap: break-word;
     @include tablet {
       font-size: 1.5rem;

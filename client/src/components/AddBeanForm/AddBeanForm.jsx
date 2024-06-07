@@ -19,7 +19,9 @@ export default function AddBeanForm() {
     imageFile,
     setImageFile,
     handleInputChange,
+    handleImageFileChange,
     uploadedImage,
+    setUploadedImage,
     handlePhotoUpload,
     bean,
     brand,
@@ -41,7 +43,7 @@ export default function AddBeanForm() {
       formData.append("roast_type", values.roast);
       formData.append("tasting_notes", values.notes);
       formData.append("product_url", values.product_url);
-      formData.append("image", values.image_url)
+      formData.append("image", values.image_url || imageFile)
       setBeanData(formData);
     }
   }
@@ -145,24 +147,27 @@ export default function AddBeanForm() {
             />
           </label>
 
+          <div className="photo-upload__divider">
+            <span className="photo-upload__or">or</span>
+          </div>
+
           <input 
             type="file" 
             name="image" 
             className="photo-upload__file-input" 
-            accept="image/png, image/jpeg" 
-            onChange={(event) => {
-              setImageFile(event.target.files[0])
-              console.log(imageFile);
-            }}
+            accept="image/png, image/jpeg, image/jpg" 
+            onChange={handleImageFileChange}
+            files={imageFile}
           />
-
+ 
           <div className="new-bean__buttons">
             <button 
               className="new-bean__cancel" 
               onClick={() => {
                 setPhotoUpload(false);
                 setValues({...values, image_url: ''});
-                setImageFile(0);
+                setImageFile('');
+                setUploadedImage(null);
               }}>Cancel</button>
             <button type="submit" className="photo-upload__upload" onClick={handlePhotoUpload}>Done</button>
           </div>

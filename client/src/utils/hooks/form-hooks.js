@@ -11,7 +11,7 @@ export const useAddBeanForm = () => {
     image_url: ''
   }
   const [values, setValues] = useState(initialValues);
-  const [imageFile, setImageFile] = useState(0);
+  const [imageFile, setImageFile] = useState('');
 
   const handleInputChange = (event) => {
     const {name, value} = event.target;
@@ -19,6 +19,11 @@ export const useAddBeanForm = () => {
       ...values, 
       [name]: value,
     })
+  }
+
+  const handleImageFileChange = (event) => {
+    setImageFile(event.target.files[0]);
+    console.log(imageFile);
   }
   
   const [uploadedImage, setUploadedImage] = useState(null);
@@ -28,9 +33,13 @@ export const useAddBeanForm = () => {
     if (values.image_url) {
       setUploadedImage(values.image_url);
     }
-    if (!values.image_url) {
+    if (imageFile) {
+      setUploadedImage(URL.createObjectURL(imageFile));
+    }
+    if (!values.image_url && !imageFile) {
       setUploadedImage(null);
     }
+    console.log(imageFile);
   }
 
   let bean = "BEAN";
@@ -51,6 +60,7 @@ export const useAddBeanForm = () => {
     imageFile,
     setImageFile,
     handleInputChange,
+    handleImageFileChange,
     uploadedImage,
     setUploadedImage,
     handlePhotoUpload,

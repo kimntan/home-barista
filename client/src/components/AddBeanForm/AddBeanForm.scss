@@ -81,7 +81,7 @@
     display: flex;
     gap: 1rem;
     align-self: flex-end;
-    margin-top: 0.75rem;
+    margin-top: 0.5rem;
   }
   &__cancel {
     @include button(1.25, 4rem);
@@ -109,6 +109,22 @@
     background-color: $white;
     color: $dark-grey;
     border: 1px solid $grey;
+  }
+  &__divider {
+    position: relative;
+    border-bottom: $divider;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    margin: 0.35rem 1.5rem;
+  }
+  &__or {
+    position: absolute;
+    top: -0.6rem;
+    color: $dark-grey;
+    font-size: 0.875rem;
+    background-color: $white;
+    padding: 0 0.5rem;
   }
   &__file-input {
     &::file-selector-button {

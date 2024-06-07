@@ -14,6 +14,7 @@ function App() {
       <Routes>
         <Route path="/login" element={<Landing />} />
         <Route path="/:username" element={<HomePage />} />
+        <Route path="/" element={<HomePage />} />
         <Route path="/:username/add-bean" element={<AddBeanPage />} />
         <Route path="/:username/:beanId" element={<BeanMethodsPage />} />
         <Route path="/:username/:beanId/:recipeId" element={<RecipePage />} />

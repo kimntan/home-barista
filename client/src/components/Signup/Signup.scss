@@ -84,11 +84,12 @@
   &__message {
     background-color: $white;
     padding: 0.75rem 1rem;
-    width: 11rem;
+    width: 12.75rem;
     align-self: center;
-    border: 2px solid $pink-accent;
+    border: 1.5px solid $pink-accent;
     border-radius: 0.25rem;
     font-size: 0.875rem;
     text-align: center;
+    margin-top: 1rem;
   }
 }
