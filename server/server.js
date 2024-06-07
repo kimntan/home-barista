@@ -27,5 +27,5 @@ app.use('/api/methods', methodsRoutes);
 app.use('/api/recipes', isAuth, recipesRoutes);
 
 app.listen(PORT, () => {
-  console.log(`Server is listening at ${process.env.SERVER_URL}${PORT}`);
+  console.log(`Server is listening on port ${PORT}.`);
 })

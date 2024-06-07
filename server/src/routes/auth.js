@@ -43,7 +43,6 @@ passport.deserializeUser(async (userObjId, done) => {
 
 router.post('/login', passport.authenticate('local', {failureMessage: true}), (req, res) => {
   if (req.user) {
-    console.log(req.session);
     res.status(200).json({
       username: req.user.username,
       message: 'Successful login!'
@@ -73,7 +72,6 @@ router.post('/signup', async (req, res) => {
       .where({username: req.body.username})
       .first()
 
-    console.log(newUser)
     res.status(201).json(newUser)
   } catch (error) {
     res.status(500).json({

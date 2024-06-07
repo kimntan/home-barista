@@ -72,6 +72,7 @@
   &__buttons {
     width: 100%;
     @include flex(space-between, center);
+    flex-direction: row-reverse;
     padding-top: 0.5rem;
   }
   &__cancel {

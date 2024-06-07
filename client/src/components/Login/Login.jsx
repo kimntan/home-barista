@@ -27,7 +27,7 @@ export default function Login({ setIsSignedUp }) {
         navigate(`/${loginSuccess.username}`)
       }, 1000)
     }
-  }, [loginSuccess])
+  }, [loginSuccess, navigate])
 
   return (
     <div className="login">
@@ -40,8 +40,8 @@ export default function Login({ setIsSignedUp }) {
           <input type="text" name="username" placeholder="Username" className="login__input"></input>
           <input type="password" name="password" placeholder="Password" className="login__input"></input>
           <div className="login__buttons">
-            <button className="login__signup" onClick={handleSignUpClick}>Sign Up</button>
             <button type="submit" className="login__submit">Login</button>
+            <button className="login__signup" onClick={handleSignUpClick}>Sign Up</button>
           </div>
           {loginSuccess || loginError 
           ? <div className="signup__message">{loginSuccess ? loginSuccess.message : null}{loginError}</div> 

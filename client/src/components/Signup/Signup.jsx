@@ -42,11 +42,11 @@ export default function Signup({ setIsSignedUp }) {
             value={signupValues.confirmPassword} 
             placeholder="Confirm password" 
             onChange={handleSignupChange}
-            className="signup__input">
+            className={"signup__input"}>
           </input>
           <div className="signup__buttons">
-            <button className="signup__cancel" onClick={handleCancelClick}>Cancel</button>
             <button type="submit" className="signup__submit">Sign Up</button>
+            <button className="signup__cancel" onClick={handleCancelClick}>Cancel</button>
           </div>
           {success || error || errorMessage 
             ? <div className="signup__message">{success}{error}{errorMessage}</div> 

@@ -1,6 +1,4 @@
-# Project Title
-
-Home Barista
+# Home Barista
 
 ## Overview
 
