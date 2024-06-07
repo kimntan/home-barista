@@ -1,5 +1,13 @@
 const knex = require('knex')(require('../../knexfile.js'));
+const cloudinary = require('cloudinary').v2;
 const { missingCoffeeFieldValidator } = require('../utils/validators.js');
+
+cloudinary.config({
+  cloud_name: 'dns9asy5j',
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
+  secure: true,
+})
 
 const getAllBeans = async (req, res) => {
   try {

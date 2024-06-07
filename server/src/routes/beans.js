@@ -1,12 +1,13 @@
 const router = require('express').Router();
 const multer = require('multer');
-const upload = multer();
+const storage = multer.memoryStorage();
+const upload = multer({storage: storage});
 const beansController = require('../controllers/beans-controller');
 
 router
   .route('/')
   .get(beansController.getAllBeans)
-  .post(upload.none(), beansController.postOneBean)
+  .post(upload.single('image'), beansController.postOneBean)
 
 router
   .route('/:beanId')
