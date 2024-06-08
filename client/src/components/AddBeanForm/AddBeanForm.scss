@@ -9,7 +9,7 @@
   flex-direction: column;
   @include tablet {
     width: 20rem;
-    margin: auto;
+    margin: 0 auto;
   }
   &__heading {
     align-self: center;

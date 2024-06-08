@@ -3,10 +3,11 @@ import HomePage from './pages/HomePage/HomePage';
 import AddBeanPage from './pages/AddBeanPage/AddBeanPage';
 import BeanMethodsPage from './pages/BeanMethodsPage/BeanMethodsPage';
 import RecipePage from './pages/RecipePage/RecipePage';
-import './App.scss';
 import AddBeanMethod from './pages/AddBeanMethod/AddBeanMethod';
 import AddRecipePage from './pages/AddRecipePage/AddRecipePage';
 import Landing from './pages/Landing/Landing';
+import NotFound from './pages/NotFound/NotFound';
+import './App.scss';
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         <Route path="/:username/:beanId/:recipeId" element={<RecipePage />} />
         <Route path="/:username/:beanId/add-method" element={<AddBeanMethod />} />
         <Route path="/:username/:beanId/add-recipe/:methodId" element={<AddRecipePage />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
   )
