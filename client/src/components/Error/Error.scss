@@ -1,0 +1,15 @@
+@use '../../styles/variables' as *;
+@use '../../styles/spacing' as *;
+@use '../../styles/font-size' as *;
+
+.error {
+  display: flex;
+  justify-content: flex-start;
+  @include section-padding;
+  &__message {
+    font-size: 0.9rem;
+    font-weight: 400;
+    color: $dark-grey;
+    width: 70%;
+  }
+}
