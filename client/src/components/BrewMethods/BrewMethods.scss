@@ -26,6 +26,12 @@
     filter: invert(81%) sepia(94%) saturate(0%) hue-rotate(114deg) brightness(96%) contrast(91%);
     position: absolute;
     right: 1rem;
+    @include tablet {
+      right: 2rem;
+    }
+    @include desktop {
+      display: none;
+    }
   }
   &__equipment {
     height: 7rem;
