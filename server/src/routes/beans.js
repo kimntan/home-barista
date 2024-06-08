@@ -1,7 +1,5 @@
 const router = require('express').Router();
-const multer = require('multer');
-const storage = multer.memoryStorage();
-const upload = multer({storage: storage});
+const upload = require('../utils/multer-config');
 const beansController = require('../controllers/beans-controller');
 
 router
@@ -14,4 +12,4 @@ router
   .get(beansController.getOneBean)
   .delete(beansController.deleteOneBean)
 
-module.exports = router;
+module.exports = router

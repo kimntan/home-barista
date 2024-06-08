@@ -1,4 +1,5 @@
 const knex = require('knex')(require('../../knexfile.js'));
+const upload = require('../utils/multer-config');
 const cloudinary = require('cloudinary').v2;
 const { missingCoffeeFieldValidator } = require('../utils/validators.js');
 
@@ -68,6 +69,19 @@ const postOneBean = async (req, res) => {
 
   try {
     req.body.user_id = req.user.id;
+
+    if (req.file) {
+      const b64 = Buffer.from(req.file.buffer).toString('base64');
+      const dataUri = 'data:' + req.file.mimetype + ';base64,' + b64;
+      const result = await cloudinary.uploader.upload(dataUri);
+      req.body.image = result.secure_url;
+    }
+
+    if (req.body.image) {
+      const result = await cloudinary.uploader.upload(req.body.image);
+      req.body.image = result.secure_url;
+    }
+
     const addBean = await knex('beans')
       .insert(req.body);
     const newBeanId = addBean[0];
