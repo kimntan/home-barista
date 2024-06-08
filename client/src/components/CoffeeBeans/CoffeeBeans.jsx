@@ -1,7 +1,8 @@
 import { Link, useParams } from 'react-router-dom';
+import { useFetchBeans } from '../../utils/hooks/fetch-hooks';
 import Loader from '../Loader/Loader';
 import SearchIcon from '../../assets/icons/search-24px.svg';
-import { useFetchBeans } from '../../utils/hooks/fetch-hooks';
+import RightIcon from '../../assets/icons/right-triangle.svg';
 import './CoffeeBeans.scss';
 
 export default function CoffeeBeans() {
@@ -50,6 +51,7 @@ export default function CoffeeBeans() {
           </ul>
         }
 
+        {/* <img src={RightIcon}/> */}
       </div>
       <Link to={`/${username}/add-bean`} className="coffee-beans__button-link">
         <button className="coffee-beans__button">Add new bean</button>

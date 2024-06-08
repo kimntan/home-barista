@@ -13,7 +13,7 @@
     flex-direction: row;
   }
   &__header {
-    background-color: $dark-black;
+    background-color: $header;
     height: 30%;
     @include flex(center, flex-end);
     padding: 1.5rem;

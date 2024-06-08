@@ -4,7 +4,7 @@
 @use '../../styles/font-size' as *;
 
 .header {
-  background-color: $dark-black;
+  background-color: $header;
   @include header-padding;
   @include flex(space-between, center);
   z-index: 1;
