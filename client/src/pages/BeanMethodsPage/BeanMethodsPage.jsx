@@ -13,7 +13,7 @@ import Delete from '../../components/Delete/Delete';
 import './BeanMethodsPage.scss';
 
 export default function BeanMethodsPage() {
-  const { username, beanId } = useParams();
+  const { beanId } = useParams();
   const [deleteTrigger, setDeleteTrigger] = useState(false);
   const { bean, loading } = useFetchSingleBean(beanId);
 
@@ -26,11 +26,11 @@ export default function BeanMethodsPage() {
       <Header />
       <ErrorBoundary fallback={<Error />} >
         <div className="bean-methods-page__main">
-          <CoffeeImage bean={bean} back={`/${username}`}/>
+          <CoffeeImage bean={bean} back="/"/>
           <div className="bean-methods-page__content">
             <Menu setDeleteTrigger={setDeleteTrigger} item ="bean"/>
             <CoffeeDetails bean={bean} />
-            <Delete trigger={deleteTrigger} setDeleteTrigger={setDeleteTrigger} item="bean" id={beanId} nav={`/${username}`}/>
+            <Delete trigger={deleteTrigger} setDeleteTrigger={setDeleteTrigger} item="bean" id={beanId} nav="/"/>
             <Footer />
           </div>
         </div>

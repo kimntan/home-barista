@@ -46,7 +46,7 @@ export const useFetchBeans = () => {
     }
 
     fetchData();
-  }, [homeBaristaApi]);
+  }, [homeBaristaApi, navigate]);
 
   return { beans, loading, error };
 }

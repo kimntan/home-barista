@@ -1,4 +1,4 @@
-import { Link, useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useFetchBeans } from '../../utils/hooks/fetch-hooks';
 import Loader from '../Loader/Loader';
 import SearchIcon from '../../assets/icons/search-24px.svg';
@@ -6,8 +6,10 @@ import RightIcon from '../../assets/icons/right-triangle.svg';
 import './CoffeeBeans.scss';
 
 export default function CoffeeBeans() {
-  const { username } = useParams();
   const {beans, loading} = useFetchBeans();
+
+  const handleScrollContainer = (event) => {
+  }
 
   return (
     <div className="coffee-beans">
@@ -27,7 +29,7 @@ export default function CoffeeBeans() {
               if (bean.image) {
                 image = 
                   <li key={bean.id} className="coffee-beans__item">
-                    <Link to={`/${username}/${bean.id}`} className="coffee-beans__link">
+                    <Link to={`/${bean.id}`} className="coffee-beans__link">
                       <img 
                         src={bean.image} 
                         alt={`${bean.bean_name} coffee beans by ${bean.brand}`} 
@@ -38,7 +40,7 @@ export default function CoffeeBeans() {
               } else {
                 image = 
                   <li key={bean.id} className="coffee-beans__item">
-                    <Link to={`/${username}/${bean.id}`} className="coffee-beans__link" key={bean.id}>
+                    <Link to={`/${bean.id}`} className="coffee-beans__link" key={bean.id}>
                       <div className="coffee-beans__placeholder">
                         <span className="coffee-beans__placeholder-name">{bean.bean_name}</span>
                         <span className="coffee-beans__placeholder-brand">{bean.brand}</span>
@@ -51,9 +53,9 @@ export default function CoffeeBeans() {
           </ul>
         }
 
-        {/* <img src={RightIcon}/> */}
+        <img src={RightIcon} alt="Right arrow icon" className="coffee-beans__right-arrow" onClick={handleScrollContainer}/>
       </div>
-      <Link to={`/${username}/add-bean`} className="coffee-beans__button-link">
+      <Link to={"add-bean"} className="coffee-beans__button-link">
         <button className="coffee-beans__button">Add new bean</button>
       </Link>
     </div>

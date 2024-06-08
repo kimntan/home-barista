@@ -4,7 +4,7 @@ import Loader from '../Loader/Loader';
 import './BeanBrewMethods.scss';
 
 export default function BeanBrewMethods() {
-  const { username, beanId } = useParams(); 
+  const { beanId } = useParams(); 
   const { beanMethods, loading } = useFetchSingleBeanMethods(beanId);
 
   return (
@@ -15,7 +15,7 @@ export default function BeanBrewMethods() {
             <ul className="bean-brew-methods__list">
               {beanMethods.map(method => {
                 return <li key={method.id} className="bean-brew-methods__item">
-                  <Link to={`/${username}/${beanId}/${method.id}`}>
+                  <Link to={`/${beanId}/${method.id}`}>
                     <img 
                     src={method.image} 
                     alt={`${method.method_name}`} 
@@ -26,7 +26,7 @@ export default function BeanBrewMethods() {
             </ul>
           }
         </div>
-        <Link to={`/${username}/${beanId}/add-method`} className="bean-brew-methods__button-link">
+        <Link to={`/${beanId}/add-method`} className="bean-brew-methods__button-link">
           <button className="bean-brew-methods__button">Add Method</button>
         </Link>
       </div>

@@ -4,7 +4,7 @@ import Loader from '../Loader/Loader';
 import './OtherMethods.scss';
 
 export default function OtherMethods() {
-  const { username, beanId } = useParams(); 
+  const { beanId } = useParams(); 
   const { beanMethods, loading } = useFetchOtherMethods(beanId);
 
   return (
@@ -15,7 +15,7 @@ export default function OtherMethods() {
             <ul className="other-brew-methods__list">
               {beanMethods.map(method => {
                 return <li key={method.id} className="other-brew-methods__item">
-                  <Link to={`/${username}/${beanId}/add-recipe/${method.id}`} state={method.brew_method}>
+                  <Link to={`/${beanId}/add-recipe/${method.id}`} state={method.brew_method}>
                     <img 
                     src={method.image} 
                     alt={`${method.method_name}`} 

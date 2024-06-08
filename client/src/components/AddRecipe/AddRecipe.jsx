@@ -8,7 +8,7 @@ import PopUp from '../PopUp/PopUp';
 import './AddRecipe.scss';
 
 export default function AddRecipe({ methodName }) {
-  const { username, beanId, methodId } = useParams();
+  const { beanId, methodId } = useParams();
   const [errorMessage, setErrorMessage] = useState('');
   const { values, parameters, handleInputChange } = useAddRecipeForm(methodName);
   const { loading, error, success, setRecipeData } = usePostRecipe();
@@ -35,10 +35,10 @@ export default function AddRecipe({ methodName }) {
   useEffect(() => {
     if (success || error) {
       setTimeout(() => {
-        navigate(`/${username}/${beanId}`)
+        navigate(`/${beanId}`)
       }, 1000)
     }
-  }, [success, beanId, error, username, navigate])
+  }, [success, beanId, error, navigate])
 
   if (!methodName || loading) {
     return <Loader />
@@ -61,7 +61,7 @@ export default function AddRecipe({ methodName }) {
         })}
       </div>
       <div className="add-recipe__buttons">
-        <Link to={`/${username}/${beanId}/add-method`} className="add-recipe__cancel-link">
+        <Link to={`/${beanId}/add-method`} className="add-recipe__cancel-link">
           <button className="add-recipe__cancel">Cancel</button>
         </Link>     
         <button type="submit" className="add-recipe__add" disabled={success || loading ? true : false}>Add Recipe</button>

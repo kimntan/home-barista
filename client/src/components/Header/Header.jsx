@@ -1,4 +1,4 @@
-import { Link, useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useFetchUser } from '../../utils/hooks/fetch-hooks';
 import HomeBaristaApi from '../../utils/api/home-barista-api';
 import './Header.scss';
@@ -6,7 +6,6 @@ import './Header.scss';
 export default function Header() {
   const homeBaristaApi = new HomeBaristaApi();
   const { user } = useFetchUser();
-  const { username } = useParams();
 
   const handleLogout = async () => {
     await homeBaristaApi.postLogout();
@@ -14,7 +13,7 @@ export default function Header() {
 
   return (
     <header className="header">
-      <Link to={`/${username}`} className="header__link">
+      <Link to={"/"} className="header__link">
         <h1>HOME BARISTA</h1>
       </Link>
       <div className="header__user-info">

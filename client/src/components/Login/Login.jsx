@@ -24,7 +24,7 @@ export default function Login({ setIsSignedUp }) {
   useEffect(() => {
     if (loginSuccess) {
       setTimeout(() => {
-        navigate(`/${loginSuccess.username}`)
+        navigate("/")
       }, 1000)
     }
   }, [loginSuccess, navigate])
