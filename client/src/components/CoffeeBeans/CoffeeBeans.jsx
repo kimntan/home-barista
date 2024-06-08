@@ -8,9 +8,6 @@ import './CoffeeBeans.scss';
 export default function CoffeeBeans() {
   const {beans, loading} = useFetchBeans();
 
-  const handleScrollContainer = (event) => {
-  }
-
   return (
     <div className="coffee-beans">
       <div className="coffee-beans__header">
@@ -53,7 +50,7 @@ export default function CoffeeBeans() {
           </ul>
         }
 
-        <img src={RightIcon} alt="Right arrow icon" className="coffee-beans__right-arrow" onClick={handleScrollContainer}/>
+        <img src={RightIcon} alt="Right arrow icon" className="coffee-beans__right-arrow" />
       </div>
       <Link to={"add-bean"} className="coffee-beans__button-link">
         <button className="coffee-beans__button">Add new bean</button>

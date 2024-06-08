@@ -1,5 +1,6 @@
 import { useFetchMethods } from '../../utils/hooks/fetch-hooks';
 import Loader from '../Loader/Loader';
+import RightIcon from '../../assets/icons/right-triangle.svg';
 import './BrewMethods.scss';
 
 export default function BrewMethods() {
@@ -18,6 +19,8 @@ export default function BrewMethods() {
             })}
           </ul>
         }
+
+        <img src={RightIcon} alt="Right arrow icon" className="brew-methods__right-arrow" />
       </div>
     </div>
   )

@@ -1,6 +1,7 @@
 import { Link, useParams } from 'react-router-dom';
 import { useFetchOtherMethods } from '../../utils/hooks/fetch-hooks';
 import Loader from '../Loader/Loader';
+import RightIcon from '../../assets/icons/right-triangle.svg';
 import './OtherMethods.scss';
 
 export default function OtherMethods() {
@@ -25,6 +26,8 @@ export default function OtherMethods() {
               })}
             </ul>
           }
+
+          <img src={RightIcon} alt="Right arrow icon" className="other-brew-methods__right-arrow" />
         </div>
       </div>
   )
