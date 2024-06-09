@@ -10,7 +10,7 @@ router.use(session({
   secret: process.env.SESSION_SECRET,
   resave: false,
   saveUninitialized: true,
-  cookie: { secure: true, maxAge: 1000 * 60 * 60 * 24 }
+  // cookie: { secure: true, maxAge: 1000 * 60 * 60 * 24 }  
 }))
 
 router.use(passport.initialize());
