@@ -9,7 +9,7 @@ const bcrypt = require('bcrypt');
 router.use(session({
   secret: process.env.SESSION_SECRET,
   resave: false,
-  saveUninitialized: false,
+  saveUninitialized: true,
   cookie: { secure: true, maxAge: 1000 * 60 * 60 * 24 }
 }))
 
