@@ -83,6 +83,7 @@ router.post('/signup', async (req, res) => {
 
 router.get('/user', (req, res) => {
   console.log(req.user);
+  console.log(req.session);
   res.status(200).json({
     username: req.user.username,
     id: req.user.id
