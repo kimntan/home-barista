@@ -10,7 +10,7 @@
     "seed": "npx knex seed:run",
     "reset": "npm run rollback && npm run migrate && npm run seed",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "CI=false npm install && npm run migrate && npm run seed"
+    "build": "npm install && npm run migrate && npm run seed"
   },
   "author": "",
   "license": "ISC",

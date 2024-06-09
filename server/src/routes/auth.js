@@ -42,6 +42,7 @@ passport.deserializeUser(async (userObjId, done) => {
 });
 
 router.post('/login', passport.authenticate('local', {failureMessage: true}), (req, res) => {
+  console.log(req.session);
   if (req.user) {
     res.status(200).json({
       username: req.user.username,
@@ -81,6 +82,7 @@ router.post('/signup', async (req, res) => {
 })
 
 router.get('/user', (req, res) => {
+  console.log(req.user);
   res.status(200).json({
     username: req.user.username,
     id: req.user.id
