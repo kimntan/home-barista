@@ -14,6 +14,8 @@ app.use(express.urlencoded({extended: true}));
 app.use(cors({origin: process.env.CLIENT_URL, credentials: true}));
 app.set("trust proxy", 1);
 
+app.use('/api', authRoutes);
+
 const isAuth = (req, res, next) => {
   if (!req.user) {
     res.status(401).json({message: 'Not Authorized'});
@@ -22,11 +24,6 @@ const isAuth = (req, res, next) => {
   }
 }
 
-app.get('/ping', (req, res) => {
-  res.send('pong');
-})
-
-app.use('/api', authRoutes);
 app.use('/api/beans', isAuth, beansRoutes);
 app.use('/api/methods', methodsRoutes);
 app.use('/api/recipes', isAuth, recipesRoutes);
