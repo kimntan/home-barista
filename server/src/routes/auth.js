@@ -41,7 +41,7 @@ passport.deserializeUser(async (userObjId, done) => {
   done(null, user);
 });
 
-router.post('/login', passport.authenticate('local', {failureMessage: true}), (req, res) => {
+router.post('/login', passport.authenticate('local', {failureMessage: true, keepSessionInfo: true}), (req, res) => {
   console.log(req.session);
   if (req.user) {
     res.status(200).json({
