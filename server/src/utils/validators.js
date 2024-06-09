@@ -2,7 +2,6 @@ const knex = require('knex')(require('../../knexfile.js'));
 
 const missingRecipeFieldValidator = (req) => {
   const missingFields = [];
-  console.log(req.body);
   
   if (req.body.method_id === 1) {
     for (const key in req.body) {
