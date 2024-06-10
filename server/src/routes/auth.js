@@ -13,9 +13,7 @@ router.use(session({
   saveUninitialized: true,
   cookie: { 
     maxAge: 1000 * 60 * 60 * 24,
-    domain: 'onrender.com', 
     secure: true, 
-    sameSite: 'none'
   }  
 }))
 
