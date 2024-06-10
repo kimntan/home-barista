@@ -7,9 +7,12 @@ const LocalStrategy = require('passport-local').Strategy;
 const bcrypt = require('bcrypt');
 
 router.use(session({
+  name: 'home-barista',
   secret: process.env.SESSION_SECRET,
   resave: false,
   saveUninitialized: true,
+  // temporary to see if this allows the cookie to be shared between client/server
+  cookie: { domain: '.onrender.com', sameSite: 'none' },
   // cookie: { secure: true, maxAge: 1000 * 60 * 60 * 24 }  
 }))
 
