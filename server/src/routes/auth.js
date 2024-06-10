@@ -6,18 +6,22 @@ const session = require('express-session');
 const LocalStrategy = require('passport-local').Strategy;
 const bcrypt = require('bcrypt');
 
+const productionCookieParams = process.env.NODE_ENV === "production" ?
+  {
+    secure: true,
+    sameSite: 'none',
+    httpOnly: true,
+  } :
+  {};
+
 router.use(session({
   name: 'home-barista',
   secret: process.env.SESSION_SECRET,
   resave: true,
   saveUninitialized: false,
-  // resave: false,
-  // saveUninitialized: false,
   cookie: { 
     maxAge: 1000 * 60 * 60 * 24,
-    secure: true,
-    httpOnly: true,
-    sameSite: 'none',
+    ...productionCookieParams,
   }  
 }))
 
