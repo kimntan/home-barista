@@ -11,7 +11,12 @@ router.use(session({
   secret: process.env.SESSION_SECRET,
   resave: false,
   saveUninitialized: true,
-  cookie: { secure: true, maxAge: 1000 * 60 * 60 * 24 }  
+  cookie: { 
+    maxAge: 1000 * 60 * 60 * 24,
+    domain: 'onrender.com', 
+    secure: true, 
+    sameSite: 'none'
+  }  
 }))
 
 router.use(passport.initialize());
