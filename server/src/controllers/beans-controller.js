@@ -92,7 +92,6 @@ const postOneBean = async (req, res) => {
 
     res.status(201).json(newBean);
   } catch (error) {
-    console.log(error);
     res.status(500).json({
       message: `Unable to post new bean`
     })
