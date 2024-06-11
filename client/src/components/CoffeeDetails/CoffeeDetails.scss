@@ -21,11 +21,13 @@
     gap: 0.75rem;
     background-color: $light-grey;
     border-radius: 1rem;
+    position: relative;
   }
   &__subheading {
     width: 100%;
     border-bottom: $divider;
     text-align: center;
+    padding-bottom: 0.25rem;
     margin-bottom: 0.5rem;
   }
   &__property {
@@ -39,5 +41,14 @@
   &__value {
     @include body-medium;
     padding-right: 1rem;
+  }
+  &__external-link {
+    position: absolute;
+    top: 1.25rem;
+    right: 1.25rem;
+  }
+  &__link-icon {
+    height: 1.5rem;
+    filter: invert(65%) sepia(6%) saturate(0%) hue-rotate(267deg) brightness(101%) contrast(81%);
   }
 }

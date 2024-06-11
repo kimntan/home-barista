@@ -1,4 +1,5 @@
 import BeanBrewMethods from '../BeanBrewMethods/BeanBrewMethods';
+import LinkIcon from '../../assets/icons/external-link.svg';
 import './CoffeeDetails.scss';
 
 export default function CoffeeDetails({ bean }) {
@@ -7,6 +8,7 @@ export default function CoffeeDetails({ bean }) {
       <BeanBrewMethods />
       <div className="coffee-details__section">
         <h2 className="coffee-details__subheading">ABOUT</h2>
+        {bean.product_url ? <a href={bean.product_url} className="coffee-details__external-link" target="_blank" rel="noreferrer"><img src={LinkIcon} alt="Link icon" className="coffee-details__link-icon"></img></a> : null}
         <div className="coffee-details__property">
           <h3 className="coffee-details__key">NAME</h3>
           <span className="coffee-details__value">{bean.bean_name}</span>

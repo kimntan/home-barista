@@ -5,6 +5,7 @@
 
 .bean-brew-methods {
   @include section-padding;
+  padding-top: 0.5rem;
   @include flex(center, center);
   flex-direction: column;
   &__scroll-container {
