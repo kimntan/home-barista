@@ -15,7 +15,6 @@ const searchBeans = async (req) => {
       .whereILike('bean_name', searchInput)
       .orWhereILike('brand', searchInput)
     
-    console.log(response);
     if (response.length === 0) {
       return {
         status: 404,

@@ -1,10 +1,10 @@
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useFetchBeans } from '../../utils/hooks/fetch-hooks';
 import Loader from '../Loader/Loader';
 import SearchIcon from '../../assets/icons/search-24px.svg';
 import RightIcon from '../../assets/icons/right-triangle.svg';
 import './CoffeeBeans.scss';
-import { useState } from 'react';
 
 export default function CoffeeBeans() {
   const {beans, loading, setSearch} = useFetchBeans();
@@ -30,7 +30,13 @@ export default function CoffeeBeans() {
         <h2>BEANS</h2>
         <form className="search" onSubmit={handleSearchSubmit}>
           <img src={SearchIcon} alt="Search icon" className="search__icon"></img>
-          <input type="text" name="search" placeholder="Search..." className="search__input" onChange={handleSearchChange}></input>
+          <input 
+            type="text" 
+            name="search" 
+            placeholder="Search..." 
+            className="search__input"
+            onChange={handleSearchChange}>
+          </input>
         </form>
       </div>
       <div className="coffee-beans__scroll-container">
