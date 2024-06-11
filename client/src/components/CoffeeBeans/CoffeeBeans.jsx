@@ -7,20 +7,30 @@ import './CoffeeBeans.scss';
 import { useState } from 'react';
 
 export default function CoffeeBeans() {
-  const {beans, loading} = useFetchBeans();
+  const {beans, loading, setSearch} = useFetchBeans();
   const [scroll, setScroll] = useState(false);
 
   const handleScroll = () => {
     setScroll(true);
   }
 
+  function handleSearchSubmit(event) {
+    event.preventDefault();
+    const searchInput = event.target.search.value;
+    setSearch(searchInput);
+  }
+
+  function handleSearchChange(event) {
+    setSearch(event.target.value);
+  }
+
   return (
     <div className="coffee-beans">
       <div className="coffee-beans__header">
         <h2>BEANS</h2>
-        <form className="search">
+        <form className="search" onSubmit={handleSearchSubmit}>
           <img src={SearchIcon} alt="Search icon" className="search__icon"></img>
-          <input type="text" name="search" placeholder="Search..." className="search__input"></input>
+          <input type="text" name="search" placeholder="Search..." className="search__input" onChange={handleSearchChange}></input>
         </form>
       </div>
       <div className="coffee-beans__scroll-container">

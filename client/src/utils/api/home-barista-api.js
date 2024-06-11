@@ -16,7 +16,16 @@ class HomeBaristaApi {
     }
   }
 
-  async getAllBeans() {
+  async getAllBeans(search) {
+    if (search) {
+      try {
+        const response = await axios.get(`${this.baseUrl}/beans?s=${search}`);
+        return {data: response.data, error: null}
+      } catch (error) {
+        return {data: null, error: error}
+      }
+      
+    }
     try {
       const response = await axios.get(`${this.baseUrl}/beans`);
       return {data: response.data, error: null}

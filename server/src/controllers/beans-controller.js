@@ -2,6 +2,7 @@ const knex = require('knex')(require('../../knexfile.js'));
 const upload = require('../utils/multer-config');
 const cloudinary = require('cloudinary').v2;
 const { missingCoffeeFieldValidator } = require('../utils/validators.js');
+const { searchBeans } = require('../utils/search.js')
 
 cloudinary.config({
   cloud_name: 'dns9asy5j',
@@ -20,8 +21,17 @@ const getAllBeans = async (req, res) => {
       'image')
     .from('beans')
     .where({'user_id': req.user.id})
+
+    const searchData = await searchBeans(req);
+    if(searchData) {
+      return res
+        .status(searchData.status)
+        .json(searchData.message)
+    }
+
     res.status(200).json(beans);
   } catch (error) {
+    console.log(error);
     res.status(500).json({
       message: `Unable to get coffee beans.`
     })

@@ -27,11 +27,12 @@ export const useFetchBeans = () => {
   const [beans, setBeans] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [search, setSearch] = useState(null);
   const navigate = useNavigate();
 
   useEffect(() => {
     const fetchData = async () => {
-      const { data, error } = await homeBaristaApi.getAllBeans();
+      const { data, error } = await homeBaristaApi.getAllBeans(search);
       if (error) {
         if (error.response.status === 401) {
           navigate("/login");
@@ -46,9 +47,9 @@ export const useFetchBeans = () => {
     }
 
     fetchData();
-  }, [homeBaristaApi, navigate]);
+  }, [homeBaristaApi, navigate, search]);
 
-  return { beans, loading, error };
+  return { beans, loading, error, setSearch };
 }
 
 export const useFetchSingleBean = (beanId) => {

@@ -26,7 +26,7 @@ export default function AddBeanForm() {
     brand,
   } = useAddBeanForm();
 
-  const { loading, error, success, setBeanData } = usePostBean();
+  const { error, success, setBeanData } = usePostBean();
   const [errorMessage, setErrorMessage] = useState('');
 
   const handleAddBeanSubmit = (event) => {
@@ -54,10 +54,6 @@ export default function AddBeanForm() {
       }, 1000);
     }
   }, [success, error, navigate])
-
-  if (loading) {
-    return <Loader />
-  }
 
   return (
     <form className="new-bean" onSubmit={handleAddBeanSubmit}>
