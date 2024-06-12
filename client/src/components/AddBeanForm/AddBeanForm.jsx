@@ -55,10 +55,6 @@ export default function AddBeanForm() {
     }
   }, [success, error, navigate])
 
-  if (loading) {
-    return <Loader />
-  }
-
   return (
     <form className="new-bean" onSubmit={handleAddBeanSubmit}>
       <h2 className="new-bean__heading">NEW BEAN</h2>
@@ -178,7 +174,10 @@ export default function AddBeanForm() {
         <Link to={"/"} className="new-bean__cancel-link">
           <button className="new-bean__cancel">Cancel</button>
         </Link>
-        <button type="submit" className="new-bean__add">Add</button>
+        {loading 
+          ? <button type="submit" className="new-bean__add" disabled>Add</button> 
+          : <button type="submit" className="new-bean__add">Add</button>
+        }
       </div>
       <PopUp trigger={success ? success : error ? error : null} />
     </form>
