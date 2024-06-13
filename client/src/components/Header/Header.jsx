@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { useFetchUser } from '../../utils/hooks/fetch-hooks';
 import HomeBaristaApi from '../../utils/api/home-barista-api';
+import Logo from '../../assets/logo/logo.png';
 import './Header.scss';
 
 export default function Header() {
@@ -14,6 +15,7 @@ export default function Header() {
   return (
     <header className="header">
       <Link to={"/"} className="header__link">
+        <img src={Logo} alt="Home barista logo" className="header__logo"/>
         <h1>HOME BARISTA</h1>
       </Link>
       <div className="header__user-info">

@@ -2,6 +2,7 @@
 @use '../../styles/spacing' as *;
 @use '../../styles/mixins' as *;
 @use '../../styles/font-size' as *;
+@use '../../styles/breakpoints' as *;
 
 .header {
   background-color: $header;
@@ -11,6 +12,16 @@
   &__link {
     text-decoration: none;
     cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+  }
+  &__logo {
+    height: 1.5rem;
+    padding-bottom: 0.25rem;
+    @include tablet {
+      height: 2rem;
+    }
   }
   &__user-info {
     display: flex;
