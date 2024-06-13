@@ -16,6 +16,12 @@
     align-items: center;
     gap: 0.25rem;
   }
+  &__title {
+    display: none;
+    @include mobile {
+      display: block;
+    }
+  }
   &__logo {
     height: 1.5rem;
     padding-bottom: 0.25rem;

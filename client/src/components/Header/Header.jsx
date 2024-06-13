@@ -16,7 +16,7 @@ export default function Header() {
     <header className="header">
       <Link to={"/"} className="header__link">
         <img src={Logo} alt="Home barista logo" className="header__logo"/>
-        <h1>HOME BARISTA</h1>
+        <h1 className="header__title">HOME BARISTA</h1>
       </Link>
       <div className="header__user-info">
       <span className="header__username">{user ? user.username : 'Username'}</span>
