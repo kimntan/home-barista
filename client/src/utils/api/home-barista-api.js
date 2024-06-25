@@ -124,6 +124,15 @@ class HomeBaristaApi {
     }
   }
 
+  async editBean(beanId, bean) {
+    try {
+      const response = await axios.put(`${this.baseUrl}/beans/${beanId}`, bean);
+      return {data: response.data, error: null}
+    } catch (error) {
+      return {data: null, error: error}
+    }
+  }
+
   async postUser(credentials) {
     try {
       const response = await axios.post(`${this.baseUrl}/signup`, credentials);

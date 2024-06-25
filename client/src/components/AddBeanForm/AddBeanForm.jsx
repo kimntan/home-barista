@@ -3,7 +3,6 @@ import { useNavigate, Link } from 'react-router-dom';
 import { useAddBeanForm } from '../../utils/hooks/form-hooks';
 import { usePostBean } from '../../utils/hooks/post-hooks';
 import { beanValidator } from '../../utils/validators/add-bean';
-import Loader from '../Loader/Loader';
 import PopUp from '../PopUp/PopUp';
 import './AddBeanForm.scss';
 

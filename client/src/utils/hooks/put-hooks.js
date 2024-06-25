@@ -33,3 +33,37 @@ export const usePutRecipe = (recipeId) => {
     setFormData, 
     updatedRecipe }
 }
+
+export const usePutBean = (beanId) => {
+  const homeBaristaApi = useMemo(() => new HomeBaristaApi(), []);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
+  const [formData, setFormData] = useState(null);
+  const [updatedBean, setUpdatedBean] = useState(null);
+
+  useEffect(() => {
+    if (formData) {
+      setLoading(true);
+      const putData = async (beanId) => {
+        const {data, error} = await homeBaristaApi.editBean(beanId, formData);
+        if (data) {
+          setUpdatedBean(data);
+          setLoading(false);
+        } else {
+          setError(error);
+          setLoading(false);
+          console.error(`Error editing bean with ID ${beanId}: ${error}`)
+        }
+      }
+
+      putData(beanId, formData)
+    }
+  }, [homeBaristaApi, formData, beanId])
+
+  return {
+    loading, 
+    error,
+    setFormData,
+    updatedBean
+  }
+}
