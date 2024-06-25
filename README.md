@@ -30,11 +30,18 @@ Any coffee lover who brews their own coffee.
   - react-router-dom
   - sass
   - axios
+  - react-error-boundary
 - Server libraries
   - knex
   - express
   - cors
   - dotenv
+  - bcrypt
+  - cloudinary
+  - express-session
+  - multer
+  - passport
+  - passport-local
 
 ### APIs
 
@@ -233,3 +240,12 @@ Sprint 3:
 - Timer that user can use when brewing
 - Make methods non-static: allow users to choose which methods they have on the home page based on the equipment that they own. Allow photo upload to change static equipment photos. Create Add method feature to achieve this.
 - Deployment
+
+## Installation
+
+- clone repository.
+- run npm install on both server directory and client directory.
+- create a database with mysql.
+- create a cloudinary account and note the environment variables available in the dashboard.
+- create an env file in the server directory using the env.sample as a guide. Use the name of the database you created as the DB_NAME, and your cloudinary environment variables for CLOUDINARY_API_KEY and CLOUDINARY_API_SECRET.
+- create an env file in the client directory using the env.sample as a guide.
