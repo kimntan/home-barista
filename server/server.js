@@ -5,6 +5,7 @@ const authRoutes = require('./src/routes/auth');
 const beansRoutes = require('./src/routes/beans');
 const methodsRoutes = require('./src/routes/methods');
 const recipesRoutes = require('./src/routes/recipes');
+const isAuth = require('./src/utils/auth');
 
 const app = express();
 const PORT = process.env.PORT || 8080;
@@ -15,15 +16,6 @@ app.use(cors({origin: process.env.CLIENT_URL, credentials: true}));
 app.set("trust proxy", 1);
 
 app.use('/api', authRoutes);
-
-const isAuth = (req, res, next) => {
-  if (!req.user) {
-    res.status(401).json({message: 'Not Authorized'});
-  } else {
-    next();
-  }
-}
-
 app.use('/api/beans', isAuth, beansRoutes);
 app.use('/api/methods', methodsRoutes);
 app.use('/api/recipes', isAuth, recipesRoutes);
