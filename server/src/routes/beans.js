@@ -11,5 +11,6 @@ router
   .route('/:beanId')
   .get(beansController.getOneBean)
   .delete(beansController.deleteOneBean)
+  .put(beansController.editBean)
 
 module.exports = router

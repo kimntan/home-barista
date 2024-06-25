@@ -133,9 +133,55 @@ const deleteOneBean = async (req, res) => {
   }
 }
 
+const editBean = async (req, res) => {
+  const beanId = req.params.beanId;
+
+  const fieldValidation = missingCoffeeFieldValidator(req);
+  if (!fieldValidation.valid) {
+    return res.status(fieldValidation.status).json({
+      message: fieldValidation.message
+    })
+  }
+  
+  try {
+    req.body.user_id = req.user.id;
+
+    if (req.file) {
+      const b64 = Buffer.from(req.file.buffer).toString('base64');
+      const dataUri = 'data:' + req.file.mimetype + ';base64,' + b64;
+      const result = await cloudinary.uploader.upload(dataUri);
+      req.body.image = result.secure_url;
+    }
+
+    if (req.body.image) {
+      const result = await cloudinary.uploader.upload(req.body.image);
+      req.body.image = result.secure_url;
+    }
+    console.log(req.body);
+
+    await knex('beans')
+    .where({'user_id': req.user.id})
+    .andWhere({id: beanId})
+    .update(req.body)
+
+    const updatedBean = await knex('beans')
+      .where({'user_id': req.user.id})
+      .andWhere({id: beanId})
+      .first();
+
+    res.status(200).json(updatedBean);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({
+      message: `Unable to update bean with ID ${beanId}`
+    })
+  }
+}
+
 module.exports = {
   getAllBeans,
   getOneBean,
   postOneBean,
-  deleteOneBean
+  deleteOneBean,
+  editBean
 }
